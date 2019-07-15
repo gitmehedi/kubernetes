@@ -1,15 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: resource-consumer-small
+  name: my-production-label-pod
+  labels:
+    app: my-app
+    environment: production
 spec:
   containers:
-  - name: resource-consumer
-    image: gcr.io/kubernetes-e2e-test-images/resource-consumer:1.4
-    resources:
-      requests:
-        cpu: 500m
-        memory: 128Mi
-  - name: busybox-sidecar
-    image: radial/busyboxplus:curl
-    command: [/bin/sh, -c, 'until curl localhost:8080/ConsumeCPU -d "millicores=100&durationSec=3600"; do sleep 5; done && sleep 3700']
+    - name: nginx
+      image: nginx
+      command: ['sh','-c','echo Hello, Kubernetes! && sleep 3600']
