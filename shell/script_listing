@@ -1,0 +1,62 @@
+#!/bin/more
+==============================
+SCRIPT NAME: advanceui.sh 
+========================
+#!/bin/bash
+
+
+MENUBOX=${MENUBOX=dialog}
+
+
+funcDisplayDialogMenu(){
+  $MENUBOX --title "[ MAIN MENU ]" --menu "Use UP/Down Arrows to Move and Select or the Number of Your Choice and Enter" 15 45 4 1 "Display Hello World" 2 "Display Goodbye World" 3 "Display Nothing" X "Exit" 2>choce.txt
+}
+
+
+funcDisplayDialogMenu
+
+case "`cat choice.txt`" in 
+  1) echo "Hello World";;
+  2) echo "Goodbye World";;
+  3) echo "Nothing";;
+  X) echo "Exit";;
+esac
+==============================
+SCRIPT NAME: function.sh 
+========================
+#!/bin/bash
+
+
+echo "Starting the function definition..."
+
+funcExample () {
+
+echo "We are now INSIDE the function..."
+
+}
+
+funcExample
+==============================
+SCRIPT NAME: generate.sh 
+========================
+#!/bin/bash
+
+DOCFILE="script_listing"
+
+echo "#!/bin/more" > "$DOCFILE"
+
+ls *.sh >tmplisting.txt
+
+while IFS= read -r FILENAME; do
+if [ -f "$FILENAME" ]; then
+   echo "==============================" >> "$DOCFILE"
+   echo "SCRIPT NAME: $FILENAME " >> "$DOCFILE"
+   echo "========================" >> "$DOCFILE"
+   echo "`cat $FILENAME`" >> "$DOCFILE"
+fi
+
+done < tmplisting.txt
+
+chmod 755 "$DOCFILE"
+
+rm tmplisting.txt
