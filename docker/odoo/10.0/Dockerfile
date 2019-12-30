@@ -1,11 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER gitmehedi
 
-# make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
-#RUN locale-gen en_US.UTF-8
-#RUN update-locale LANG=en_US.UTF-8
-
-RUN set -x; apt-get update -y && apt-get install wget vim lsb-release sudo -y
+RUN set -x; apt-get update -y && apt-get install wget vim lsb-release sudo vim wget git npm curl -y
 
 # ========== Install and setup postgresql ==========
 
@@ -24,10 +20,13 @@ RUN set -x;  apt-get install -y \
                      python-pip \
                      python-dev \
                      python-ldap \
-                     libxslt-dev \
-                     vim \
-                     wget \
-                     git
+                     libxslt-dev 
+
+# ========== Install node, lessc and wkhtmltopdf ==========
+
+RUN set -x; npm install -g lessc && apt-get install -y wkhtmltopdf nodejs-legacy
+
+
 RUN set -x; mkdir -p /opt/odoo && cd /opt/odoo && mkdir server custom osapps
 
 # ========== Clone odoo from github.com OR local zip file ==========
@@ -50,7 +49,7 @@ ENV ODOO_RC /etc/odoo/odoo.conf
 
 VOLUME ["/opt/odoo/","/etc/odoo/","/var/lib/postgresql"]
 
-EXPOSE 8069
+EXPOSE 8069 8071
 
 ENTRYPOINT ["/bin/bash","/var/start.sh"]
 CMD [""]
