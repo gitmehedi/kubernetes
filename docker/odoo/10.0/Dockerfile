@@ -23,8 +23,8 @@ RUN set -x;  apt-get install -y \
                      libxslt-dev 
 
 # ========== Install node, lessc and wkhtmltopdf ==========
-
-RUN set -x; npm install -g lessc && apt-get install -y wkhtmltopdf nodejs-legacy
+#RUN set -x; npm install -g lessc && apt-get install -y wkhtmltopdf nodejs-legacy
+RUN set -x; apt-get install -y wkhtmltopdf node-less && npm install -g lessc
 
 
 RUN set -x; mkdir -p /opt/odoo && cd /opt/odoo && mkdir server custom osapps
