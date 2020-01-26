@@ -1,5 +1,6 @@
 #!/bin/bash
 read -p "Node Type Master/Slave (m/s): " SER_TYPE
+read -p "Kubernetes Minikube (mk): " TYPE
 
 KUBE_VERSION=1.17.0-00
 DOCKER_VERSION=5:18.09.9~3-0~ubuntu-xenial
@@ -43,15 +44,8 @@ then
   kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/3f7d3e6c24f641e7ff557ebcea1136fdf4b1b6a1/Documentation/kube-flannel.yml
 fi
 
-TYPE="p"
-if [ $TYPE == 'k' ]
-then
-	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-	sudo touch /etc/apt/sources.list.d/kubernetes.list
-	echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-	sudo apt-get -y update
-	sudo apt-get install -y  kubelet kubeadm
-elif [ $TYPE == 'mk' ]
+
+if [ $TYPE == 'mk' ]
 then
 	curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.28.2/minikube-linux-amd64
 	chmod +x minikube && sudo mv minikube /usr/local/bin/
