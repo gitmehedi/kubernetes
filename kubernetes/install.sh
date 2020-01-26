@@ -20,7 +20,8 @@ EOF
 echo -e "========== Install Docker and Kubernetes packages =========="
 sudo apt-get update -y
 sudo apt-get install -y docker-ce=$DOCKER_VERSION docker-ce-cli=$DOCKER_VERSION containerd.io
-sudo apt-get install -y kuberlet=$KUBE_VERSION kubeadm=$KUBE_VERSION kubectl=$KUBE_VERSION
+sudo apt-get install -y conntrack cri-tools ebtables ethtool kubernetes-cni socat
+sudo apt-get install -y kubelet=$KUBE_VERSION kubeadm=$KUBE_VERSION kubectl=$KUBE_VERSION
 
 echo -e "========== Hold Docker and Kubernetes Update =========="
 sudo apt-mark hold docker-ce kubelet kubeadm kubectl
