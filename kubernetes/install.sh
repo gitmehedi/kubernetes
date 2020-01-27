@@ -5,6 +5,7 @@ read -p "Kubernetes Minikube (mk): " TYPE
 KUBE_VERSION=1.17.0-00
 DOCKER_VERSION=5:18.09.9~3-0~ubuntu-xenial
 
+sudo swapoff -a
 echo -e "========== Remove Older Version of Docker =========="
 sudo apt-get remove -y docker docker-engine docker.io containerd runc
 
@@ -33,7 +34,6 @@ sudo sysctl -p
 if [ $SER_TYPE == "m" ]
 then
   echo -e "========== Initial Kubernetes with CIDR =========="
-  sudo swapoff -a
   sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 
   echo -e "========== Setup local kubeconfig =========="
