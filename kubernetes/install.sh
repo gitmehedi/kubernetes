@@ -63,3 +63,5 @@ fi
 
 echo -e "========== Version of Kubernetes =========="
 kubectl api-versions
+
+sudo reboot -f
