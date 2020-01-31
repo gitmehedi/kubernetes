@@ -61,7 +61,9 @@ then
   kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/3f7d3e6c24f641e7ff557ebcea1136fdf4b1b6a1/Documentation/kube-flannel.yml
 fi
 
+echo -e "========== Export Join Token =========="
+kubeadm token create --ttl 0 --print-join-command >> token.txt
+
 echo -e "========== Version of Kubernetes =========="
 kubectl api-versions
-
 sudo reboot -f
