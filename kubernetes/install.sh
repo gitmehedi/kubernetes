@@ -45,7 +45,7 @@ sudo apt-mark hold docker-ce kubelet kubeadm kubectl
 echo -e "========== Enable iptables bridge call =========="
 echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
-echo -e "Environment=\"cgroup-driver=systemd/cgroup-driver=cgroupfs\"" >> /etc/systemd/system/kubelet.service.d/10-kubelet.conf
+echo -e "Environment=\"cgroup-driver=systemd/cgroup-driver=cgroupfs\"" >> /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
 if [ $SER_TYPE == "m" ]
 then
