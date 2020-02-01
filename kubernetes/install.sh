@@ -36,6 +36,23 @@ echo -e "========== Install Docker and Kubernetes packages =========="
 sudo apt-get update -y
 sudo apt-get install -y apt-transport-https
 sudo apt-get install -y docker-ce=$DOCKER_VERSION docker-ce-cli=$DOCKER_VERSION containerd.io
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+mkdir -p /etc/systemd/system/docker.service.d
+systemctl daemon-reload
+systemctl restart docker
+
+echo -e "========== Install Kubernetes with Dependent Packages"
+sudo apt-get update -y
 sudo apt-get install -y conntrack cri-tools ebtables ethtool kubernetes-cni socat
 sudo apt-get install -y kubelet=$KUBE_VERSION kubeadm=$KUBE_VERSION kubectl=$KUBE_VERSION
 
