@@ -67,7 +67,8 @@ echo -e "Environment=\"cgroup-driver=systemd/cgroup-driver=cgroupfs\"" >> /etc/s
 if [ $SER_TYPE == "m" ]
 then
   echo -e "========== Initial Kubernetes with CIDR =========="
-  sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+  #sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+  sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 
   echo -e "========== Setup local kubeconfig =========="
   mkdir -p $HOME/.kube
