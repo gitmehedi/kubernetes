@@ -76,7 +76,7 @@ then
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
   echo -e "========== Install Flannel Networking =========="
-  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/3f7d3e6c24f641e7ff557ebcea1136fdf4b1b6a1/Documentation/kube-flannel.yml
+  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/3f7d3e6c24f641e7ff557ebcea1136fdf4b1b6a1/Documentation/kube-flannel.yml --validate=false
 fi
 
 echo -e "========== Export Join Token =========="

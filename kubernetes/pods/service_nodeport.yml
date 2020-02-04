@@ -13,3 +13,4 @@ spec:
   selector:
       app: my-app
       type: front-end
+  nodeName: node2
