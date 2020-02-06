@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    type: front-end
+spec:
+  containers:
+    - name: nginx-proxy
+      image: nginx
+      ports:
+        containerPort: 2001
