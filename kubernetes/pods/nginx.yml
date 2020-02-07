@@ -9,4 +9,4 @@ spec:
     - name: nginx-proxy
       image: nginx
       ports:
-        containerPort: 2001
+        containerPort: 9000
