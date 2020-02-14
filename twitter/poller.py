@@ -1,7 +1,5 @@
 """Lambda handler for polling twitter API with configured search."""
 
-import lambdainit  # noqa: F401
-
 import json
 import os
 
