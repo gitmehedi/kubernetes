@@ -3,7 +3,7 @@
 import os
 
 import boto3
-import twitter
+import gittuts.cloudtuts.twitter
 
 SSM_PARAMETER_PREFIX = os.getenv("SSM_PARAMETER_PREFIX")
 CONSUMER_KEY_PARAM_NAME = '/{}/consumer_key'.format(SSM_PARAMETER_PREFIX)
@@ -36,7 +36,7 @@ def _create_twitter_api():
             'Could not find expected SSM parameters containing Twitter API keys: {}'.format(parameter_names))
 
     param_lookup = {param['Name']: param['Value'] for param in result['Parameters']}
-    return twitter.Api(
+    return gittuts.cloudtuts.twitter.Api(
         consumer_key=param_lookup[CONSUMER_KEY_PARAM_NAME],
         consumer_secret=param_lookup[CONSUMER_SECRET_PARAM_NAME],
         access_token_key=param_lookup[ACCESS_TOKEN_PARAM_NAME],
