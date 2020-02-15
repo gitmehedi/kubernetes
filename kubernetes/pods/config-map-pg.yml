@@ -5,3 +5,5 @@ metadata:
 data:
   APP_COLOR: blue
   APP_MODE: prod
+  USERNAME: root
+  PASSWORD: root
