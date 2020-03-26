@@ -6,7 +6,7 @@ metadata:
     name: replica
     tier: frontend
 spec:
-  templates:
+  template:
     metadata:
       name: nginx-pod
       labels:
