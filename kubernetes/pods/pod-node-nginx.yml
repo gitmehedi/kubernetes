@@ -1,11 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-pod-node1
+  name: pod-node2-ng
   labels:
     type: front-end
 spec:
   containers:
     - name: nginx-proxy
       image: nginx
-  nodeName: kube-node1
+      ports:
+       - containerPort: 8080
+  nodeName: kube-node2
+
