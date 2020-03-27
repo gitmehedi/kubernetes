@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-node1
+  labels:
+    type: front-end
+spec:
+  containers:
+    - name: nginx-proxy
+      image: nginx
+  nodeName: kube-node1
