@@ -28,5 +28,4 @@ spec:
               - containerPort: 80
             volumeMounts:
               - mountPath: /etc/nginx/conf.d
-                name: ogl-pmp-ng
-
+                name: ogl-pvm-ng

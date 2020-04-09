@@ -3,15 +3,13 @@ kind: Service
 metadata:
   name: ogl-svc-ng
   labels:
-    apps: ogl-svc-ng
+    apps: ogl-svc-frontend
     type: frontend
 spec:
    type: NodePort
    selector:
-      appa: ogl-pod-ng
+      apps: ogl-pod-ng
    ports:
     - nodePort: 32000
       port: 80
       targetPort: 9000
-
-
