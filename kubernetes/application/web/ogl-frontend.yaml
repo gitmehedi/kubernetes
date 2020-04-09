@@ -12,7 +12,7 @@ spec:
    ports:
     - nodePort: 32000
       port: 80
-      targetPort: 9000
+      targetPort: 80
 ---
 apiVersion: v1
 kind: PersistentVolume
