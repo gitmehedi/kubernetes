@@ -8,7 +8,7 @@ metadata:
 spec:
    type: NodePort
    selector:
-      appa: ogl-pod-nggit
+      apps: ogl-pod-ng
    ports:
     - nodePort: 32000
       port: 80
