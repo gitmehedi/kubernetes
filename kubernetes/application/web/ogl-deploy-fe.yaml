@@ -9,7 +9,7 @@ spec:
    replicas: 3
    selector:
       matchLabels:
-          app: nginx
+        apps: ogl-pod-ng
    template:
       metadata:
         name: ogl-pod-ng
