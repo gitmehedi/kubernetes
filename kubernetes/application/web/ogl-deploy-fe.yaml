@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
    name: ogl-deploy-ng
    labels:
-      app: ogl-ng
+      apps: ogl-deploy-ng
       type: frontend
 spec:
    replicas: 3
@@ -12,20 +12,21 @@ spec:
           app: nginx
    template:
       metadata:
-        name: web-nginx
+        name: ogl-pod-ng
         labels:
-           app: nginx
+           apps: ogl-pod-ng
+           type: frontend
       spec:
         volumes:
-           - name: ng-config-volume
+           - name: ogl-pvm-ng
              persistentVolumeClaim:
-                claimName: ng-pvc 
+                claimName: ogl-pvc-ng
         containers:
-          - name: web-nginx-container
+          - name: ogl-con-ng
             image: nginx
             ports:
               - containerPort: 80
             volumeMounts:
-              - mountPath: /usr/share/nginx/html
-                name: ng-config-volume
+              - mountPath: /etc/nginx/conf.d
+                name: ogl-pmp-ng
 

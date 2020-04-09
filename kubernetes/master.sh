@@ -18,12 +18,16 @@ sudo docker --version
 
 echo -e "========== Install Kubernetes =========="
 sudo apt-get install apt-transport-https curl -y
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+curl -s https://packages.cloud.google.com/apt/doc   /apt-key.gpg | sudo apt-key add
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 
+sudo apt-get update -y
 sudo apt-get install kubeadm -y
 kubeadm version
 
+echo -e "========== Enable iptables bridge call =========="
+echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
 
 if [ $TYPE == "m" ]
 then
