@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+   name: ng-pvc
+   labels:
+     type: ng-config
+spec:
+   storageClassName: manual
+   accessModes:
+      - ReadWriteOnce
+   resources:
+      requests:
+        storage: 1Gi
