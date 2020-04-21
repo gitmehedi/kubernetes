@@ -38,7 +38,7 @@ CNI Container Networking: 0.8.5
 ETCD Version: v3.4.7
 Weave Networking: v0.8.5
 CoreDNS: v1.6.9 
-``` 
+```
 
 ## Provision Computer Node Using Vagrant
 ### Install Vagrant 
@@ -225,13 +225,13 @@ Getting Private key
 
 ### TLS Certificates
 Create following client certificates
-1. [Admin Client Certificate](#Admin-Client-Certificate)
-2. [Kube API Server Client Certificate](#Kube API Server Client Certificate)
-3. [ETCD Server Client Certificate](#ETCD Server Client Certificate)
-4. [Scheduler Client Certificate](#Scheduler Client Certificate)
-5. [Controller Manager Client Certificate](#Controller Manager Client Certificate)
-6. [Kube Proxy Client Certificate](#Kube Proxy Client Certificate)
-7. [Service Account Client Certificate](#Service Account Client Certificate)
+1. [Admin Client Certificate](#1-admin-client-certificate)
+2. [Kube API Server Client Certificate](#2-kube-api-server-client-certificate)
+3. [ETCD Server Client Certificate](#3-etcd-server-client-certificate)
+4. [Scheduler Client Certificate](#4-scheduler-client-certificate)
+5. [Controller Manager Client Certificate](#5-controller-manager-client-certificate)
+6. [Kube Proxy Client Certificate](#6-kube-proxy-client-certificate)
+7. [Service Account Client Certificate](#7-service-account-client-certificate)
 
 #### 1. Admin Client Certificate
 Generate following public key and TLS certificate for admin
@@ -292,28 +292,28 @@ EOF
 ```
 Generate following public key and TLS certificate for admin
 ```bash
-- etcd-server.key
-- etcd-server.csr
-- etcd-server.crt  
+- kube-apiserver.key
+- kube-apiserver.csr
+- kube-apiserver.crt  
 ```
 
-* Create a private key (**etcd-server.key**) for admin user
+* Create a private key (**kube-apiserver.key**) for admin user
 ```bash
-vagrant@master-1:~/pki$ openssl genrsa -out etcd-server.key 2048
+vagrant@master-1:~/pki$ openssl genrsa -out kube-apiserver.key 2048
 Generating RSA private key, 2048 bit long modulus (2 primes)
 .....................................+++++
 .+++++
 e is 65537 (0x010001)
 ```
-* Create Certificate Signing Request (CSR) (**etcd-server.csr**) for the etcd client
+* Create Certificate Signing Request (CSR) (**kube-apiserver.csr**) for the etcd client
 ```bash
-openssl req -new -key etcd-server.key -subj "/CN=etcd-server" -out etcd-server.csr -config openssl-etcd.cnf
+vagrant@master-1:~/pki$ openssl req -new -key kube-apiserver.key -subj "/CN=kube-apiserver" -out kube-apiserver.csr -config openssl.cnf
 ```
-* Self sign the CSR using it's own private key and generate a certificate for admin user (**etcd-server.crt**)
+* Self sign the CSR using it's own private key and generate a certificate for admin user (**kube-apiserver.crt**)
 ```bash
-vagrant@master-1:~/pki$ openssl x509 -req -in etcd-server.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out etcd-server.crt -extensions v3_req -extfile openssl-etcd.cnf -days 10000
+vagrant@master-1:~/pki$ openssl x509 -req -in kube-apiserver.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out kube-apiserver.crt -extensions v3_req -extfile openssl.cnf -days 1000
 Signature ok
-subject=CN = admin, O = system:masters
+subject=CN = kube-apiserver
 Getting CA Private Key
 ```
 #### 3. ETCD Server Client Certificate
@@ -334,7 +334,6 @@ IP.2 = 192.168.57.12
 IP.3 = 192.168.57.13
 IP.4 = 127.0.0.1
 EOF
-
 ```
 Generate following public key and TLS certificate for admin
 ```bash
@@ -353,16 +352,145 @@ e is 65537 (0x010001)
 ```
 * Create Certificate Signing Request (CSR) (**etcd-server.csr**) for the etcd client
 ```bash
-openssl req -new -key etcd-server.key -subj "/CN=etcd-server" -out etcd-server.csr -config openssl-etcd.cnf
+vagrant@master-1:~/pki$ openssl req -new -key etcd-server.key -subj "/CN=etcd-server" -out etcd-server.csr -config openssl-etcd.cnf
 ```
 * Self sign the CSR using it's own private key and generate a certificate for admin user (**etcd-server.crt**)
 ```bash
-vagrant@master-1:~/pki$ openssl x509 -req -in etcd-server.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out etcd-server.crt -extensions v3_req -extfile openssl-etcd.cnf -days 10000
+vagrant@master-1:~/pki$ openssl x509 -req -in etcd-server.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out etcd-server.crt -extensions v3_req -extfile openssl-etcd.cnf -days 1000
 Signature ok
-subject=CN = admin, O = system:masters
+subject=CN = etcd-server
 Getting CA Private Key
 ```
 #### 4. Scheduler Client Certificate
+
+Generate following public key and TLS certificate for admin
+
+```bash
+- kube-scheduler.key
+- kube-scheduler.csr
+- kube-scheduler.crt  
+```
+
+* Create a private key (**etcd-server.key**) for admin user
+
+```bash
+vagrant@master-1:~/pki$ openssl genrsa -out kube-scheduler.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+.....................................+++++
+.+++++
+e is 65537 (0x010001)
+```
+
+* Create Certificate Signing Request (CSR) (**kube-scheduler.csr**) for the etcd client
+
+```bash
+vagrant@master-1:~/pki$ openssl req -new -key kube-scheduler.key -subj "/CN=system:kube-scheduler" -out kube-scheduler.csr
+```
+
+* Self sign the CSR using it's own private key and generate a certificate for admin user (**kube-scheduler.crt**)
+```bash
+vagrant@master-1:~/pki$ openssl x509 -req -in kube-scheduler.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out kube-scheduler.crt -days 1000
+Signature ok
+subject=CN = system:kube-scheduler
+Getting CA Private Key
+```
+
 #### 5. Controller Manager Client Certificate
+Generate following public key and TLS certificate for admin
+
+```bash
+- kube-controller-manager.key
+- kube-controller-manager.csr
+- kube-controller-manager.crt  
+```
+
+* Create a private key (**kube-controller-manager.key**) for admin user
+
+```bash
+vagrant@master-1:~/pki$ openssl genrsa -out kube-controller-manager.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+..........................................+++++
+...............+++++
+e is 65537 (0x010001)
+```
+
+* Create Certificate Signing Request (CSR) (**kube-controller-manager.csr**) for the etcd client
+
+```bash
+vagrant@master-1:~/pki$ openssl req -new -key kube-controller-manager.key -subj "/CN=system:kube-controller-manager" -out kube-controller-manager.csr
+```
+
+* Self sign the CSR using it's own private key and generate a certificate for admin user (**kube-controller-manager.crt**)
+```bash
+vagrant@master-1:~/pki$ openssl x509 -req -in kube-controller-manager.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out kube-controller-manager.crt -days 1000
+Signature ok
+subject=CN = system:kube-controller-manager
+Getting CA Private Key
+```
+
 #### 6. Kube Proxy Client Certificate
+Generate following public key and TLS certificate for admin
+
+```bash
+- kube-proxy.key
+- kube-proxy.csr
+- kube-proxy.crt  
+```
+
+* Create a private key (**kube-proxy.key**) for admin user
+
+```bash
+vagrant@master-1:~/pki$ openssl genrsa -out kube-proxy.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+..........................................................+++++
+.....................+++++
+e is 65537 (0x010001)
+```
+
+* Create Certificate Signing Request (CSR) (**kube-proxy.csr**) for the etcd client
+
+```bash
+vagrant@master-1:~/pki$ openssl req -new -key kube-proxy.key -subj "/CN=system:kube-proxy" -out kube-proxy.csr
+```
+
+* Self sign the CSR using it's own private key and generate a certificate for admin user (**kube-proxy.crt**)
+```bash
+vagrant@master-1:~/pki$ openssl x509 -req -in kube-proxy.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out kube-proxy.crt -days 1000
+Signature ok
+subject=CN = system:kube-proxy
+Getting CA Private Key
+```
+
+openssl x509 -req -in kube-proxy.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out kube-proxy.crt -days 1000
 #### 7. Service Account Client Certificate
+Generate following public key and TLS certificate for admin
+
+```bash
+- service-account.key
+- service-account.csr
+- service-account.crt  
+```
+
+* Create a private key (**service-account.key**) for admin user
+
+```bash
+vagrant@master-1:~/pki$ openssl genrsa -out service-account.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+..........................................................................................+++++
+...................+++++
+e is 65537 (0x010001)
+```
+
+* Create Certificate Signing Request (CSR) (**service-account.csr**) for the etcd client
+
+```bash
+vagrant@master-1:~/pki$ openssl req -new -key service-account.key -subj "/CN=service-accounts" -out service-account.csr
+```
+
+* Self sign the CSR using it's own private key and generate a certificate for admin user (**service-account.crt**)
+```bash
+vagrant@master-1:~/pki$ openssl x509 -req -in service-account.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out service-account.crt -days 1000
+Signature ok
+subject=CN = service-accounts
+Getting CA Private Key
+```
