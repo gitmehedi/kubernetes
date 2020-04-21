@@ -225,13 +225,13 @@ Getting Private key
 
 ### TLS Certificates
 Create following client certificates
-1. [Admin Client Certificate](Admin-Client-Certificate)
-2. [Kube API Server Client Certificate](Kube API Server Client Certificate)
-3. [ETCD Server Client Certificate](ETCD Server Client Certificate)
-4. [Scheduler Client Certificate](Scheduler Client Certificate)
-5. [Controller Manager Client Certificate](Controller Manager Client Certificate)
-6. [Kube Proxy Client Certificate](Kube Proxy Client Certificate)
-7. [Service Account Client Certificate](Service Account Client Certificate)
+1. [Admin Client Certificate](#Admin-Client-Certificate)
+2. [Kube API Server Client Certificate](#Kube API Server Client Certificate)
+3. [ETCD Server Client Certificate](#ETCD Server Client Certificate)
+4. [Scheduler Client Certificate](#Scheduler Client Certificate)
+5. [Controller Manager Client Certificate](#Controller Manager Client Certificate)
+6. [Kube Proxy Client Certificate](#Kube Proxy Client Certificate)
+7. [Service Account Client Certificate](#Service Account Client Certificate)
 
 #### 1. Admin Client Certificate
 Generate following public key and TLS certificate for admin
