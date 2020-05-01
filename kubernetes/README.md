@@ -1,9 +1,9 @@
-# Kubernetes Certified Solution Architect
+# Certified Kubernetes Administrator (CKA) 
 
 
 Table of Contents
 ==================
-
+* [Document History](#document-history)
 * [Chapter 1: Core Concepts  (19%)](#chapter-1-core-concepts-19)
    * [Cluster Architecture](#cluster-architecture)
    * [API Primitives](#api-primitives)
@@ -125,7 +125,16 @@ Table of Contents
    * [Troubleshoot control plane failure.](#troubleshoot-control-plane-failure.)
    * [Troubleshoot worker node failure.](#troubleshoot-worker-node-failure.)
    
-   
+
+
+
+## Document History
+
+```
+Document History:
+2020-05-01	V1 Mehedi Hasan  "Certified Kubernetes Administrator (CKA) Curriculum"
+```
+
 * ## Chapter 1: Core Concepts (19%) 
    * ### Cluster Architecture
    * ### API Primitives
@@ -264,11 +273,6 @@ Table of Contents
 
 
 
-## Document History
-
-```
-Document History:
-2020-05-01	V1 Mehedi Hasan  "Certified Kubernetes Administrator (CKA) Curriculum"
 ```
 
 ## Introduction
