@@ -127,7 +127,46 @@ Document History:
 
 * ## Chapter 1: Core Concepts (19%) 
    ### Cluster Architecture
-   
+   In kubernetes cluster there are two main component
+   ```bash
+   1. Master Node
+   2. Worker Node
+   ```
+  1. **Master Node**:  
+  There are 4 basic component in Master Node on The Control Plane:  
+  Components:  
+  ```
+  1. API Server
+  2. Scheduler
+  3. Controller Manager
+  4. ETCD
+  ```
+  * **API Server**: API server is the communication hub for all cluster components. It exposes many kubernetes API.  
+  * **Scheduler**: Assign application/pod to worker node. Auto detects which pod to assign to which node based on resources requirements, hardware constrains etc. Its doesn't pod on worker node itself.  
+  * **Controller Manager**: Maintaining the cluster. Handles node failures, replicating components, maintaining correct amount of POD.  
+  * **ETCD**: Data store that stores cluster information.  
+  
+  2. **Worker Node**:
+  Components:
+  ```
+  1. Kubelet
+  2. Kube-proxy
+  3. Container Runtime
+  ```
+  
+  * **Kubelet**: Run and manages the containers on the nodes and communicate to API Server.  
+  * **Kube-proxy**: Load balance traffic between application components.  
+  * **Container Runtime**: The programs that run containers
+  ```
+  1. Docker
+  2. rkt
+  3. containerd
+  ```
+  
+   **References and Further Study**
+    * https://kubernetes.io/docs/concepts/overview/components/
+    * https://wiki.aquasec.com/display/containers/Kubernetes+Architecture+101
+  
    ### API Primitives
     > Kubernetes API to read and write Kubernetes resource objects via a Kubernetes API endpoint.
    
@@ -187,10 +226,9 @@ Document History:
     ```bash
     # create a deployment from yaml file nginx.yaml
     $ kubectl create -f nginx.yaml
-  
     # Generate yaml from a pod
-    $ kubectl get deployment nginx-deployemnt -o yaml > nginx.yaml 
-    ```
+    $ kubectl get deployment nginx-deployemnt -o yaml > nginx.yaml  
+    ```  
     **References and Further Study**
     * https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
     * https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#container-v1-core
