@@ -126,7 +126,7 @@ Table of Contents
    * [Troubleshoot worker node failure.](#troubleshoot-worker-node-failure.)
    
    
-## Chapter 1: Core Concepts (19%) 
+* ## Chapter 1: Core Concepts (19%) 
    * ### Cluster Architecture
    * ### API Primitives
    * ### Services and Network
@@ -134,7 +134,7 @@ Table of Contents
    * ### Understand the Kubernetes cluster architecture.
    * ### Understand Services and other network primitives.
 
-## Chapter 2: Install, Config and Validate (12%)
+* ## Chapter 2: Install, Config and Validate (12%)
    * ### Binaries/Provision/Types
    * ### Installing Master and Nodes
    * ### Highly Available Cluster
@@ -153,7 +153,7 @@ Table of Contents
    * ### Run Node end-to-end tests.
    * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
 
-## Chapter 3: Cluster (11%)
+* ## Chapter 3: Cluster (11%)
    * ### Upgrading the cluster
    * ### OS Upgrades
    * ### Restoring a Cluster
@@ -161,7 +161,7 @@ Table of Contents
    * ### Facilitate operating system upgrades.
    * ### Implement backup and restore methodologies
 
-## Chapter 4: Networking (11%)
+* ## Chapter 4: Networking (11%)
    * ### Pod and Node Networking
    * ### Container Network Interface
    * ### Service Networking
