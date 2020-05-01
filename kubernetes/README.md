@@ -8,16 +8,8 @@ Table of Contents
    * [Cluster Architecture](#cluster-architecture)
    * [API Primitives](#api-primitives)
    * [Services and Network](#services-and-network)     
-   * [Understand the Kubernetes API primitives](#understand-the-kubernetes-api-primitives)
-   * [Understand the Kubernetes cluster architecture](#understand-the-kubernetes-cluster-architecture)
-   * [Understand Services and other network primitives](#understand-services-and-other-network-primitives)
 
 * [Chapter 2: Install, Config and Validate (12%)](#chapter-2-install-config-and-validate-12)
-   * [Binaries/Provision/Types](#binaries-provision-types)
-   * [Installing Master and Nodes](#installing-master-and-nodes)
-   * [Highly Available Cluster](#highly-available-cluster)
-   * [Secure Cluster](#secure-cluster)
-   * [End-to-End Tests](#end-to-end-tests)
    * [Design a Kubernetes cluster.](#design-a-kubernetes-cluster)
    * [Install Kubernetes masters and nodes](#install-kubernetes-masters-and-nodes)
    * [Configure secure cluster communications.](#configure-secure-cluster-communications.)
@@ -137,24 +129,15 @@ Document History:
 
 * ## Chapter 1: Core Concepts (19%) 
    * ### Cluster Architecture
-   
-   
-   
-   
-   
-   
+    > Understand the Kubernetes API primitives
+ 
    * ### API Primitives
+    > Understand the Kubernetes cluster architecture
+    
    * ### Services and Network
-   * ### Understand the Kubernetes API primitives
-   * ### Understand the Kubernetes cluster architecture.
-   * ### Understand Services and other network primitives.
+    > Understand Services and other network primitives
 
 * ## Chapter 2: Install, Config and Validate (12%)
-   * ### Binaries/Provision/Types
-   * ### Installing Master and Nodes
-   * ### Highly Available Cluster
-   * ### Secure Cluster
-   * ### End-to-End Tests
    * ### Design a Kubernetes cluster.
    * ### Install Kubernetes masters and nodes
    * ### Configure secure cluster communications.
