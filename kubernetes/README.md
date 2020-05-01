@@ -126,9 +126,9 @@ Document History:
 ```
 
 * ## Chapter 1: Core Concepts (19%) 
-   * ### Cluster Architecture
+   ### Cluster Architecture
    
-   * ### API Primitives
+   ### API Primitives
     > Kubernetes API to read and write Kubernetes resource objects via a Kubernetes API endpoint.
    
     **Resources Categories** 
@@ -189,7 +189,7 @@ Document History:
                                                
     
    
-   * ### Services and Network
+   ### Services and Network
     > Understand Services and other network primitives
    
 * ## Chapter 2: Install, Config and Validate (12%)
