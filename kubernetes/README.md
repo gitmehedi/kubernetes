@@ -132,7 +132,7 @@ Document History:
    1. Master Node
    2. Worker Node
    ```
-  1. **Master Node**:  
+  #### Master Node:  
   There are 4 basic component in Master Node on The Control Plane:  
   Components:  
   ```
@@ -146,7 +146,7 @@ Document History:
   * **Controller Manager**: Maintaining the cluster. Handles node failures, replicating components, maintaining correct amount of POD.  
   * **ETCD**: Data store that stores cluster information.  
   
-  2. **Worker Node**:
+  #### Worker Node:
   Components:
   ```
   1. Kubelet
