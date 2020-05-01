@@ -4,7 +4,7 @@
 Table of Contents
 ==================
 
-* [Chapter 1: Core Concepts  (19%) ](#chapter-1-core-concepts-19%)
+* [Chapter 1: Core Concepts  (19%) ](#chapter-1-core-concepts-19)
    * [Cluster Architecture](#cluster-architecture)
    * [API Primitives](#API Primitives)
    * [Services and Network](#Services and Network)     
@@ -32,7 +32,7 @@ Table of Contents
    * [Install and use kubeadm to install, confi gure, and manage Kubernetes clusters](#Install and use kubeadm to install, confi gure, and manage Kubernetes clusters)
    
 
-* [Chapter 3: Cluster 11%](#chapter 3: Cluster 11%)
+* [Chapter 3: Cluster 11%](#chapter-3-cluster-11)
    * [Upgrading the cluster](#Upgrading the cluster)
    * [OS Upgrades](#OS Upgrades)
    * [Restoring a Cluster](#Restoring a Cluster)
@@ -40,7 +40,7 @@ Table of Contents
    * [Facilitate operating system upgrades.](#Facilitate operating system upgrades.)
    * [Implement backup and restore methodologies](#Implement backup and restore methodologies)
 
-* [Chapter 4: Networking 11%](#Chapter 4: Networking 11%)
+* [Chapter 4: Networking 11%](#chapter-4-networking-11)
    * [Pod and Node Networking](#Pod and Node Networking) 
    * [Container Network Interface](#Container Network Interface) 
    * [Service Networking](#Service Networking) 
@@ -68,7 +68,7 @@ Table of Contents
    * [Display scheduler events.](#Display scheduler events.) 
    * [Know how to configure the Kubernetes scheduler.](#Know how to configure the Kubernetes scheduler.) 
         
-* [Chapter 6: Application Lifecycle 8% ★](#Chapter 6: Application Lifecycle 8% ★)
+* [Chapter 6: Application Lifecycle 8% ★](#chapter-6-application-lifecycle-8)
    * [Deploying an Applicaiton](#Deploying an Applicaiton)
    * [Highly Available Apps](#Highly Available Apps)
    * [Self-Healing Apps](#Self-Healing Apps)
@@ -77,7 +77,7 @@ Table of Contents
    * [Know how to scale applications](#Know how to scale applications)
    * [Understand the primitives necessary to create a self-healing application.](#Understand the primitives necessary to create a self-healing application.)
 
-* [Chapter 7: Storage  7%](#Chapter 7: Storage  7%)
+* [Chapter 7: Storage  7%](#chapter-7-storage-7)
    * [Persistent Volume](#Persistent Volume)
    * [Volume Access Modes](#Volume Access Modes)
    * [Persistent Volume Claims](#Persistent Volume Claims)
@@ -89,7 +89,7 @@ Table of Contents
    * [Understand Kubernetes storage objects](#Understand Kubernetes storage objects)
    * [Know how to configure applications with persistent storage](#Know how to configure applications with persistent storage)
 
-* [Chapter 8: Security  12%](#Chapter 8: Security  12%)
+* [Chapter 8: Security  12%](#chapter-8-security-12)
    * [Security Primitives](#Security Primitives)
    * [Authenticate and Authorize](#Authenticate and Authorize)
    * [Network Policies](#Network Policies)
@@ -106,7 +106,7 @@ Table of Contents
    * [Secure persistent key value store](#Secure persistent key value store)
    
    
-* [Chapter 9: Log and Monitor  5%](#Chapter 9: Log and Monitor  5%)
+* [Chapter 9: Log and Monitor  5%](#chapter-9-log-and-monitor-5)
    * [Monitor Cluster](#Monitor Cluster)
    * [Monitor Application](#Monitor Application)
    * [Cluster Logs](#Cluster Logs)
@@ -116,7 +116,7 @@ Table of Contents
    * [Manage cluster component logs](#Manage cluster component logs)
    * [Manage application logs](#Manage application logs)
    
-* [Chapter 10: Troubleshooting  10%](#Chapter 10: Troubleshooting  10%)
+* [Chapter 10: Troubleshooting  10%](#chapter-10-troubleshooting-10)
    * [Application Failure](#Application Failure)
    * [Control Place Failure](#)
    * [Worker Node Failure](#Worker Node Failure)
@@ -161,7 +161,7 @@ Table of Contents
         ❏ Facilitate operating system upgrades.
         ❏ Implement backup and restore methodologies
 
-## Chapter 4: Networking 11%
+## Chapter 4: Networking (11%)
         ✔ Pod and Node Networking
         ✔ Container Network Interface
         ✔ Service Networking
@@ -175,7 +175,7 @@ Table of Contents
         ❏ Know how to configure and use the cluster DNS.
         ❏ Understand CNI.
 
-## Chapter 5: Scheduling   5%
+## Chapter 5: Scheduling (5%)
         ✔ Kubernetes Scheduler
         ✔ Multiple Schedulers
         ✔ Resource Limits and Labels
@@ -189,7 +189,7 @@ Table of Contents
         ❏ Display scheduler events.
         ❏ Know how to configure the Kubernetes scheduler.
 
-## Chapter 6: Application Lifecycle 8%
+## Chapter 6: Application Lifecycle (8%)
         ✔ Deploying an Applicaiton
         ✔ Highly Available Apps
         ✔ Self-Healing Apps
@@ -198,7 +198,7 @@ Table of Contents
         ❏ Know how to scale applications
         ❏ Understand the primitives necessary to create a self-healing application.
 
-## Chapter 7: Storage  7%
+## Chapter 7: Storage (7%)
         ✔ Persistent Volume
         ✔ Volume Access Modes
         ✔ Persistent Volume Claims
@@ -210,7 +210,7 @@ Table of Contents
         ❏ Understand Kubernetes storage objects.
         ❏ Know how to configure applications with persistent storage.
 
-## Chapter 8: Security  12%
+## Chapter 8: Security (12%)
         ✔ Security Primitives
         ✔ Authenticate and Authorize
         ✔ Network Policies
@@ -226,7 +226,7 @@ Table of Contents
         ❏ Define security contexts.
         ❏ Secure persistent key value store.
 
-## Chapter 9: Log and Monitor  5%
+## Chapter 9: Log and Monitor (5%)
         ✔ Monitor Cluster
         ✔ Monitor Applicaiton
         ✔ Cluster Logs
@@ -236,7 +236,7 @@ Table of Contents
         ❏ Manage cluster component logs
         ❏ Manage application logs.
 
-❏ Chapter 10: Troubleshooting  10%
+❏ Chapter 10: Troubleshooting (10%)
         ✔ Application Failure
         ✔ Control Place Failure
         ✔ Worker Node Failure
