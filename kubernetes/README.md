@@ -183,7 +183,15 @@ Document History:
      **Read / Write Scale**: Read or Update the number of replicas for the given resource. Only available for some resource types.  
      **Read / Write Status**: Read or Update the Status for a resource object. The Status can only changed through these update operations.              
     
-    **Reference and Further Study**
+   **Command References**
+    ```bash
+    # create a deployment from yaml file nginx.yaml
+    $ kubectl create -f nginx.yaml
+  
+    # Generate yaml from a pod
+    $ kubectl get deployment nginx-deployemnt -o yaml > nginx.yaml 
+    ```
+    **References and Further Study**
     * https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
     * https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#container-v1-core
                                                
