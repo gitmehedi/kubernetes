@@ -125,7 +125,7 @@ Document History:
 2020-05-01	V1 Mehedi Hasan  "Certified Kubernetes Administrator (CKA) Curriculum"
 ```
 
-* ## Chapter 1: Core Concepts (19%) 
+## Chapter 1: Core Concepts (19%) 
    ### Cluster Architecture
    In kubernetes cluster there are two main component
    ```bash
@@ -246,7 +246,7 @@ Document History:
   ### Services and Network
     > Understand Services and other network primitives
    
-* ## Chapter 2: Install, Config and Validate (12%)
+## Chapter 2: Install, Config and Validate (12%)
    * ### Design a Kubernetes cluster.
    * ### Install Kubernetes masters and nodes
    * ### Configure secure cluster communications.
@@ -260,7 +260,7 @@ Document History:
    * ### Run Node end-to-end tests.
    * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
 
-* ## Chapter 3: Cluster (11%)
+## Chapter 3: Cluster (11%)
    * ### Upgrading the cluster
    * ### OS Upgrades
    * ### Restoring a Cluster
@@ -268,7 +268,7 @@ Document History:
    * ### Facilitate operating system upgrades.
    * ### Implement backup and restore methodologies
 
-* ## Chapter 4: Networking (11%)
+## Chapter 4: Networking (11%)
    * ### Pod and Node Networking
    * ### Container Network Interface
    * ### Service Networking
@@ -282,7 +282,7 @@ Document History:
    * ### Know how to configure and use the cluster DNS.
    * ### Understand CNI.
 
-* ## Chapter 5: Scheduling (5%)
+## Chapter 5: Scheduling (5%)
    * ### Kubernetes Scheduler
    * ### Multiple Schedulers
    * ### Resource Limits and Labels
@@ -296,8 +296,8 @@ Document History:
    * ### Display scheduler events
    * ### Know how to configure the Kubernetes scheduler
 
-* ## Chapter 6: Application Lifecycle (8%)
-   * ### Deploying an Applicaiton
+## Chapter 6: Application Lifecycle (8%)
+   * ### Deploying an Application
    * ### Highly Available Apps
    * ### Self-Healing Apps
    * ### Understand Deployments and how to per form rolling updates and rollbacks.
@@ -305,7 +305,7 @@ Document History:
    * ### Know how to scale applications
    * ### Understand the primitives necessary to create a self-healing application.
 
-* ## Chapter 7: Storage (7%)
+## Chapter 7: Storage (7%)
    * ### Persistent Volume
    * ### Volume Access Modes
    * ### Persistent Volume Claims
@@ -317,7 +317,7 @@ Document History:
    * ### Understand Kubernetes storage objects.
    * ### Know how to configure applications with persistent storage.
 
-* ## Chapter 8: Security (12%)
+## Chapter 8: Security (12%)
    * ### Security Primitives
    * ### Authenticate and Authorize
    * ### Network Policies
@@ -333,7 +333,7 @@ Document History:
    * ### Define security contexts.
    * ### Secure persistent key value store.
 
-* ## Chapter 9: Log and Monitor (5%)
+## Chapter 9: Log and Monitor (5%)
    * ### Monitor Cluster
    * ### Monitor Application
    * ### Cluster Logs
@@ -343,7 +343,7 @@ Document History:
    * ### Manage cluster component logs
    * ### Manage application logs.
 
-* ## Chapter 10: Troubleshooting (10%)
+## Chapter 10: Troubleshooting (10%)
    * ### Application Failure
    * ### Control Place Failure
    * ### Worker Node Failure
