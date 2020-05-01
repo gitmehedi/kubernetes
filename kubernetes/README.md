@@ -137,6 +137,12 @@ Document History:
 
 * ## Chapter 1: Core Concepts (19%) 
    * ### Cluster Architecture
+   
+   
+   
+   
+   
+   
    * ### API Primitives
    * ### Services and Network
    * ### Understand the Kubernetes API primitives
