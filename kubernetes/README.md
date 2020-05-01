@@ -165,10 +165,13 @@ Document History:
   
   #### Command References
   ```bash
-    # create a deployment from yaml file nginx.yaml
-    $ kubectl create -f nginx.yaml
-    # Generate yaml from a pod
-    $ kubectl get deployment nginx-deployemnt -o yaml > nginx.yaml  
+  -- API Call
+  $ kubectl get --raw /apis/metrics.k8s.io/
+
+  -- Cluster Information
+  $ kubectl config
+  $ kubectl cluster-info
+  $ kubectl get componentstatuses
   ```
   
   #### References and Further Study
