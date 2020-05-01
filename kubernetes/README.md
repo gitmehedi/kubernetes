@@ -4,246 +4,246 @@
 Table of Contents
 ==================
 
-* [Chapter 1: Core Concepts  (19%) ](#chapter-1-core-concepts-19)
+* [Chapter 1: Core Concepts  (19%)](#chapter-1-core-concepts-19)
    * [Cluster Architecture](#cluster-architecture)
-   * [API Primitives](#API Primitives)
-   * [Services and Network](#Services and Network)     
-   * [Understand the Kubernetes API primitives](#Understand the Kubernetes API primitives)
-   * [Understand the Kubernetes cluster architecture](#Understand the Kubernetes cluster architecture)
-   * [Understand Services and other network primitives](#Understand Services and other network primitives)
+   * [API Primitives](#api-primitives)
+   * [Services and Network](#services-and-network)     
+   * [Understand the Kubernetes API primitives](#understand-the-kubernetes-api-primitives)
+   * [Understand the Kubernetes cluster architecture](#understand-the-kubernetes-cluster-architecture)
+   * [Understand Services and other network primitives](#understand-services-and-other-network-primitives)
 
 * [Chapter 2: Install, Config and Validate (12%)](#chapter-2-install-config-and-validate-12)
-   * [Binaries/Provision/Types](#Binaries/Provision/Types)
-   * [Installing Master and Nodes](#Installing Master and Nodes)
-   * [Highly Available Cluster](#Highly Available Cluster)
-   * [Secure Cluster](#Secure Cluster)
-   * [End-to-End Tests](#End-to-End Tests)
-   * [Design a Kubernetes cluster.](#Design a Kubernetes cluster.)
-   * [Install Kubernetes masters and nodes](#Install Kubernetes masters and nodes)
-   * [Configure secure cluster communications.](#Configure secure cluster communications.)
-   * [Configure a Highly-Available Kubernetes cluster.](#Configure a Highly-Available Kubernetes cluster.)
-   * [Know where to get the Kubernetes release binaries.](#Know where to get the Kubernetes release binaries.)
-   * [Provision underlying infrastructure to deploy a Kubernetes cluster.](#Provision underlying infrastructure to deploy a Kubernetes cluster.)
-   * [Choose a network solution.](#Choose a network solution.)
-   * [Choose your Kubernetes infrastructure configuration.](#Choose your Kubernetes infrastructure configuration.)
-   * [Run end-to-end tests on your cluster.](#Run end-to-end tests on your cluster.)
-   * [Analyse end-to-end tests results.](#Analyse end-to-end tests results.)
-   * [Run Node end-to-end tests.](#Run Node end-to-end tests.)
-   * [Install and use kubeadm to install, confi gure, and manage Kubernetes clusters](#Install and use kubeadm to install, confi gure, and manage Kubernetes clusters)
+   * [Binaries/Provision/Types](#binaries-provision-types)
+   * [Installing Master and Nodes](#installing-master-and-nodes)
+   * [Highly Available Cluster](#highly-available-cluster)
+   * [Secure Cluster](#secure-cluster)
+   * [End-to-End Tests](#end-to-end-tests)
+   * [Design a Kubernetes cluster.](#design-a-kubernetes-cluster)
+   * [Install Kubernetes masters and nodes](#install-kubernetes-masters-and-nodes)
+   * [Configure secure cluster communications.](#configure-secure-cluster-communications.)
+   * [Configure a Highly-Available Kubernetes cluster.](#configure-a-highly--vailable-kubernetes-cluster)
+   * [Know where to get the Kubernetes release binaries.](#know-where-to-get-the-kubernetes-release-binaries)
+   * [Provision underlying infrastructure to deploy a Kubernetes cluster](#provision-underlying-infrastructure-to-deploy-a-kubernetes-cluster)
+   * [Choose a network solution.](#choose-a-network-solution)
+   * [Choose your Kubernetes infrastructure configuration.](#choose-your-kubernetes-infrastructure-configuration)
+   * [Run end-to-end tests on your cluster.](#run-end-to-end-tests-on-your-cluster)
+   * [Analyse end-to-end tests results.](#analyse-end-to-end-tests-results)
+   * [Run Node end-to-end tests.](#run-node-end-to-end-tests)
+   * [Install and use kubeadm to install, configure, and manage Kubernetes clusters](#install-and-use-kubeadm-to-install-configure-and-manage-kubernetes-clusters)
    
 
-* [Chapter 3: Cluster 11%](#chapter-3-cluster-11)
-   * [Upgrading the cluster](#Upgrading the cluster)
-   * [OS Upgrades](#OS Upgrades)
-   * [Restoring a Cluster](#Restoring a Cluster)
-   * [Understand Kubernetes cluster upgrade process.](#Understand Kubernetes cluster upgrade process.)
-   * [Facilitate operating system upgrades.](#Facilitate operating system upgrades.)
-   * [Implement backup and restore methodologies](#Implement backup and restore methodologies)
+* [Chapter 3: Cluster (11%)](#chapter-3-cluster-11)
+   * [Upgrading the cluster](#upgrading-the-cluster)
+   * [OS Upgrades](#os-upgrades)
+   * [Restoring a Cluster](#restoring-a-cluster)
+   * [Understand Kubernetes cluster upgrade process.](#understand-kubernetes-cluster-upgrade-process)
+   * [Facilitate operating system upgrades.](#facilitate-operating-system-upgrades)
+   * [Implement backup and restore methodologies](#implement-backup-and-restore-methodologies)
 
-* [Chapter 4: Networking 11%](#chapter-4-networking-11)
-   * [Pod and Node Networking](#Pod and Node Networking) 
-   * [Container Network Interface](#Container Network Interface) 
-   * [Service Networking](#Service Networking) 
-   * [Ingress and Load Balancers](#Ingress and Load Balancers) 
-   * [Cluster DNS](#Cluster DNS) 
-   * [Understand the networking configuration on the cluster nodes.](#Understand the networking configuration on the cluster nodes.) 
-   * [Understand Pod networking concepts.](#Understand Pod networking concepts.) 
-   * [Understand service networking.](#Understand service networking.) 
-   * [Deploy and configure network load balancer.](#Deploy and configure network load balancer.) 
-   * [Know how to use Ingress rules.](#Know how to use Ingress rules.) 
-   * [Know how to configure and use the cluster DNS.](#Know how to configure and use the cluster DNS.)
-   * [Understand CNI.](#Understand CNI.)
+* [Chapter 4: Networking (11%)](#chapter-4-networking-11)
+   * [Pod and Node Networking](#pod-and-node-networking) 
+   * [Container Network Interface](#container-network-interface) 
+   * [Service Networking](#service-networking) 
+   * [Ingress and Load Balancers](#ingress-and-load-balancers) 
+   * [Cluster DNS](#cluster-dns) 
+   * [Understand the networking configuration on the cluster nodes](#understand-the-networking-configuration-on-the-cluster-nodes) 
+   * [Understand Pod networking concepts](#understand-pod-networking-concepts) 
+   * [Understand service networking](#understand-service-networking) 
+   * [Deploy and configure network load balancer](#deploy-and-configure-network-load-balancer) 
+   * [Know how to use Ingress rules](#know-how-to-use-ingress-rules) 
+   * [Know how to configure and use the cluster DNS](#know-how-to-configure-and-use-the-cluster-dns.)
+   * [Understand CNI](#understand-cni)
 
-* [Chapter 5: Scheduling 5%](#chapter-5-scheduling-5)
-   * [Kubernetes Scheduler](#Kubernetes Scheduler) 
-   * [Multiple Schedulers](#Multiple Schedulers) 
-   * [Resource Limits and Labels](#Resource Limits and Labels) 
-   * [DaemonSets](#DaemonSets) 
-   * [Scheduler Events](#Scheduler Events) 
-   * [Use label selectors to schedule Pods.](#Use label selectors to schedule Pods.) 
-   * [Understand the role of DaemonSets.](#Understand the role of DaemonSets.) 
-   * [Understand how resource limits can affect Pod scheduling.](#Understand how resource limits can affect Pod scheduling.) 
-   * [Understand how to run multiple schedulers and how to configure Pods to use them.](#Understand how to run multiple schedulers and how to configure Pods to use them.) 
-   * [Manually schedule a pod without a scheduler.](#Manually schedule a pod without a scheduler.) 
-   * [Display scheduler events.](#Display scheduler events.) 
-   * [Know how to configure the Kubernetes scheduler.](#Know how to configure the Kubernetes scheduler.) 
+* [Chapter 5: Scheduling (5%)](#chapter-5-scheduling-5)
+   * [Kubernetes Scheduler](#kubernetes-scheduler) 
+   * [Multiple Schedulers](#multiple-schedulers) 
+   * [Resource Limits and Labels](#resource-limitsand-labels) 
+   * [DaemonSets](#daemonsets) 
+   * [Scheduler Events](#scheduler-events) 
+   * [Use label selectors to schedule Pods.](#use-label-selectors-to-schedule-pods) 
+   * [Understand the role of DaemonSets.](#understand-the-role-of-daemonSets.) 
+   * [Understand how resource limits can affect Pod scheduling.](#understand-how-resource-limits-can-affect-pod-scheduling) 
+   * [Understand how to run multiple schedulers and how to configure Pods to use them.](#understand-how-to-run-multiple-schedulers-and-how-to-configure-pods-to-use-them) 
+   * [Manually schedule a pod without a scheduler.](#manually-schedule-a-pod-without-a-scheduler) 
+   * [Display scheduler events.](#display-scheduler-events) 
+   * [Know how to configure the Kubernetes scheduler.](#know-how-to-configure-the-kubernetes-scheduler.) 
         
-* [Chapter 6: Application Lifecycle 8% ★](#chapter-6-application-lifecycle-8)
-   * [Deploying an Applicaiton](#Deploying an Applicaiton)
-   * [Highly Available Apps](#Highly Available Apps)
-   * [Self-Healing Apps](#Self-Healing Apps)
-   * [Understand Deployments and how to per form rolling updates and rollbacks.](#Understand Deployments and how to per form rolling updates and rollbacks.)
-   * [Know various ways to configure applications.](#Know various ways to configure applications.)
-   * [Know how to scale applications](#Know how to scale applications)
-   * [Understand the primitives necessary to create a self-healing application.](#Understand the primitives necessary to create a self-healing application.)
+* [Chapter 6: Application Lifecycle (8%)](#chapter-6-application-lifecycle-8)
+   * [Deploying an Applicaiton](#deploying-an-application)
+   * [Highly Available Apps](#highly-available-apps)
+   * [Self-Healing Apps](#self-healing-apps)
+   * [Understand Deployments and how to per form rolling updates and rollbacks.](#understand-deployments-and-how-to-per-form-rolling-updates-and-rollbacks)
+   * [Know various ways to configure applications.](#know-various-ways-to-configure-applications)
+   * [Know how to scale applications](#know-how-to-scale-applications)
+   * [Understand the primitives necessary to create a self-healing application.](#understand-the-primitives-necessary-to-create-a-self-healing-application.)
 
-* [Chapter 7: Storage  7%](#chapter-7-storage-7)
-   * [Persistent Volume](#Persistent Volume)
-   * [Volume Access Modes](#Volume Access Modes)
-   * [Persistent Volume Claims](#Persistent Volume Claims)
-   * [Storage Objects](#Storage Objects)
-   * [Application with Storage](#Application with Storage)
-   * [Understand persistent volumes and know how to create them](#Understand persistent volumes and know how to create them)
-   * [Understand access modes for volumes](#Understand access modes for volumes)
-   * [Understand persistent volume claims primitive.](#Understand persistent volume claims primitive.)
-   * [Understand Kubernetes storage objects](#Understand Kubernetes storage objects)
-   * [Know how to configure applications with persistent storage](#Know how to configure applications with persistent storage)
+* [Chapter 7: Storage (7%)](#chapter-7-storage-7)
+   * [Persistent Volume](#persistent-volume)
+   * [Volume Access Modes](#volume-access-modes)
+   * [Persistent Volume Claims](#persistent-volume-claims)
+   * [Storage Objects](#storage-objects)
+   * [Application with Storage](#application-with-storage)
+   * [Understand persistent volumes and know how to create them](#understand-persistent-volumes-and-know-how-to-create-them)
+   * [Understand access modes for volumes](#understand-access-modes-for-volumes)
+   * [Understand persistent volume claims primitive.](#understand-persistent-volume-claims-primitive.)
+   * [Understand Kubernetes storage objects](#understand-kubernetes-storage-objects)
+   * [Know how to configure applications with persistent storage](#know-how-to-configure-applications-with-persistent-storage)
 
-* [Chapter 8: Security  12%](#chapter-8-security-12)
-   * [Security Primitives](#Security Primitives)
-   * [Authenticate and Authorize](#Authenticate and Authorize)
-   * [Network Policies](#Network Policies)
-   * [TLS Certificate](#TLS Certificate)
-   * [Secure Images](#Secure Images)
-   * [Security Contexts](#Security Contexts)
-   * [Key Value Stores](#Key Value Stores)
-   * [Know how to configure authentication and authorization](#Know how to configure authentication and authorization)
-   * [Understand Kubernetes security primitives](#Understand Kubernetes security primitives)
-   * [Know to configure network policies](#Know to configure network policies)
-   * [Create and manage TLS certificates for cluster components](#Create and manage TLS certificates for cluster components)
-   * [Work with images securely](#Work with images securely)
-   * [Define security contexts](#Define security contexts)
-   * [Secure persistent key value store](#Secure persistent key value store)
+* [Chapter 8: Security (12%)](#chapter-8-security-12)
+   * [Security Primitives](#security-primitives)
+   * [Authenticate and Authorize](#authenticate-and-authorize)
+   * [Network Policies](#network-policies)
+   * [TLS Certificate](#tls-certificate)
+   * [Secure Images](#secure-images)
+   * [Security Contexts](#security-contexts)
+   * [Key Value Stores](#key-value-stores)
+   * [Know how to configure authentication and authorization](#know-how-to-configure-authentication-and-authorization)
+   * [Understand Kubernetes security primitives](#understand-kubernetes-security-primitives)
+   * [Know to configure network policies](#know-to-configure-network-policies)
+   * [Create and manage TLS certificates for cluster components](#create-and-manage-tls-certificates-for-cluster-components)
+   * [Work with images securely](#work-with-images-securely)
+   * [Define security contexts](#define-security-contexts)
+   * [Secure persistent key value store](#secure-persistent-key-value-store)
    
    
-* [Chapter 9: Log and Monitor  5%](#chapter-9-log-and-monitor-5)
-   * [Monitor Cluster](#Monitor Cluster)
-   * [Monitor Application](#Monitor Application)
-   * [Cluster Logs](#Cluster Logs)
-   * [Applicaiton Logs](#Applicaiton Logs)
-   * [Understand how to monitor all cluster components.](#Understand how to monitor all cluster components.)
-   * [Understand how to monitor applications](#Understand how to monitor applications)
-   * [Manage cluster component logs](#Manage cluster component logs)
-   * [Manage application logs](#Manage application logs)
+* [Chapter 9: Log and Monitor (5%)](#chapter-9-log-and-monitor-5)
+   * [Monitor Cluster](#monitor-cluster)
+   * [Monitor Application](#monitor-application)
+   * [Cluster Logs](#cluster-logs)
+   * [Applicaiton Logs](#application-logs)
+   * [Understand how to monitor all cluster components.](#understand-how-to-monitor-all-cluster-components.)
+   * [Understand how to monitor applications](#understand-how-to-monitor-applications)
+   * [Manage cluster component logs](#manage-cluster-component-logs)
+   * [Manage application logs](#manage-application-logs)
    
-* [Chapter 10: Troubleshooting  10%](#chapter-10-troubleshooting-10)
-   * [Application Failure](#Application Failure)
-   * [Control Place Failure](#)
-   * [Worker Node Failure](#Worker Node Failure)
-   * [Network Failure](#Network Failure)
-   * [Troubleshoot application failure.](#Troubleshoot application failure.)
-   * [Troubleshoot control plane failure.](#Troubleshoot control plane failure.)
-   * [Troubleshoot worker node failure.](#Troubleshoot worker node failure.)
+* [Chapter 10: Troubleshooting (10%)](#chapter-10-troubleshooting-10)
+   * [Application Failure](#application-failure)
+   * [Control Place Failure](#control-place-failure)
+   * [Worker Node Failure](#worker-node-failure)
+   * [Network Failure](#network-failure)
+   * [Troubleshoot application failure.](#troubleshoot0applicationffailure.)
+   * [Troubleshoot control plane failure.](#troubleshoot-control-plane-failure.)
+   * [Troubleshoot worker node failure.](#troubleshoot-worker-node-failure.)
    
    
-## Chapter 1: Core Concepts  19% 
-        ✔ Cluster Architecture
-        ✔ API Primitives
-        ✔ Services and Network
-        ❏ Understand the Kubernetes API primitives
-        ❏ Understand the Kubernetes cluster architecture.
-        ❏ Understand Services and other network primitives.
+## Chapter 1: Core Concepts (19%) 
+   * ### Cluster Architecture
+   * ### API Primitives
+   * ### Services and Network
+   * ### Understand the Kubernetes API primitives
+   * ### Understand the Kubernetes cluster architecture.
+   * ### Understand Services and other network primitives.
 
-## Chapter 2: Install, Config and Validate. 12%
-        ✔ Binaries/Provision/Types
-        ✔ Installing Master and Nodes
-        ✔ Highly Available Cluster
-        ✔ Secure Cluster
-        ✔ End-to-End Tests
-        ❏ Design a Kubernetes cluster.
-        ❏ Install Kubernetes masters and nodes
-        ❏ Configure secure cluster communications.
-        ❏ Configure a Highly-Available Kubernetes cluster.
-        ❏ Know where to get the Kubernetes release binaries.
-        ❏ Provision underlying infrastructure to deploy a Kubernetes cluster.
-        ❏ Choose a network solution.
-        ❏ Choose your Kubernetes infrastructure configuration.
-        ❏ Run end-to-end tests on your cluster.
-        ❏ Analyse end-to-end tests results.
-        ❏ Run Node end-to-end tests.
-        ❏ Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
+## Chapter 2: Install, Config and Validate (12%)
+   * ### Binaries/Provision/Types
+   * ### Installing Master and Nodes
+   * ### Highly Available Cluster
+   * ### Secure Cluster
+   * ### End-to-End Tests
+   * ### Design a Kubernetes cluster.
+   * ### Install Kubernetes masters and nodes
+   * ### Configure secure cluster communications.
+   * ### Configure a Highly-Available Kubernetes cluster.
+   * ### Know where to get the Kubernetes release binaries.
+   * ### Provision underlying infrastructure to deploy a Kubernetes cluster.
+   * ### Choose a network solution.
+   * ### Choose your Kubernetes infrastructure configuration.
+   * ### Run end-to-end tests on your cluster.
+   * ### Analyse end-to-end tests results.
+   * ### Run Node end-to-end tests.
+   * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
 
-## Chapter 3: Cluster 11%
-        ✔ Upgrading the cluster
-        ✔ OS Upgrades
-        ✔ Restoring a Cluster
-        ❏ Understand Kubernetes cluster upgrade process.
-        ❏ Facilitate operating system upgrades.
-        ❏ Implement backup and restore methodologies
+## Chapter 3: Cluster (11%)
+   * ### Upgrading the cluster
+   * ### OS Upgrades
+   * ### Restoring a Cluster
+   * ### Understand Kubernetes cluster upgrade process.
+   * ### Facilitate operating system upgrades.
+   * ### Implement backup and restore methodologies
 
 ## Chapter 4: Networking (11%)
-        ✔ Pod and Node Networking
-        ✔ Container Network Interface
-        ✔ Service Networking
-        ✔ Ingress and Load Balancers
-        ✔ Cluster DNS
-        ❏ Understand the networking configuration on the cluster nodes.
-        ❏ Understand Pod networking concepts.
-        ❏ Understand service networking.
-        ❏ Deploy and configure network load balancer.
-        ❏ Know how to use Ingress rules.
-        ❏ Know how to configure and use the cluster DNS.
-        ❏ Understand CNI.
+   * ### Pod and Node Networking
+   * ### Container Network Interface
+   * ### Service Networking
+   * ### Ingress and Load Balancers
+   * ### Cluster DNS
+   * ### Understand the networking configuration on the cluster nodes.
+   * ### Understand Pod networking concepts.
+   * ### Understand service networking.
+   * ### Deploy and configure network load balancer.
+   * ### Know how to use Ingress rules.
+   * ### Know how to configure and use the cluster DNS.
+   * ### Understand CNI.
 
-## Chapter 5: Scheduling (5%)
-        ✔ Kubernetes Scheduler
-        ✔ Multiple Schedulers
-        ✔ Resource Limits and Labels
-        ✔ DaemonSets
-        ✔ Scheduler Events
-        ❏ Use label selectors to schedule Pods.
-        ❏ Understand the role of DaemonSets.
-        ❏ Understand how resource limits can affect Pod scheduling.
-        ❏ Understand how to run multiple schedulers and how to configure Pods to use them.
-        ❏ Manually schedule a pod without a scheduler.
-        ❏ Display scheduler events.
-        ❏ Know how to configure the Kubernetes scheduler.
+* ## Chapter 5: Scheduling (5%)
+   * ### Kubernetes Scheduler
+   * ### Multiple Schedulers
+   * ### Resource Limits and Labels
+   * ### DaemonSets
+   * ### Scheduler Events
+   * ### Use label selectors to schedule Pods
+   * ### Understand the role of DaemonSets
+   * ### Understand how resource limits can affect Pod scheduling
+   * ### Understand how to run multiple schedulers and how to configure Pods to use them
+   * ### Manually schedule a pod without a scheduler
+   * ### Display scheduler events
+   * ### Know how to configure the Kubernetes scheduler
 
-## Chapter 6: Application Lifecycle (8%)
-        ✔ Deploying an Applicaiton
-        ✔ Highly Available Apps
-        ✔ Self-Healing Apps
-        ❏ Understand Deployments and how to per form rolling updates and rollbacks.
-        ❏ Know various ways to configure applications.
-        ❏ Know how to scale applications
-        ❏ Understand the primitives necessary to create a self-healing application.
+* ## Chapter 6: Application Lifecycle (8%)
+   * ### Deploying an Applicaiton
+   * ### Highly Available Apps
+   * ### Self-Healing Apps
+   * ### Understand Deployments and how to per form rolling updates and rollbacks.
+   * ### Know various ways to configure applications.
+   * ### Know how to scale applications
+   * ### Understand the primitives necessary to create a self-healing application.
 
-## Chapter 7: Storage (7%)
-        ✔ Persistent Volume
-        ✔ Volume Access Modes
-        ✔ Persistent Volume Claims
-        ✔ Storage Objects
-        ❏ Application with Storage
-        ❏ Understand persistent volumes and know how to create them.
-        ❏ Understand access modes for volumes.
-        ❏ Understand persistent volume claims primitive.
-        ❏ Understand Kubernetes storage objects.
-        ❏ Know how to configure applications with persistent storage.
+* ## Chapter 7: Storage (7%)
+   * ### Persistent Volume
+   * ### Volume Access Modes
+   * ### Persistent Volume Claims
+   * ### Storage Objects
+   * ### Application with Storage
+   * ### Understand persistent volumes and know how to create them.
+   * ### Understand access modes for volumes.
+   * ### Understand persistent volume claims primitive.
+   * ### Understand Kubernetes storage objects.
+   * ### Know how to configure applications with persistent storage.
 
-## Chapter 8: Security (12%)
-        ✔ Security Primitives
-        ✔ Authenticate and Authorize
-        ✔ Network Policies
-        ✔ TLS Certificate
-        ✔ Secure Images
-        ✔ Security Contexts
-        ✔ Key Value Stores
-        ❏ Know how to configure authentication and authorization
-        ❏ Understand Kubernetes security primitives.
-        ❏ Know to configure network policies.
-        ❏ Create and manage TLS certificates for cluster components.
-        ❏ Work with images securely
-        ❏ Define security contexts.
-        ❏ Secure persistent key value store.
+* ## Chapter 8: Security (12%)
+   * ### Security Primitives
+   * ### Authenticate and Authorize
+   * ### Network Policies
+   * ### TLS Certificate
+   * ### Secure Images
+   * ### Security Contexts
+   * ### Key Value Stores
+   * ### Know how to configure authentication and authorization
+   * ### Understand Kubernetes security primitives.
+   * ### Know to configure network policies.
+   * ### Create and manage TLS certificates for cluster components.
+   * ### Work with images securely
+   * ### Define security contexts.
+   * ### Secure persistent key value store.
 
-## Chapter 9: Log and Monitor (5%)
-        ✔ Monitor Cluster
-        ✔ Monitor Applicaiton
-        ✔ Cluster Logs
-        ✔ Applicaiton Logs
-        ❏ Understand how to monitor all cluster components.
-        ❏ Understand how to monitor applications.
-        ❏ Manage cluster component logs
-        ❏ Manage application logs.
+* ## Chapter 9: Log and Monitor (5%)
+   * ### Monitor Cluster
+   * ### Monitor Application
+   * ### Cluster Logs
+   * ### Application Logs
+   * ### Understand how to monitor all cluster components.
+   * ### Understand how to monitor applications.
+   * ### Manage cluster component logs
+   * ### Manage application logs.
 
-❏ Chapter 10: Troubleshooting (10%)
-        ✔ Application Failure
-        ✔ Control Place Failure
-        ✔ Worker Node Failure
-        ✔ Network Failure
-        ❏ Troubleshoot application failure.
-        ❏ Troubleshoot control plane failure.
-        ❏ Troubleshoot worker node failure.
+* ## Chapter 10: Troubleshooting (10%)
+   * ### Application Failure
+   * ### Control Place Failure
+   * ### Worker Node Failure
+   * ### Network Failure
+   * ### Troubleshoot application failure.
+   * ### Troubleshoot control plane failure
+   * ### Troubleshoot worker node failure
 
 
 
