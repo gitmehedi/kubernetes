@@ -257,35 +257,6 @@ Document History:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```
-
-## Introduction
-
-
-
-```bash
-
-
-```
-
-
-
 ```bash
 kubectl logs -h
 
