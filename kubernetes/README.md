@@ -175,20 +175,16 @@ Document History:
   * https://kubernetes.io/docs/concepts/overview/components/
   * https://wiki.aquasec.com/display/containers/Kubernetes+Architecture+101
   
-  ### API Primitives
+ ### API Primitives
   > Kubernetes API to read and write Kubernetes resource objects via a Kubernetes API endpoint.
    
-  #### Resources Categories
-    There are 5 basic types of resources provided by kubernetes API 
-    1. **Workloads** are objects you use to manage and run your containers on the cluster.
-   
-    2. **Discovery & LB** resources are objects you use to "stitch" your workloads together into an externally accessible, load-balanced Service.
-   
-    3. **Config & Storage** resources are objects you use to inject initialization data into your applications, and to persist data that is external to your container.
-   
-    4. **Cluster** resources objects define how the cluster itself is configured; these are typically used only by cluster operators.
-   
-    5. **Metadata** resources are objects you use to configure the behavior of other resources within the cluster, such as HorizontalPodAutoscaler for scaling workloads.
+  #### Resources Categories  
+  There are 5 basic types of resources provided by kubernetes API 
+  1. **Workloads** are objects you use to manage and run your containers on the cluster.
+  2. **Discovery & LB** resources are objects you use to "stitch" your workloads together into an externally accessible, load-balanced Service.
+  3. **Config & Storage** resources are objects you use to inject initialization data into your applications, and to persist data that is external to your container.
+  4. **Cluster** resources objects define how the cluster itself is configured; these are typically used only by cluster operators.
+  5. **Metadata** resources are objects you use to configure the behavior of other resources within the cluster, such as HorizontalPodAutoscaler for scaling workloads.
     
   #### Resources Objects 
   Resource objects typically have 3 components:
@@ -240,8 +236,6 @@ Document History:
   #### References and Further Study
   * https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
   * https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#container-v1-core
-                                               
-    
    
   ### Services and Network
     > Understand Services and other network primitives
