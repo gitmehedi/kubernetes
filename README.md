@@ -6,7 +6,7 @@ All types of cloud learning contents with all documents.
 * [AWS](#aws)
 * [CI/CD](#ci/cd)
 * [Docker](#docker)
-* [Kubernetes](#kubernetes)
+* [Kubernetes](gitmehedi/cloudtuts/tree/develop/kubernetes)
 * [Shell Script](#shell-script)
 
 
