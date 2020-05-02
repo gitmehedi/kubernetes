@@ -146,6 +146,30 @@ Document History:
   * **Controller Manager**: Maintaining the cluster. Handles node failures, replicating components, maintaining correct amount of POD.  
   * **ETCD**: Data store that stores cluster information.  
   
+  Depending on Setup you can see configuration of each component in directory in following way. You will find all Control Plane component it there 
+  1. Kubeadm Setup:  ```/etc/kubernetes/manifests/```  
+  2. Hardway Setup:  ```/etc/systemd/system```
+  ```
+  -- Kubeadm 
+  $ cat /etc/kubernetes/manifests/api-server.yaml
+  $ cat /etc/kubernetes/manifests/etcd-server.yaml
+  $ cat /etc/kubernetes/manifests/kube-controller-manager.yaml
+  $ cat /etc/kubernetes/manifests/scheduler-manager.yaml
+  
+  -- Hardway 
+  $ cat /etc/systemd/system/api-server.service
+  $ cat /etc/systemd/system/etcd-server.service
+  $ cat /etc/systemd/system/kube-controller-manager.service
+  $ cat /etc/systemd/system/scheduler-manager.service
+
+  -- Using process
+  $ ps -ef | grep api-server
+  $ ps -ef | grep etcd-server
+  $ ps -ef | grep kube-contoller-manager
+  $ ps -ef | grep scheduler-manager
+  ```
+  
+  
   #### Worker Node:
   Components:
   ```
@@ -154,8 +178,15 @@ Document History:
   3. Container Runtime
   ```
   
-  * **Kubelet**: Run and manages the containers on the nodes and communicate to API Server.  
+  * **Kubelet**:  
+  Run and manages the containers on the nodes and communicate to API Server. 
+  ```
+  * Kubeadm does not install kubelet automatically. It need to download manually
+  ```
   * **Kube-proxy**: Load balance traffic between application components.  
+  ```
+  * It creates iptable rules in each node to forward traffic to the IP of the service. Example: DaemonSet  
+  ```
   * **Container Runtime**: The programs that run containers
   ```
   1. Docker
@@ -231,9 +262,10 @@ Document History:
     
   #### Command References
   ```bash
-    # create a deployment from yaml file nginx.yaml
+    -- create a deployment from yaml file nginx.yaml
     $ kubectl create -f nginx.yaml
-    # Generate yaml from a pod
+
+    -- Generate yaml from a pod
     $ kubectl get deployment nginx-deployemnt -o yaml > nginx.yaml  
   ```  
   #### References and Further Study
@@ -242,7 +274,63 @@ Document History:
    
   ### Services and Network
     > Understand Services and other network primitives
-   
+    
+  #### Service
+  #### Networking Primitives
+  
+  #### Kubernetes Command
+  There are two ways to create resources in a Kubernetes cluster: the imperative and the declarative ones.  
+  1. **Declarative**: The declarative approach is used to create resources from manifest files (usually in YAML) using the kubectl apply command. 
+  This is the approach used in a production environment.  
+  ```kubectl apply -f <object>.<yaml,json>```
+  2. **Imperative**: The imperative way is used to manage resources using several distinct commands and do not requires any manifest files.  
+  
+  ```
+  -- Create an NGINX Pod
+  $ kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml 
+    
+  -- Create a deployment
+  $ kubectl create deployment --image=nginx nginx --dry-run -o yaml
+  $ kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run --replicas=4 -o yaml
+    
+  -- Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379
+  $ kubectl expose pod redis --port=6379 --name redis-service --dry-run -o yaml
+  $ kubectl create service clusterip redis --tcp=6379:6379 --dry-run -o yaml
+  ```
+  
+  ##### Generator
+  You can generate the following resources with a kubectl command,   
+  ```kubectl create --dry-run -o yaml```
+  ```
+clusterrole         Create a ClusterRole.
+  clusterrolebinding  Create a ClusterRoleBinding for a particular ClusterRole.
+  configmap           Create a configmap from a local file, directory or literal value.
+  cronjob             Create a cronjob with the specified name.
+  deployment          Create a deployment with the specified name.
+  job                 Create a job with the specified name.
+  namespace           Create a namespace with the specified name.
+  poddisruptionbudget Create a pod disruption budget with the specified name.
+  priorityclass       Create a priorityclass with the specified name.
+  quota               Create a quota with the specified name.
+  role                Create a role with single rule.
+  rolebinding         Create a RoleBinding for a particular Role or ClusterRole.
+  secret              Create a secret using specified subcommand.
+  service             Create a service using specified subcommand.
+  serviceaccount      Create a service account with the specified name.
+```
+  
+  #### Command References
+  ```bash
+    # create a deployment from yaml file nginx.yaml
+    $ kubectl create -f nginx.yaml
+    # Generate yaml from a pod
+    $ kubectl get deployment nginx-deployemnt -o yaml > nginx.yaml  
+  ```  
+
+  #### References and Further Study
+  * https://kubernetes.io/docs/concepts/services-networking/service/
+  * https://kubernetes.io/docs/reference/kubectl/conventions/
+  
 ## Chapter 2: Install, Config and Validate (12%)
    * ### Design a Kubernetes cluster.
    * ### Install Kubernetes masters and nodes
