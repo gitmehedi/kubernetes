@@ -475,6 +475,7 @@ clusterrole         Create a ClusterRole.
     
    ```  
    #### References and Further Study
+   * https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/
    
    ### Operating System Upgrades
    #### Command References
@@ -489,7 +490,7 @@ clusterrole         Create a ClusterRole.
     
    ```  
    #### References and Further Study
-   * https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/
+   
 
 ## Chapter 4: Networking (11%)
    * ### Pod and Node Networking
