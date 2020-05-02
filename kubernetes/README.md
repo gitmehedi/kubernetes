@@ -272,7 +272,8 @@ Document History:
   ### Services and Network
     > Understand Services and other network primitives
     
-  #### Service
+  #### Services
+  
   #### Networking Primitives
   
   #### Kubernetes Command
@@ -343,20 +344,21 @@ clusterrole         Create a ClusterRole.
    * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
 
 ## Chapter 3: Cluster (11%)
-   * ### Cluster Upgrade Process
+   ### Cluster Upgrade Process
    #### Command References
    ```bash
     
    ```  
    #### References and Further Study
    
-   * ### Operating System Upgrades
+   ### Operating System Upgrades
    #### Command References
    ```bash
     
    ```  
    #### References and Further Study
-   * ### Backup and Restore Methodologies
+   
+   ### Backup and Restore Methodologies
    #### Command References
    ```bash
     
