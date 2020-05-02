@@ -24,12 +24,9 @@ Table of Contents
    * [Install and use kubeadm to install, configure, and manage Kubernetes clusters](#install-and-use-kubeadm-to-install-configure-and-manage-kubernetes-clusters)
    
 * [Chapter 3: Cluster (11%)](#chapter-3-cluster-11)
-   * [Upgrading the cluster](#upgrading-the-cluster)
-   * [OS Upgrades](#os-upgrades)
-   * [Restoring a Cluster](#restoring-a-cluster)
-   * [Understand Kubernetes cluster upgrade process.](#understand-kubernetes-cluster-upgrade-process)
-   * [Facilitate operating system upgrades.](#facilitate-operating-system-upgrades)
-   * [Implement backup and restore methodologies](#implement-backup-and-restore-methodologies)
+   * [Cluster Upgrade Process](#cluster-upgrade-process)
+   * [Operating System Upgrades](#operating-system-upgrades)
+   * [Backup and Restore Methodologies](#backup-and-restore-methodologies)
 
 * [Chapter 4: Networking (11%)](#chapter-4-networking-11)
    * [Pod and Node Networking](#pod-and-node-networking) 
@@ -346,12 +343,9 @@ clusterrole         Create a ClusterRole.
    * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
 
 ## Chapter 3: Cluster (11%)
-   * ### Upgrading the cluster
-   * ### OS Upgrades
-   * ### Restoring a Cluster
-   * ### Understand Kubernetes cluster upgrade process.
-   * ### Facilitate operating system upgrades.
-   * ### Implement backup and restore methodologies
+   * ### Cluster Upgrade Process
+   * ### Operating System Upgrades
+   * ### Backup and Restore Methodologies
 
 ## Chapter 4: Networking (11%)
    * ### Pod and Node Networking
