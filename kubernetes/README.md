@@ -344,8 +344,24 @@ clusterrole         Create a ClusterRole.
 
 ## Chapter 3: Cluster (11%)
    * ### Cluster Upgrade Process
+   #### Command References
+   ```bash
+    
+   ```  
+   #### References and Further Study
+   
    * ### Operating System Upgrades
+   #### Command References
+   ```bash
+    
+   ```  
+   #### References and Further Study
    * ### Backup and Restore Methodologies
+   #### Command References
+   ```bash
+    
+   ```  
+   #### References and Further Study
 
 ## Chapter 4: Networking (11%)
    * ### Pod and Node Networking
