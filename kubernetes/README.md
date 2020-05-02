@@ -326,6 +326,7 @@ clusterrole         Create a ClusterRole.
   ```  
 
   #### References and Further Study
+  * https://kubernetes.io/docs/reference/kubectl/cheatsheet/
   * https://kubernetes.io/docs/concepts/services-networking/service/
   * https://kubernetes.io/docs/reference/kubectl/conventions/
   
