@@ -345,6 +345,15 @@ clusterrole         Create a ClusterRole.
 
 ## Chapter 3: Cluster (11%)
    ### Cluster Upgrade Process
+   kubeadm allows to upgrade cluster components in the proper order from one version at a time. 
+   ```textmate
+    -- Allows 1 version at a time
+    => 1.12.0 to 1.13.0
+    => 1.16.0 to 1.17.0
+    
+    -- Not Allow
+    => 1.12.0 1.16.0
+   ```
    #### Command References
    ```bash
     
