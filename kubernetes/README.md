@@ -354,6 +354,122 @@ clusterrole         Create a ClusterRole.
     -- Not Allow
     => 1.12.0 1.16.0
    ```
+   Follow steps to upgrade lower version to upper version  
+   Step 1: Get the version of API Server
+   ```bash
+   $ kubectl version --short
+   Client Version: v1.18.0
+   Server Version: v1.18.0
+   ```
+   Step 2: Get the version of kubelet
+   ```
+   $ kubectl describe nodes
+   Kubelet Version:            v1.18.0
+   Kube-Proxy Version:         v1.18.0
+   ```
+   Step 3: Get the version of api-server, kube-apiserver, kube-scheduler, kube-controller-manager
+   ```
+   $ kubectl get pod -n kube-system
+    NAME                                                READY   STATUS    RESTARTS   AGE
+    coredns-66bff467f8-8wr6w                            1/1     Running   6          25d
+    etcd-master                                         1/1     Running   7          25d
+    kube-apiserver-master                               1/1     Running   7          25d
+    kube-controller-manager-master                      1/1     Running   7          25d
+    kube-flannel-ds-amd64-qzxkh                         1/1     Running   9          25d
+    kube-proxy-2khkk                                    1/1     Running   6          25d
+    kube-scheduler-master                               1/1     Running   7          25d
+
+    -- Get etcd version
+    $ kubectl describe pod etcd-master  -n kube-system | grep Image:
+    Image:         k8s.gcr.io/etcd:3.4.3-0
+    
+    -- Get kube-apiserver version
+    $ kubectl describe pod kube-apiserver-master -n kube-system | grep Image:
+    Image:         k8s.gcr.io/kube-apiserver:v1.18.0
+    
+    -- Get kube-controller-manager version
+    $ kubectl describe pod kube-controller-manager-master -n kube-system | grep Image:
+    Image:         k8s.gcr.io/kube-controller-manager:v1.18.0
+    
+    -- Get kube-scheduler version
+    $ kubectl describe pod kube-scheduler-master -n kube-system | grep Image:
+    Image:         k8s.gcr.io/kube-scheduler:v1.18.0
+    
+   ```
+   
+   Step 4: Unhold kubeadm, kubelet if already in hold status
+   ```
+   $ sudo apt-mark unhold kubeadm kubelet
+   Canceled hold on kubeadm
+   Canceled hold on kubelet
+   ```
+   Step 5: Install kubeadm of version 1.18.2
+   ```
+   $ sudo apt-get install -y kubeadm=1.18.2-00
+   ```
+
+   Step 6: Hold kubeadm version and get kubeadm version
+   ```
+   $ sudo apt-mark hold kubeadm
+   $ kubeadm version
+   kubeadm version: &version.Info{Major:"1", Minor:"18", GitVersion:"v1.18.2", GitCommit:"9e991415386e4cf155a24b1da15becaa390438d8", GitTreeState:"clean", BuildDate:"2020-03-25T14:56:30Z", GoVersion:"go1.13.8", Compiler:"gc", Platform:"linux/amd64"}
+   ```
+
+   Step 7: Plan the upgrade before executing
+   ```
+   $ sudo kubeadm upgrade plan
+    
+    Upgrade to the latest version in the v1.18 series:
+    
+    COMPONENT            CURRENT   AVAILABLE
+    API Server           v1.18.0   v1.18.2
+    Controller Manager   v1.18.0   v1.18.2
+    Scheduler            v1.18.0   v1.18.2
+    Kube Proxy           v1.18.0   v1.18.2
+    CoreDNS              1.6.7     1.6.7
+    Etcd                 3.4.3     3.4.3-0
+    You can now apply the upgrade by executing the following command:
+
+        kubeadm upgrade apply v1.18.2
+
+   ```
+
+   Step 8: Upgrade the controller component
+   ```
+   $ sudo kubeadm upgrade apply v1.18.2
+   $ kubect get nodes
+    NAME     STATUS   ROLES    AGE   VERSION
+    master   Ready    master   25d   v1.18.0
+    worker   Ready    <none>   25d   v1.18.0
+
+    -- Get the version
+    $ kubectl version --short
+    Client Version: v1.18.0
+    Server Version: v1.18.2
+   ```
+
+   Step 9: Upgrade the kubelet version
+   ```
+   $ sudo apt-mark unhold kubectl
+   Canceled hold on kubelctl
+
+   -- upgrade kubectl
+   $ sudo apt install -y kubectl=1.18.2-00
+   
+   -- Get the version
+   $ kubectl version --short
+   Client Version: v1.18.2
+   Server Version: v1.18.2
+
+   ```
+
+   Step 10: Upgrade the version of kubelet and hold the version of kubelet
+   ```
+   $ sudo apt install -y kubelet=1.18.2-00
+   $ sudo apt-mark hold kubelet
+   kubelet set on hold.
+   ```
+   
    #### Command References
    ```bash
     
@@ -373,6 +489,7 @@ clusterrole         Create a ClusterRole.
     
    ```  
    #### References and Further Study
+   * https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/
 
 ## Chapter 4: Networking (11%)
    * ### Pod and Node Networking
