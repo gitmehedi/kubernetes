@@ -477,8 +477,14 @@ clusterrole         Create a ClusterRole.
    ```  
    #### References and Further Study
    * https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/
+   * https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md
+   * https://kubernetes.io/docs/concepts/overview/kubernetes-api/
+   * https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api_changes.md
+   
    
    ### Operating System Upgrades
+   
+   #### Terms:  
    In operating system upgrade some terms are very important
    
    1. Drain: When a node drain, Pod are terminated form the node and Pod are recreated on another node where requirement match.
@@ -487,14 +493,47 @@ clusterrole         Create a ClusterRole.
    2. Cordon: Marked node as unschedule able.  
    3. Uncordon: Marked node as scheduleable so that Pod can schedule on this node.
    
+   Process: 
+   1. Evict the Pod from node using drain and take node down.
+   2. Maintains the node
+   2. After maintenance continue scheduling using uncordon the node.
+   
+   See which pods are running on which nodes:  
+   ```$ kubectl get pods -o wide```  
+   
+   Evict the pods on a node:  
+   ```$ kubectl drain [node_name] --ignore-daemonsets```  
+   
+   Watch as the node changes status:  
+   ```$ kubectl get nodes -w```  
+   
+   Schedule pods to the node after maintenance is complete:
+   ```$ kubectl uncordon [node_name]```  
+   
+   Remove a node from the cluster:  
+   ```$ kubectl delete node [node_name]```  
+   
+   Generate a new token:  
+   ```$ sudo kubeadm token generate```  
     
+   List the tokens:  
+   ```$ sudo kubeadm token list```  
+    
+   Print the kubeadm join command to join a node to the cluster:  
+   ```$ sudo kubeadm token create [token_name] --ttl 2h --print-join-command ```  
     
        
    #### Command References
    ```bash
-    
+    $ kubectl drain [node_name]
+    $ kubectl cordon [node_name]
+    $ kubectl cordon [node_name]
+    $ kubectl delete [node_name]
+    $ kubectl edit [node_name]
    ```  
    #### References and Further Study
+   * https://kubernetes.io/docs/tasks/administer-cluster/cluster-management/#maintenance-on-a-node  
+   
    
    ### Backup and Restore Methodologies
    #### Command References
