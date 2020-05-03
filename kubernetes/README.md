@@ -479,6 +479,17 @@ clusterrole         Create a ClusterRole.
    * https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/
    
    ### Operating System Upgrades
+   In operating system upgrade some terms are very important
+   
+   1. Drain: When a node drain, Pod are terminated form the node and Pod are recreated on another node where requirement match.
+    Also node marked as unscheduled, meaning no Pod can be schedule on this node until you specify Scheduled or uncordon.
+    Using it Pod can safe on other node.  
+   2. Cordon: Marked node as unschedule able.  
+   3. Uncordon: Marked node as scheduleable so that Pod can schedule on this node.
+   
+    
+    
+       
    #### Command References
    ```bash
     
