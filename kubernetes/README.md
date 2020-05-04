@@ -348,9 +348,12 @@ clusterrole         Create a ClusterRole.
     ├── admin.conf
     ├── controller-manager.conf
     ├── kubelet.conf
-    ├── manifests│   ├── etcd.yaml
-    │   ├── kube-apiserver.yaml│   ├── kube-controller-manager.yaml
-    │   └── kube-scheduler.yaml├── pki
+    ├── manifests
+    │   ├── etcd.yaml
+    │   ├── kube-apiserver.yaml
+    │   ├── kube-controller-manager.yaml
+    │   └── kube-scheduler.yaml
+    ├── pki
     │   ├── apiserver.crt
     │   ├── apiserver-etcd-client.crt
     │   ├── apiserver-etcd-client.key
