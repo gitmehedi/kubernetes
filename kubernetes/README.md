@@ -32,7 +32,7 @@ Table of Contents
    * [Node Networking Concepts](#node-networking-concepts) 
    * [Pod Networking Concepts](#pod-networking-concepts) 
    * [Service Networking Concepts](#service-networking-concepts) 
-   * [Container Network Interface](#container-network-interface) 
+   * [Container Network Interface](#container-network-interface-cni) 
    * [Load Balancer Configure and Deploy](#load-balancer-configure-and-deploy) 
    * [Ingress Rules Configure](#ingress-rules-configure) 
    * [Cluster DNS Configure](#cluster-dns-configure) 
@@ -719,7 +719,7 @@ For a detailed explanation on how to make use of the etcdctl command line tool a
    #### References and Further Study
    
    
-   ### Container Network Interface
+   ### Container Network Interface (CNI)
    #### Command References
    ```bash
     
