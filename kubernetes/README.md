@@ -343,7 +343,38 @@ clusterrole         Create a ClusterRole.
    * ### Analyse end-to-end tests results.
    * ### Run Node end-to-end tests.
    * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
-
+```
+/etc/kubernetes/
+├── admin.conf
+├── controller-manager.conf
+├── kubelet.conf
+├── manifests│   ├── etcd.yaml
+│   ├── kube-apiserver.yaml│   ├── kube-controller-manager.yaml
+│   └── kube-scheduler.yaml├── pki
+│   ├── apiserver.crt
+│   ├── apiserver-etcd-client.crt
+│   ├── apiserver-etcd-client.key
+│   ├── apiserver.key
+│   ├── apiserver-kubelet-client.crt
+│   ├── apiserver-kubelet-client.key
+│   ├── ca.crt
+│   ├── ca.key
+│   ├── etcd
+│   │   ├── ca.crt
+│   │   ├── ca.key
+│   │   ├── healthcheck-client.crt
+│   │   ├── healthcheck-client.key
+│   │   ├── peer.crt
+│   │   ├── peer.key
+│   │   ├── server.crt
+│   │   └── server.key
+│   ├── front-proxy-ca.crt
+│   ├── front-proxy-ca.key
+│   ├── front-proxy-client.crt
+│   ├── front-proxy-client.key
+│   ├── sa.key
+│   └── sa.pub
+└── scheduler.conf```
 ## Chapter 3: Cluster (11%)
    ### Cluster Upgrade Process
    kubeadm allows to upgrade cluster components in the proper order from one version at a time. 
@@ -536,11 +567,129 @@ clusterrole         Create a ClusterRole.
    
    
    ### Backup and Restore Methodologies
+   Working with ETCDCTL
+
+
+etcdctl is a command line client for etcd.
+
+
+
+In all our Kubernetes Hands-on labs, the ETCD key-value database is deployed as a static pod on the master. The version used is v3.
+
+To make use of etcdctl for tasks such as back up and restore, make sure that you set the ETCDCTL_API to 3.
+
+
+
+You can do this by exporting the variable ETCDCTL_API prior to using the etcdctl client. This can be done as follows:
+
+export ETCDCTL_API=3
+
+On the Master Node:
+
+
+
+
+
+To see all the options for a specific sub-command, make use of the -h or --help flag.
+
+
+
+For example, if you want to take a snapshot of etcd, use:
+
+etcdctl snapshot save -h and keep a note of the mandatory global options.
+
+
+
+Since our ETCD database is TLS-Enabled, the following options are mandatory:
+
+--cacert                                                verify certificates of TLS-enabled secure servers using this CA bundle
+
+--cert                                                    identify secure client using this TLS certificate file
+
+--endpoints=[127.0.0.1:2379]          This is the default as ETCD is running on master node and exposed on localhost 2379.
+
+--key                                                      identify secure client using this TLS key file
+
+
+
+
+
+Similarly use the help option for snapshot restore to see all available options for restoring the backup.
+
+etcdctl snapshot restore -h
+
+For a detailed explanation on how to make use of the etcdctl command line tool and work with the -h flags, check out the solution video for the Backup and Restore Lab.
+   #### Backup
+   There are 2 back candidates
+   ```
+    1. Resource Configuration
+    2. ETCD Cluster
+   ```
+   ##### 1. Resource Configuration:  
+      you can take all configuration from a cluster using  
+      ```$ kubectl get all --all-namespaces -o yaml > all_deploy_service.yaml```  
+   
+   ##### 2. ETCD Cluster:  
+   Take backup on specific location
+   ```
+    $ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /tmp/snapshot-pre-boot.db
+    Snapshot saved at /tmp/snapshot-pre-boot.db
+   ```
+   
+   See the status of snapshot
+   ```
+   $ ETCDCTL_API=3 etcdctl snapshot status /tmp/snapshot-pre-boot.db
+    436037d5, 2612, 854, 2.3 MB
+   ```
+   
+   #### Restore
+   Restore ETCD Snapshot to a new folder
+   ```
+   ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+     --name=master \
+     --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key \
+     --data-dir /var/lib/etcd-from-backup \
+     --initial-cluster=master=https://127.0.0.1:2380 \
+     --initial-cluster-token etcd-cluster-1 \
+     --initial-advertise-peer-urls=https://127.0.0.1:2380 \
+     snapshot restore /tmp/snapshot-pre-boot.db
+   ```
+
+   Modify /etc/kubernetes/manifests/etcd.yaml
+   ```
+    -- open etcd.yaml and add following lines under command
+    $ vim /etc/kubernetes/manifests/etcd.yaml
+
+    --data-dir=/var/lib/etcd-from-backup
+    --initial-cluster-token=etcd-cluster-1
+
+    volumeMounts:
+        - mountPath: /var/lib/etcd-from-backup
+          name: etcd-data
+        - mountPath: /etc/kubernetes/pki/etcd
+          name: etcd-certs
+      hostNetwork: true
+      priorityClassName: system-cluster-critical
+      volumes:
+      - hostPath:
+          path: /var/lib/etcd-from-backup
+          type: DirectoryOrCreate
+        name: etcd-data
+      - hostPath:
+          path: /etc/kubernetes/pki/etcd
+          type: DirectoryOrCreate
+        name: etcd-certs
+   ```
+
    #### Command References
    ```bash
-    
-   ```  
+    -- Get the version of etcd 
+    $ kubectl logs etcd-master -n kube-system
+    $ kubectl describe pod etcd-master -n kube-system
+   ``` 
+
    #### References and Further Study
+   * https://github.com/mmumshad/kubernetes-the-hard-way/blob/master/practice-questions-answers/cluster-maintenance/backup-etcd/etcd-backup-and-restore.md
    
 
 ## Chapter 4: Networking (11%)
