@@ -29,19 +29,14 @@ Table of Contents
    * [Backup and Restore Methodologies](#backup-and-restore-methodologies)
 
 * [Chapter 4: Networking (11%)](#chapter-4-networking-11)
-   * [Pod and Node Networking](#pod-and-node-networking) 
+   * [Node Networking Concepts](#node-networking-concepts) 
+   * [Pod Networking Concepts](#pod-networking-concepts) 
+   * [Service Networking Concepts](#service-networking-concepts) 
    * [Container Network Interface](#container-network-interface) 
-   * [Service Networking](#service-networking) 
-   * [Ingress and Load Balancers](#ingress-and-load-balancers) 
-   * [Cluster DNS](#cluster-dns) 
-   * [Understand the networking configuration on the cluster nodes](#understand-the-networking-configuration-on-the-cluster-nodes) 
-   * [Understand Pod networking concepts](#understand-pod-networking-concepts) 
-   * [Understand service networking](#understand-service-networking) 
-   * [Deploy and configure network load balancer](#deploy-and-configure-network-load-balancer) 
-   * [Know how to use Ingress rules](#know-how-to-use-ingress-rules) 
-   * [Know how to configure and use the cluster DNS](#know-how-to-configure-and-use-the-cluster-dns.)
-   * [Understand CNI](#understand-cni)
-
+   * [Load Balancer Configure and Deploy](#load-balancer-configure-and-deploy) 
+   * [Ingress Rules Configure](#ingress-rules-configure) 
+   * [Cluster DNS Configure](#cluster-dns-configure) 
+   
 * [Chapter 5: Scheduling (5%)](#chapter-5-scheduling-5)
    * [Kubernetes Scheduler](#kubernetes-scheduler) 
    * [Multiple Schedulers](#multiple-schedulers) 
@@ -698,18 +693,68 @@ For a detailed explanation on how to make use of the etcdctl command line tool a
    
 
 ## Chapter 4: Networking (11%)
-   * ### Pod and Node Networking
-   * ### Container Network Interface
-   * ### Service Networking
-   * ### Ingress and Load Balancers
-   * ### Cluster DNS
-   * ### Understand the networking configuration on the cluster nodes.
-   * ### Understand Pod networking concepts.
-   * ### Understand service networking.
-   * ### Deploy and configure network load balancer.
-   * ### Know how to use Ingress rules.
-   * ### Know how to configure and use the cluster DNS.
-   * ### Understand CNI.
+   ### Node Networking Concepts
+   #### Command References
+   ```bash
+    
+   ``` 
+
+   #### References and Further Study
+   
+   ### Pod Networking Concepts
+   #### Command References
+   ```bash
+    
+   ``` 
+
+   #### References and Further Study
+   
+   
+   ### Service Networking Concepts
+   #### Command References
+   ```bash
+    
+   ``` 
+
+   #### References and Further Study
+   
+   
+   ### Container Network Interface
+   #### Command References
+   ```bash
+    
+   ``` 
+
+   #### References and Further Study
+   
+   
+   ### Load Balancer Configure and Deploy
+   #### Command References
+   ```bash
+    
+   ``` 
+
+   #### References and Further Study
+   
+   
+   ### Ingress Rules Configure
+   #### Command References
+   ```bash
+    
+   ``` 
+
+   #### References and Further Study
+   
+   
+   ### Cluster DNS Configure
+   #### Command References
+   ```bash
+    
+   ``` 
+
+   #### References and Further Study
+   
+   
 
 ## Chapter 5: Scheduling (5%)
    * ### Kubernetes Scheduler
