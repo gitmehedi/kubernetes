@@ -343,7 +343,7 @@ clusterrole         Create a ClusterRole.
    * ### Analyse end-to-end tests results.
    * ### Run Node end-to-end tests.
    * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
-    ```
+   ```
     /etc/kubernetes/
     ├── admin.conf
     ├── controller-manager.conf
@@ -375,7 +375,7 @@ clusterrole         Create a ClusterRole.
     │   ├── sa.key
     │   └── sa.pub
     └── scheduler.conf
-    ```
+   ```
     
 ## Chapter 3: Cluster (11%)
    ### Cluster Upgrade Process
