@@ -343,38 +343,40 @@ clusterrole         Create a ClusterRole.
    * ### Analyse end-to-end tests results.
    * ### Run Node end-to-end tests.
    * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
-```
-/etc/kubernetes/
-├── admin.conf
-├── controller-manager.conf
-├── kubelet.conf
-├── manifests│   ├── etcd.yaml
-│   ├── kube-apiserver.yaml│   ├── kube-controller-manager.yaml
-│   └── kube-scheduler.yaml├── pki
-│   ├── apiserver.crt
-│   ├── apiserver-etcd-client.crt
-│   ├── apiserver-etcd-client.key
-│   ├── apiserver.key
-│   ├── apiserver-kubelet-client.crt
-│   ├── apiserver-kubelet-client.key
-│   ├── ca.crt
-│   ├── ca.key
-│   ├── etcd
-│   │   ├── ca.crt
-│   │   ├── ca.key
-│   │   ├── healthcheck-client.crt
-│   │   ├── healthcheck-client.key
-│   │   ├── peer.crt
-│   │   ├── peer.key
-│   │   ├── server.crt
-│   │   └── server.key
-│   ├── front-proxy-ca.crt
-│   ├── front-proxy-ca.key
-│   ├── front-proxy-client.crt
-│   ├── front-proxy-client.key
-│   ├── sa.key
-│   └── sa.pub
-└── scheduler.conf```
+    ```
+    /etc/kubernetes/
+    ├── admin.conf
+    ├── controller-manager.conf
+    ├── kubelet.conf
+    ├── manifests│   ├── etcd.yaml
+    │   ├── kube-apiserver.yaml│   ├── kube-controller-manager.yaml
+    │   └── kube-scheduler.yaml├── pki
+    │   ├── apiserver.crt
+    │   ├── apiserver-etcd-client.crt
+    │   ├── apiserver-etcd-client.key
+    │   ├── apiserver.key
+    │   ├── apiserver-kubelet-client.crt
+    │   ├── apiserver-kubelet-client.key
+    │   ├── ca.crt
+    │   ├── ca.key
+    │   ├── etcd
+    │   │   ├── ca.crt
+    │   │   ├── ca.key
+    │   │   ├── healthcheck-client.crt
+    │   │   ├── healthcheck-client.key
+    │   │   ├── peer.crt
+    │   │   ├── peer.key
+    │   │   ├── server.crt
+    │   │   └── server.key
+    │   ├── front-proxy-ca.crt
+    │   ├── front-proxy-ca.key
+    │   ├── front-proxy-client.crt
+    │   ├── front-proxy-client.key
+    │   ├── sa.key
+    │   └── sa.pub
+    └── scheduler.conf
+    ```
+    
 ## Chapter 3: Cluster (11%)
    ### Cluster Upgrade Process
    kubeadm allows to upgrade cluster components in the proper order from one version at a time. 
