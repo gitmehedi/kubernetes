@@ -700,6 +700,7 @@ For a detailed explanation on how to make use of the etcdctl command line tool a
    ``` 
 
    #### References and Further Study
+   * https://kubernetes.io/docs/concepts/cluster-administration/networking/
    
    ### Pod Networking Concepts
    #### Command References
@@ -950,119 +951,22 @@ kubeadm alpha certs renew
 
 
 
-## Upgrade Cluster:
-
-
-
-#### Upgrade control plane
-
-```bash
-# replace x in 1.18.x-00 with the latest patch version
-apt-mark unhold kubeadm && \
-apt-get update && apt-get install -y kubeadm=1.18.x-00 && \
-apt-mark hold kubeadm
-
-# since apt-get version 1.1 you can also use the following method
-apt-get update && \
-apt-get install -y --allow-change-held-packages kubeadm=1.18.x-00
-
-
-kubectl drain <cp-node-name> --ignore-daemonsets
-sudo kubeadm upgrade plan
-kubeadm upgrade apply v1.18.0
-```
-
-
-
-##### Upgrade master node
-
-```bash
-kubectl drain kube-master --ignore-daemonsets
-
-kubeadm upgrade plan v1.7.0
-kubeadm upgrade apply v1.7.0
-
-upgrade kubelet
-apt-get install kubelet=1.17.0-00
-
-kubectl get node
-
---hold automatic update
-apt-mark hold kubeadm
-apt-mark hold kubelet
-
-kubectl uncordon kube-master
-```
 
 
 
 
 
-##### Upgrade worker node
-
-```bash
-kubectl drain node1
-kubectl drain kube-node1 --ignore-daemonsets
-
---upgrade kubeadm 
-kubeadm upgrade node
-
-apt-get install kubelet=1.17.0-00
-
-apt-mark hold kubeadm
-apt-mark hold kubelet
-
-kubectl uncordon kube-node1
-```
 
 
 
 
 
-## Backup and Restore
 
 
 
-```bash
-kubectl -n kube-system describe po etcd-kube-master
-```
 
 
 
-###### Backup api service config
-
-```bash
-
-kubectl get all --all-namespaces -o yaml
-kubectl get all -A -o yaml
-kubectl get all -o yaml
-
-```
-
-
-
-#### ETCD Backup and Restore
-
-
-
-###### Backup
-
-```bash
-export ETCDCTL_API=3
-etcdctl version
-etcdctl snapshot save -h
-
---etcd restore
-
-```
-
-
-
-###### Restore
-
-```bash
-etcdctl snapshot restore -h
-```
 
 
 
