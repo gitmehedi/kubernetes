@@ -693,6 +693,18 @@ For a detailed explanation on how to make use of the etcdctl command line tool a
    
 
 ## Chapter 4: Networking (11%)
+   ### Network Pre-requisite
+   #### Network Namespace
+   Create network namespaces  
+   1. Create Network Namespace  
+   2. Create Bridge Network/Interface  
+   3. Create VETH Pairs (Pipe/Virtual Cable)  
+   4. Attach vEth to Namespace  
+   5. Attach Other vEth to Bridge  
+   6. Assign IP Address  
+   7. Bring the Interface UP  
+   8. Enable NAT-IP Masquerade  
+   
    ### Node Networking Concepts
    #### Command References
    ```bash
