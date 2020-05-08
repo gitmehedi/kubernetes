@@ -694,16 +694,90 @@ For a detailed explanation on how to make use of the etcdctl command line tool a
 
 ## Chapter 4: Networking (11%)
    ### Network Pre-requisite
+   
+   #### Command References
+   ```bash
+    -- Manage and display the state of all network
+interfaces
+    $ ip link
+    $ ip link set em1 down
+    $ ip link set em1 mtu 9000
+    $ ip link add veth-red type veth peer name veth-bridge
+
+    -- Display IP Addresses and property information
+    $ ip addr
+    $ ip addr add 192.168.1.1/24 dev em1
+
+    -- Display and alter the routing table
+    $ ip route
+
+    -- see all interface in a network
+    $ ip arp
+
+    -- Manage network namespace
+    $ ip netns
+    $ ip netns add blue
+    $ ip netns exec red blue
+   ``` 
+
+   #### References and Further Study
+   * [IP Command](https://access.redhat.com/sites/default/files/attachments/rh_ip_command_cheatsheet_1214_jcs_print.pdf)
+  
+   
+   
    #### Network Namespace
+   
    Create network namespaces  
    1. Create Network Namespace  
+   ```
+   -- create two network namespace red and blue
+   $ ip netns add red
+   $ ip netns add blue
+   ```
    2. Create Bridge Network/Interface  
+   ```
+   -- create bridge network
+   $ ip link add v-net-0 type bridge
+   ```
    3. Create VETH Pairs (Pipe/Virtual Cable)  
+   ```
+   -- create ip network cable
+   $ ip link add veth-red type veth peer name veth-red-br
+   $ ip link add veth-blue type veth peer name veth-blue-br
+   ```
    4. Attach vEth to Namespace  
+   ```
+   -- attach blue and red cable with namespace
+   $ ip link set veth-red netns red
+   $ ip link set veth-blue netns blue
+   ```
+
    5. Attach Other vEth to Bridge  
+   ```
+   -- attach cable with bridge
+   $ ip link set veth-red-br master v-net-0
+   $ ip link set veth-blue-br master v-net-0
+   ```
+
    6. Assign IP Address  
+   ```
+   -- set ip address with blue and red namepsace
+   $ ip -n red addr add 192.168.15.1 dev veth-red
+   $ ip -n blue addr add 192.168.15.2 dev veth-blue
+   ```
+
    7. Bring the Interface UP  
+   ```
+   -- bring namespce and bridge network up
+   $ ip -n red link set veth-red up
+   $ ip -n blue link set veth-blue up
+   $ ip link set dev v-net-0 up
+   ```
    8. Enable NAT-IP Masquerade  
+   ```
+   -- enable nat-ip masquerade
+   $ iptable -t nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE
+   ```
    
    ### Node Networking Concepts
    #### Command References
