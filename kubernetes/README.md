@@ -780,6 +780,18 @@ interfaces
    ```
    
    ### Node Networking Concepts
+   For node networking  
+   * Each node must have a Interface
+   * Each node must have a MAC Address  
+   
+   #### Ports
+   * kube-apiserver = 6443
+   * kube-scheduler = 10251
+   * kube-controller-manager = 10252
+   * etcd = 2379 (For multiple 2380)
+   * kubelet = 10250
+   * worker-node = 30000-32767
+   
    #### Command References
    ```bash
     
