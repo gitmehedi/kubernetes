@@ -811,12 +811,32 @@ interfaces
    
    
    ### Service Networking Concepts
+   To make a POD accessible create a service for that POD. Service is actually create a forwarding rule in each node  
+   
+   | IP Address     | Forward To    |
+   | -------------  | ------------- |
+   | 192.168.13.178 | 10.244.1.2    |
+   
+   
+   ##### ClusterIP: 
+   To make a POD accessible for all POD within the cluster create a service with type clusterIP.
+   ##### NodePort:
+   When a POD is needed to access by outside of the cluster then it's called nodePort.
+   ##### LoadBalancer:
+   When a POD is needed to access by outside of the cluster then it's called nodePort.
+   
+   Marjor Terms:  
+   * Kube-proxy
+   * iptables
+   * ipvs
+   
    #### Command References
    ```bash
     
    ``` 
 
    #### References and Further Study
+   * https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
    
    
    ### Container Network Interface (CNI)
@@ -847,6 +867,13 @@ interfaces
    
    
    ### Cluster DNS Configure
+   Fully qualified domain name
+   
+   |    Hostname   |   Namespace   |     Type      |      Root     | IP Address
+   | ------------- | ------------- | ------------- | ------------- | ------------- |
+   | web-service   |   apps        |    svc        | cluster.local | 10.10.56.20   |
+   | 10-12-30-20   |   apps        |    pod        | cluster.local | 10.12.30.20   |
+   
    #### Command References
    ```bash
     
