@@ -38,18 +38,13 @@ Table of Contents
    * [Cluster DNS Configure](#cluster-dns-configure) 
    
 * [Chapter 5: Scheduling (5%)](#chapter-5-scheduling-5)
-   * [Kubernetes Scheduler](#kubernetes-scheduler) 
-   * [Multiple Schedulers](#multiple-schedulers) 
-   * [Resource Limits and Labels](#resource-limitsand-labels) 
-   * [DaemonSets](#daemonsets) 
-   * [Scheduler Events](#scheduler-events) 
-   * [Use label selectors to schedule Pods.](#use-label-selectors-to-schedule-pods) 
-   * [Understand the role of DaemonSets.](#understand-the-role-of-daemonSets.) 
-   * [Understand how resource limits can affect Pod scheduling.](#understand-how-resource-limits-can-affect-pod-scheduling) 
-   * [Understand how to run multiple schedulers and how to configure Pods to use them.](#understand-how-to-run-multiple-schedulers-and-how-to-configure-pods-to-use-them) 
-   * [Manually schedule a pod without a scheduler.](#manually-schedule-a-pod-without-a-scheduler) 
-   * [Display scheduler events.](#display-scheduler-events) 
-   * [Know how to configure the Kubernetes scheduler.](#know-how-to-configure-the-kubernetes-scheduler.) 
+   * [Kubernetes Selectors to Schedule Pods](#kubernetes-selectors-to-schedule-pods)
+   * [Role of DaemonSets](#role-of-daemonsets)
+   * [Resource Limits and Labels in Pods Scheduling](#resource-limits-and-labels-in-pods-scheduling)
+   * [Multiple Schedulers to Run and Configure Pods](#multiple-schedulers-to-run-and-configure-pods)
+   * [Manually Schedule a Pods](#manually-schedule-a-pods)
+   * [Scheduler Events](#scheduler-events)
+   * [Configure Kubernetes Scheduler](#configure-kubernetes-scheduler)
    
 * [Chapter 6: Application Lifecycle (8%)](#chapter-6-application-lifecycle-8)
    * [Deploying an Applicaiton](#deploying-an-application)
@@ -325,6 +320,7 @@ clusterrole         Create a ClusterRole.
   * https://kubernetes.io/docs/concepts/services-networking/service/
   * https://kubernetes.io/docs/reference/kubectl/conventions/
   
+  
 ## Chapter 2: Install, Config and Validate (12%)
    * ### Design a Kubernetes cluster.
    * ### Install Kubernetes masters and nodes
@@ -374,6 +370,7 @@ clusterrole         Create a ClusterRole.
     │   └── sa.pub
     └── scheduler.conf
    ```
+    
     
 ## Chapter 3: Cluster (11%)
    ### Cluster Upgrade Process
@@ -691,7 +688,7 @@ For a detailed explanation on how to make use of the etcdctl command line tool a
    #### References and Further Study
    * https://github.com/mmumshad/kubernetes-the-hard-way/blob/master/practice-questions-answers/cluster-maintenance/backup-etcd/etcd-backup-and-restore.md
    
-
+   
 ## Chapter 4: Networking (11%)
    ### Network Pre-requisite
    
@@ -906,20 +903,16 @@ interfaces
    #### References and Further Study
    
    
-
+   
 ## Chapter 5: Scheduling (5%)
-   * ### Kubernetes Scheduler
-   * ### Multiple Schedulers
-   * ### Resource Limits and Labels
-   * ### DaemonSets
-   * ### Scheduler Events
-   * ### Use label selectors to schedule Pods
-   * ### Understand the role of DaemonSets
-   * ### Understand how resource limits can affect Pod scheduling
-   * ### Understand how to run multiple schedulers and how to configure Pods to use them
-   * ### Manually schedule a pod without a scheduler
-   * ### Display scheduler events
-   * ### Know how to configure the Kubernetes scheduler
+   ### Kubernetes Selectors to Schedule Pods
+   ### Role of DaemonSets
+   ### Resource Limits and Labels in Pods Scheduling
+   ### Multiple Schedulers to Run and Configure Pods
+   ### Manually Schedule a Pods
+   ### Scheduler Events
+   ### Configure Kubernetes Scheduler
+
 
 ## Chapter 6: Application Lifecycle (8%)
    * ### Deploying an Application
