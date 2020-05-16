@@ -45,65 +45,40 @@ Table of Contents
    * [Manually Schedule a Pods](#manually-schedule-a-pods)
    * [Scheduler Events](#scheduler-events)
    * [Configure Kubernetes Scheduler](#configure-kubernetes-scheduler)
-   
+  
 * [Chapter 6: Application Lifecycle (8%)](#chapter-6-application-lifecycle-8)
-   * [Deploying an Applicaiton](#deploying-an-application)
-   * [Highly Available Apps](#highly-available-apps)
-   * [Self-Healing Apps](#self-healing-apps)
-   * [Understand Deployments and how to per form rolling updates and rollbacks.](#understand-deployments-and-how-to-per-form-rolling-updates-and-rollbacks)
-   * [Know various ways to configure applications.](#know-various-ways-to-configure-applications)
-   * [Know how to scale applications](#know-how-to-scale-applications)
-   * [Understand the primitives necessary to create a self-healing application.](#understand-the-primitives-necessary-to-create-a-self-healing-application.)
-
+   * [Deploying an Application with Rolling Updates and Rollback](#deploying-an-application-with-rolling-updates-and-rollback)
+   * [Configure Highly Available Application](#configure-highly-available-application)
+   * [Scale Applications](#scale-applications)
+   * [Manage Self-Healing Application](#manage-self-healing-application)
+  
 * [Chapter 7: Storage (7%)](#chapter-7-storage-7)
-   * [Persistent Volume](#persistent-volume)
+   * [Manage Persistent Volume](#manage-persistent-volume)
    * [Volume Access Modes](#volume-access-modes)
-   * [Persistent Volume Claims](#persistent-volume-claims)
-   * [Storage Objects](#storage-objects)
-   * [Application with Storage](#application-with-storage)
-   * [Understand persistent volumes and know how to create them](#understand-persistent-volumes-and-know-how-to-create-them)
-   * [Understand access modes for volumes](#understand-access-modes-for-volumes)
-   * [Understand persistent volume claims primitive.](#understand-persistent-volume-claims-primitive.)
-   * [Understand Kubernetes storage objects](#understand-kubernetes-storage-objects)
-   * [Know how to configure applications with persistent storage](#know-how-to-configure-applications-with-persistent-storage)
-
+   * [Manage Persistent Volume Claims](#manage-persistent-volume-claims)
+   * [Manage Storage Objects](#manage-storage-objects)
+   * [Configure Application with Storage](#configure-application-with-storage)
+  
 * [Chapter 8: Security (12%)](#chapter-8-security-12)
    * [Security Primitives](#security-primitives)
-   * [Authenticate and Authorize](#authenticate-and-authorize)
-   * [Network Policies](#network-policies)
-   * [TLS Certificate](#tls-certificate)
-   * [Secure Images](#secure-images)
-   * [Security Contexts](#security-contexts)
-   * [Key Value Stores](#key-value-stores)
-   * [Know how to configure authentication and authorization](#know-how-to-configure-authentication-and-authorization)
-   * [Understand Kubernetes security primitives](#understand-kubernetes-security-primitives)
-   * [Know to configure network policies](#know-to-configure-network-policies)
-   * [Create and manage TLS certificates for cluster components](#create-and-manage-tls-certificates-for-cluster-components)
-   * [Work with images securely](#work-with-images-securely)
-   * [Define security contexts](#define-security-contexts)
-   * [Secure persistent key value store](#secure-persistent-key-value-store)
-   
+   * [Configure Authentication and Authorization](#configure-authenticatation-and-authorization)
+   * [Configure Network Policies](#configure-network-policies)
+   * [Manage TLS Certificate for Cluster](#manage-tls-certificate-for-cluster)
+   * [Image Security](#image-security)
+   * [Persistent Key Value Stores](#persistent-key-value-stores)
+
 * [Chapter 9: Log and Monitor (5%)](#chapter-9-log-and-monitor-5)
-   * [Monitor Cluster](#monitor-cluster)
-   * [Monitor Application](#monitor-application)
-   * [Cluster Logs](#cluster-logs)
-   * [Applicaiton Logs](#application-logs)
-   * [Understand how to monitor all cluster components.](#understand-how-to-monitor-all-cluster-components.)
-   * [Understand how to monitor applications](#understand-how-to-monitor-applications)
-   * [Manage cluster component logs](#manage-cluster-component-logs)
-   * [Manage application logs](#manage-application-logs)
+   * [Monitor All Cluster Component](#monitor-all-cluster-component)
+   * [Monitor Applications](#monitor-applications)
+   * [Cluster Component Logs](#cluster-component-logs)
+   * [Manage Application Logs](#manage-application-logs)
    
 * [Chapter 10: Troubleshooting (10%)](#chapter-10-troubleshooting-10)
    * [Application Failure](#application-failure)
-   * [Control Place Failure](#control-place-failure)
+   * [Control Plane Failure](#control-place-failure)
    * [Worker Node Failure](#worker-node-failure)
    * [Network Failure](#network-failure)
-   * [Troubleshoot application failure.](#troubleshoot0applicationffailure.)
-   * [Troubleshoot control plane failure.](#troubleshoot-control-plane-failure.)
-   * [Troubleshoot worker node failure.](#troubleshoot-worker-node-failure.)
-   
-
-
+  
 
 ## Document History
 
@@ -1046,60 +1021,38 @@ interfaces
 
 
 ## Chapter 6: Application Lifecycle (8%)
-   * ### Deploying an Application
-   * ### Highly Available Apps
-   * ### Self-Healing Apps
-   * ### Understand Deployments and how to per form rolling updates and rollbacks.
-   * ### Know various ways to configure applications.
-   * ### Know how to scale applications
-   * ### Understand the primitives necessary to create a self-healing application.
-
+   * ### Deploying an Application with Rolling Updates and Rollback
+   * ### Configure Highly Available Application
+   * ### Scale Applications
+   * ### Manage Self-Healing Application
+  
 ## Chapter 7: Storage (7%)
-   * ### Persistent Volume
+   * ### Manage Persistent Volume
    * ### Volume Access Modes
-   * ### Persistent Volume Claims
-   * ### Storage Objects
-   * ### Application with Storage
-   * ### Understand persistent volumes and know how to create them.
-   * ### Understand access modes for volumes.
-   * ### Understand persistent volume claims primitive.
-   * ### Understand Kubernetes storage objects.
-   * ### Know how to configure applications with persistent storage.
-
+   * ### Manage Persistent Volume Claims
+   * ### Manage Storage Objects
+   * ### Configure Application with Storage
+  
 ## Chapter 8: Security (12%)
    * ### Security Primitives
-   * ### Authenticate and Authorize
-   * ### Network Policies
-   * ### TLS Certificate
-   * ### Secure Images
+   * ### Configure Authentication and Authorization
+   * ### Configure Network Policies
+   * ### Manage TLS Certificate for Cluster
+   * ### Image Security
    * ### Security Contexts
-   * ### Key Value Stores
-   * ### Know how to configure authentication and authorization
-   * ### Understand Kubernetes security primitives.
-   * ### Know to configure network policies.
-   * ### Create and manage TLS certificates for cluster components.
-   * ### Work with images securely
-   * ### Define security contexts.
-   * ### Secure persistent key value store.
-
+   * ### Persistent Key Value Stores
+   
 ## Chapter 9: Log and Monitor (5%)
-   * ### Monitor Cluster
-   * ### Monitor Application
-   * ### Cluster Logs
-   * ### Application Logs
-   * ### Understand how to monitor all cluster components.
-   * ### Understand how to monitor applications.
-   * ### Manage cluster component logs
-   * ### Manage application logs.
-
+   * ### Monitor All Cluster Component
+   * ### Monitor Applications
+   * ### Cluster Component Logs
+   * ### Manage Application Logs
+   
 ## Chapter 10: Troubleshooting (10%)
    * ### Application Failure
-   * ### Control Place Failure
+   * ### Control Plane Failure
    * ### Worker Node Failure
    * ### Network Failure
-   * ### Troubleshoot application failure.
-   * ### Troubleshoot control plane failure
-   * ### Troubleshoot worker node failure
 
 
 
