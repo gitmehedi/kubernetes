@@ -1052,7 +1052,7 @@ interfaces
    * ### Application Failure
    Consider a 2-tier application for figuring out application failure. Look through below image 
    
-   ![alt text](image/application_failure.png)
+   ![Application Failure](./image/application_failure.png =250*250)
    
    
       
