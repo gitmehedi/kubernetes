@@ -1052,17 +1052,87 @@ interfaces
    * ### Application Failure
    Consider a 2-tier application for figuring out application failure. Look through below image 
    
-   ![Application Failure](./image/application_failure.png =250*250)
+   ![Application Failure](./image/application_failure.png)
    
+   #### Components:
+   * NodePort
+   * Web Service
+   * Web
+   * DB Service
+   * DB 
    
-      
-   #### Command References
-   ```bash
-    $ kubectl get pods -selector app=application
-   ``` 
+   Check every component until you find the issue
+   
+   * Node PortWeb Service:  
+    Check the node-port of the web service if the ip of the nodePort accessible.
+   ```
+   $ curl http://web-service-ip:node-port
+   ```
+    
+   * Web Service:  
+    View details of the web service object and find parameters selectors and endpoints.
+    And also view the WEB Pods and match with web service selector and pod selector exactly same.
+   ```
+   -- Get details of service
+   $ kubectl describe svc web-service
 
+   -- Get yaml of the pod
+   $ kubectl get pod WEB -o yaml 
+   ```
+    
+   * WEB:  
+    Check status of the POD and look at the status of STATUS and RESTARTS parameters. Make sure STATUS is running and RESTARTS will be zero.
+    If so check the events of the POD  
+    ``` 
+    $ kubectl describe pod WEB 
+    ```
+    Check the logs of the POD  
+    
+    ``` 
+    -- Get the current version of the POD
+    $ kubectl logs WEB
+    
+    -- Watch the logs 
+    $ kubectl logs WEB -f
+    
+    -- Wathc the previous logs of the POD
+    $ kubectl logs WEB -f --previous
+    
+    ```
+    
+   * DB Service:  
+    View details of the db service object and find parameters selectors and endpoints.
+    And also view the WEB Pods and match with db service selector and pod selector exactly same.
+   ```
+   -- Get details of service
+   $ kubectl describe svc db-service
+
+   -- Get yaml of the pod
+   $ kubectl get pod DB -o yaml 
+   ```
+
+   * DB:  
+    Check status of the POD and look at the status of STATUS and RESTARTS parameters. Make sure STATUS is running and RESTARTS will be zero.
+    If so check the events of the POD  
+    
+   ``` 
+    $ kubectl describe pod DB 
+   ```
+    
+   Check the logs of the POD  
+   ``` 
+   -- Get the current version of the POD
+   $ kubectl logs DB
+    
+   -- Watch the logs 
+   $ kubectl logs DB -f
+    
+   -- Wathc the previous logs of the POD
+   $ kubectl logs DB -f --previous
+   ```
+   
    #### References and Further Study
-   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+   *
    
    * ### Control Plane Failure
    #### Command References
