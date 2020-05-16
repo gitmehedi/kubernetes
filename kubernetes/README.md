@@ -1083,12 +1083,13 @@ interfaces
    * WEB:  
     Check status of the POD and look at the status of STATUS and RESTARTS parameters. Make sure STATUS is running and RESTARTS will be zero.
     If so check the events of the POD  
-    ``` 
+   ``` 
     $ kubectl describe pod WEB 
-    ```
-    Check the logs of the POD  
+   ```
     
-    ``` 
+   Check the logs of the POD  
+    
+   ``` 
     -- Get the current version of the POD
     $ kubectl logs WEB
     
@@ -1097,8 +1098,7 @@ interfaces
     
     -- Wathc the previous logs of the POD
     $ kubectl logs WEB -f --previous
-    
-    ```
+   ```
     
    * DB Service:  
     View details of the db service object and find parameters selectors and endpoints.
