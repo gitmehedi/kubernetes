@@ -1050,9 +1050,60 @@ interfaces
    
 ## Chapter 10: Troubleshooting (10%)
    * ### Application Failure
+   Consider a 2-tier application for figuring out application failure. Look through below image 
+   
+   ![alt text](image/application_failure.png)
+   
+   
+      
+   #### Command References
+   ```bash
+    $ kubectl get pods -selector app=application
+   ``` 
+
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+   
    * ### Control Plane Failure
+   #### Command References
+   ```bash
+    $ kubectl get pods -selector app=application
+   ``` 
+
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+   
+   * ### Control Plane Failure
+   
+   #### Command References
+   ```bash
+    $ kubectl get pods -selector app=application
+   ``` 
+
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+   
+   * ### Control Plane Failure
+   
    * ### Worker Node Failure
+   #### Command References
+   ```bash
+    $ kubectl get pods -selector app=application
+   ``` 
+
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+   
    * ### Network Failure
+   #### Command References
+   ```bash
+    $ kubectl get pods -selector app=application
+   ``` 
+
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+   
+   * ### Control Plane Failure
 
 
 
