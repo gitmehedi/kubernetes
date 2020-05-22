@@ -1144,7 +1144,73 @@ interfaces
    *
    
    ### Control Plane Failure
+   Follow the series of steps in Control Panel components
+   
+   ##### Check Node Status
+   ```
+   $ kubectl get nodes
+   ```   
+
+   ##### Check POD Status
+   ```
+   -- Check default namespaces pods
+   $ kubectl get pods
+   ```
+   #### Deployment Process
+   * Using Kubeadm
+   ```
+   -- Check service in pods
+   $ kubectl get pods -n kube-system
+    NAME                             READY   STATUS             RESTARTS   AGE
+    coredns-5644d7b6d9-9pmlh         1/1     Running            0          33m
+    coredns-5644d7b6d9-tkrnq         1/1     Running            0          33m
+    etcd-master                      1/1     Running            0          32m
+    kube-apiserver-master            1/1     Running            0          32m
+    kube-controller-manager-master   1/1     Running            0          31m
+    kube-proxy-qhmwn                 1/1     Running            0          33m
+    kube-proxy-vsjrg                 1/1     Running            0          32m
+    kube-scheduler-master            0/1     CrashLoopBackOff   1          30s
+    weave-net-fhlrb                  2/2     Running            0          33m
+    weave-net-zgd4p                  2/2     Running            0          32m
+
+
+   -- Check control panel pods
+   $ kubectl logs kube-apiserver-master -n kube-system
+   $ kubectl logs kube-controller-manager-master -n kube-system
+   $ kubectl logs kubelet -n kube-system
+   $ kubectl logs kube-proxy -n kube-system
+   ```
+   * Using Services
+   
+   * Using Services: Check control place services
+   ```
+   -- Check kube-apiserver services in Master Node
+   $ service kube-apiserver status
+
+   -- Check kube-controller-manager services in Master Node
+   $ service kube-controller-manager status
+
+   -- Check kube-scheduler services in Master Node
+   $ service kube-scheduler status
+
+   -- Check kubelet services in Worker Node
+   $ service kubelet status
+
+   -- Check kube-proxy services in Worker Node
+   $ service kube-proxy status
+
+   -- Check logs of Control Panel Component
+   $ sudo journalctl -u kube-apiserver
+   $ sudo journalctl -u kube-controller-manager
+   $ sudo journalctl -u kube-scheduler
+   $ sudo journalctl -u kubelet
+   $ sudo journalctl -u kube-proxy
+   ```
+
+
    #### Command References
+
+
    ```bash
     $ kubectl get pods -selector app=application
    ``` 
