@@ -1144,7 +1144,8 @@ interfaces
    *
    
    ### Control Plane Failure
-   Follow the series of steps in Control Panel components
+   If a control panel components fail then look through the manifest file in kubernetes directory or service file.
+   And fix those file. Follow the series of steps in Control Panel components. 
    
    ##### Check Node Status
    ```
@@ -1210,17 +1211,44 @@ interfaces
 
    #### Command References
 
-
    ```bash
-    $ kubectl get pods -selector app=application
+    -- view the events of control panel components
+    $ kubectl get events -n kube-system
+
+    -- view the logs of control panel pods
+    $ kubectl logs kube-scheduler-master -n kube-system
+
+    -- check the status of docker service
+    $ sudo systemctl status docker
+
+    -- enable and start the docker service
+    $ sudo systemctl enable docker && sudo systemctl start docker
+
+    -- check the status of kubelet service
+    $ sudo systemctl status kubelet
+    
+    -- enable and start the kubelet service
+    $ sudo systemctl enable kubelet && sudo systemctl start kubelet
+
+    -- disable swap
+    $ sudo swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
+    
+    -- check if the firewalld service running
+    $ sudo systemctl status firewalld
+
+    -- disable firewalld and stop the service
+    $ sudo systemctl disable firewalld && sudo systemctl stop firewalld
+
+    -- view config view
+    $ kubectl config view
+
    ``` 
 
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
    
-   
-   
    ### Worker Node Failure
+   
    #### Command References
    ```bash
     $ kubectl get pods -selector app=application
