@@ -1248,16 +1248,64 @@ interfaces
    * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
    
    ### Worker Node Failure
+   If a control panel components fail then look through the manifest file in kubernetes directory or service file.
+   And fix those file. Follow the series of steps in Control Panel components. 
    
+   ##### Check Node Status
+   ```
+   $ kubectl get nodes
+   
+   -- check node condition section in details
+   $ kubectl describe node worker-1
+   
+   -- check node memory
+   $ top
+
+   -- check node disk spaces
+   $ df -h 
+
+   -- check kubelet status and kubelet logs
+   $ service kubelet status
+   $ sudo journalctl -u kubelet
+ 
+
+   -- check certificates
+   $ openssl x509 -n /var/lib/kubelet/worker-1.crt -text
+
+   ```   
+
    #### Command References
    ```bash
-    $ kubectl get pods -selector app=application
+   -- look at the IP address of the node
+   $ kubectl get pods -selector app=application
+
+   -- try to ping the down node
+   $ ping 172.31.29.182
+
+   -- generate a token for a new node
+   $ sudo kubeadm token generate
+
+   -- print the kubeadm join command to add a new node to the cluster
+   $ sudo kubeadm toker create [token_name] --ttl 2h --print-join-command 
+
+   -- stop the kubernetes service
+   $ sudo systemctl stop kubelet 
+
+   -- view the kubelet journalctl logs 
+   $ sudo journalctl -u kubelet 
+
+   -- view the syslog events
+   $ sudo more syslog | tail -120 | grep kubelet
    ``` 
 
    #### References and Further Study
-   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+   * https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/
    
    ### Network Failure
+   
+   
+   
+   
    #### Command References
    ```bash
     $ kubectl get pods -selector app=application
