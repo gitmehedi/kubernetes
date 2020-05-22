@@ -1043,10 +1043,10 @@ interfaces
    * ### Persistent Key Value Stores
    
 ## Chapter 9: Log and Monitor (5%)
-   * ### Monitor All Cluster Component
-   * ### Monitor Applications
-   * ### Cluster Component Logs
-   * ### Manage Application Logs
+   ### Monitor All Cluster Component
+   ### Monitor Applications
+   ### Cluster Component Logs
+   ### Manage Application Logs
    
 ## Chapter 10: Troubleshooting (10%)
    ### Application Failure
