@@ -1047,12 +1047,12 @@ interfaces
    The Metrix server allows to collect CPU and memory data from the nodes and pods in the cluster. Install metrix server
    ```
    -- clone metrix server repository
-   $ git clone https://github.com/linuxacademy/metrics-server.git
+   $ git clone https://github.com/kubernetes-incubator/metrics-server.git
    
    -- install metrix server
    $ kubectl apply -f metrics-server/deploy/1.8+/
    
-   -- install metrix server
+   -- get metrix server information
    $ kubectl get --raw /apis/metrics.k8s.io
    ```
 
