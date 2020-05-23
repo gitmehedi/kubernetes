@@ -1153,6 +1153,23 @@ interfaces
    * https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
    
    ### Configure Highly Available Application
+   #### Command and Arguments 
+   ##### Docker
+   Containers is not like a virtual machine to host an operating system. Containers only operate a specific task or process.
+   In container, who defines what command will run inside a container.  
+   Two command where docker give us provision to put command and it's argument
+   * ENTRYPOINT: ENTRYPOINT is used for command which will execute.
+   * CMD: CMD is used for parametes for ENTRYPOINT command.
+   
+   Command Patter:
+   CMD command params1       == CMD sleep 10
+   CMD ["command","params"]  == CMD ["sleep","5"]
+   
+   ##### Kubernetes
+   In kubernetes, command key overwrite the functionality of ENTRYPOINT and args key overwrites the functionality of CMD.
+   
+   #### Environment Variable
+   
    #### Command References
    ```bash
     -- pause and resume a deployment 
