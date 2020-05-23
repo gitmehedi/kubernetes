@@ -1169,6 +1169,27 @@ interfaces
    In kubernetes, command key overwrite the functionality of ENTRYPOINT and args key overwrites the functionality of CMD.
    
    #### Environment Variable
+   Kubernetes can set environment variable in three ways
+   * In POD
+   ```
+   env:
+   - name: APP_COLOR
+     value: pink 
+   ```
+   * In ConfigMap and using in POD
+   ```
+   env:
+   - name: APP_COLOR
+     valueFrom: 
+        configMapKeyRef:
+   ```
+   * In Secret and using in POD
+   ```
+   env:
+   - name: APP_COLOR
+     valueFrom: 
+        secretKeyRef:
+   ```
    
    #### Command References
    ```bash
