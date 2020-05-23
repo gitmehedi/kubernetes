@@ -1139,7 +1139,14 @@ interfaces
     $ kubectl rollout history deploy myapp-deployment --revision=2
     
     -- rollback a deployment 
-    $ kubectl rollout undo deployment/myapp-deployment
+    $ kubectl rollout undo deploy myapp-deployment
+
+    -- rollback to a certain revision 
+    $ kubectl rollout undo deploy myapp-deployment --to-revision=2
+
+    -- pause and resume a deployment 
+    $ kubectl rollout pause deploy myapp-deployment 
+    $ kubectl rollout resume deploy myapp-deployment 
    ``` 
 
    #### References and Further Study
