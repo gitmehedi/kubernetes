@@ -1021,10 +1021,37 @@ interfaces
 
 
 ## Chapter 6: Application Lifecycle (8%)
-   * ### Deploying an Application with Rolling Updates and Rollback
-   * ### Configure Highly Available Application
-   * ### Scale Applications
-   * ### Manage Self-Healing Application
+   ### Application with Rolling Updates and Rollback
+   There are application upgrading strategies
+   * **Rolling Update**: It's a default strategy. Create new pod with latest version one by one and down previous pod with last version one by one
+   * **Recreate**: Create new pod with latest version once at a time and down all previous version pod once at a time.
+   
+   #### Command References
+   ```bash
+    -- create new deployemnt with record and file name app-deployment.yaml
+    $ kubectl create -f app-deployment.yaml --record
+    
+    -- Get deployment status
+    $ kubectl get deployments
+    
+    -- upgrade a vesion of software in deployments app-deployment.yaml
+    $ kubectl apply -f app-deployment.yaml
+    $ kubectl set image deployment/myapp-deployment nginx=nginx:1.9.1
+
+    -- get deployment status and history
+    $ kubectl rollout status deployment/myapp-deployment
+    $ kubectl rollout history deployment/myapp-deployment
+    
+    -- rollback a deployment 
+    $ kubectl rollout undo deployment/myapp-deployment
+   ``` 
+
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+   
+   ### Configure Highly Available Application
+   ### Scale Applications
+   ### Manage Self-Healing Application
   
 ## Chapter 7: Storage (7%)
    * ### Manage Persistent Volume
@@ -1047,7 +1074,7 @@ interfaces
    The Metrix server allows to collect CPU and memory data from the nodes and pods in the cluster. Install metrix server
    ```
    -- clone metrix server repository
-   $ git clone https://github.com/kubernetes-incubator/metrics-server.git
+   $ git clone -b release-0.3 --single-branch https://github.com/kubernetes-sigs/metrics-server.git
    
    -- install metrix server
    $ kubectl apply -f metrics-server/deploy/1.8+/
