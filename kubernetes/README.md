@@ -1153,9 +1153,38 @@ interfaces
    * https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
    
    ### Configure Highly Available Application
+   #### Command References
+   ```bash
+    -- pause and resume a deployment 
+    $ kubectl rollout pause deploy myapp-deployment 
+    $ kubectl rollout resume deploy myapp-deployment 
+   ``` 
+
+   #### References and Further Study
+   * 
    
    ### Scale Applications
+   #### Command References
+   ```bash
+    -- pause and resume a deployment 
+    $ kubectl rollout pause deploy myapp-deployment 
+    $ kubectl rollout resume deploy myapp-deployment 
+   ``` 
+
+   #### References and Further Study
+   * 
+   
    ### Manage Self-Healing Application
+   #### Command References
+   ```bash
+    -- pause and resume a deployment 
+    $ kubectl rollout pause deploy myapp-deployment 
+    $ kubectl rollout resume deploy myapp-deployment 
+   ``` 
+
+   #### References and Further Study
+   * 
+   
   
 ## Chapter 7: Storage (7%)
    * ### Manage Persistent Volume
