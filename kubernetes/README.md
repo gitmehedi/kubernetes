@@ -1220,8 +1220,8 @@ interfaces
      APP_COLOR: blue
      APP_TYPE: prod
    ```
-   * Inject ConfigMaps into POD
-   Inject configmap data into pod using following ways  
+   Inject ConfigMaps into POD  
+   Inject ConfigMaps data into pod using following ways  
    a. ENV  
    ```
    envFrom:
