@@ -1203,6 +1203,8 @@ interfaces
    -- kubectl create configmap <configmap_name> --from-literal=<key>=<value>
    $ kubectl create configmap app-config --from-literal=APP_COLOR=blue
    $ kubectl create configmap app-config --from-literal=APP_COLOR=blue --form-literal=APP_TYPE=prod
+   $ kubectl create configmap game-config --from-file=configure-pod-container/configmap/
+   $ kubectl create configmap game-config-env-file --from-env-file=configure-pod-container/configmap/game-env-file.properties
 
    ```
    **Declarative Way**  
@@ -1247,6 +1249,9 @@ interfaces
    ```bash
     -- view configmaps
     $ kubectl get configmaps
+
+    -- view details of aconfigmaps
+    $ kubectl details configmaps app-config
    ``` 
 
    #### References and Further Study
