@@ -1196,8 +1196,8 @@ interfaces
    * Create ConfigMaps
    * Inject ConfigMaps into POD
    ```
-   * Create ConfigMaps
-   ConfigMaps can be created using two ways
+   * Create ConfigMaps  
+   ConfigMaps can be created using two ways  
    **Imperative Way**  
    ```
    -- kubectl create configmap <configmap_name> --from-literal=<key>=<value>
