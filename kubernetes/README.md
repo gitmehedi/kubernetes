@@ -1198,6 +1198,7 @@ interfaces
    ```
    * Create ConfigMaps  
    ConfigMaps can be created using two ways  
+   
    **Imperative Way**  
    ```
    -- kubectl create configmap <configmap_name> --from-literal=<key>=<value>
