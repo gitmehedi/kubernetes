@@ -1190,16 +1190,67 @@ interfaces
      valueFrom: 
         secretKeyRef:
    ```
+   ##### ConfigMaps
+   Two stages of ConfigMaps. 
+   ```
+   * Create ConfigMaps
+   * Inject ConfigMaps into POD
+   ```
+   * Create ConfigMaps
+   ConfigMaps can be created using two ways
+   **Imperative Way**  
+   ```
+   -- kubectl create configmap <configmap_name> --from-literal=<key>=<value>
+   $ kubectl create configmap app-config --from-literal=APP_COLOR=blue
+   $ kubectl create configmap app-config --from-literal=APP_COLOR=blue --form-literal=APP_TYPE=prod
+
+   ```
+   **Declarative Way**  
+   Create a configMap object from a file app-config.yaml
+   ```
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+      name: app-config
+      namespace: default
+   data:
+     APP_COLOR: blue
+     APP_TYPE: prod
+   ```
+   * Inject ConfigMaps into POD
+   Inject configmap data into pod using following ways  
+   a. ENV  
+   ```
+   envFrom:
+     - configMapRef:
+         name: app-config
+   ```
+   b. SINGLE VIEW  
+   ```
+   env:
+     - name: APP_COLOR
+       valueFrom: 
+         configMapKeyRef:
+            name: app-config
+            key: APP_COLOR
+   ```
+   c. VOLUME    
+   ```
+   volumes:
+     - name: app-config-volume
+       configMap: 
+         name: app-config
+   ```
    
+
    #### Command References
    ```bash
-    -- pause and resume a deployment 
-    $ kubectl rollout pause deploy myapp-deployment 
-    $ kubectl rollout resume deploy myapp-deployment 
+    -- view configmaps
+    $ kubectl get configmaps
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
    
    ### Scale Applications
    #### Command References
