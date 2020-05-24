@@ -1245,14 +1245,83 @@ interfaces
          name: app-config
    ```
    
+   ##### Secrets
+   Two stages of Secrets. 
+   ```
+   * Create Secrets
+   * Inject Secrets into POD
+   ```
+   * Create Secrets  
+   Secrets can be created using two ways  
+   
+   **Imperative Way**  
+   ```
+   -- kubectl create secret <secret_name> --from-literal=<key>=<value>
+   $ kubectl create secret app-secret --from-literal=APP_COLOR=blue
+   $ kubectl create secret app-secret --from-literal=APP_COLOR=blue --form-literal=APP_TYPE=prod
+   $ kubectl create secret game-secret --from-file=configure-pod-container/secret/
+   $ kubectl create secret game-secret-env-file --from-env-file=configure-pod-container/secret/game-env-file.properties
+
+   ```
+   **Declarative Way**  
+   Create a secret object from a file app-secret.yaml
+   ```
+   apiVersion: v1
+   kind: Secret
+   metadata:
+      name: app-secret
+      namespace: default
+   data:
+     APP_COLOR: blue
+     APP_TYPE: prod
+   ```
+   Inject ConfigMaps into POD  
+   Inject ConfigMaps data into pod using following ways  
+   a. ENV  
+   ```
+   envFrom:
+     - secretRef:
+         name: app-secret
+   ```
+   b. SINGLE VIEW  
+   ```
+   env:
+     - name: APP_COLOR
+       valueFrom: 
+         secretKeyRef:
+            name: app-secret
+            key: APP_COLOR
+   ```
+   c. VOLUME    
+   when a secret mount in a volume it create a file for each secret value pair.
+   ```
+   volumes:
+     - name: app-secret-volume
+       secret: 
+         secretName: app-secret
+   ```
 
    #### Command References
    ```bash
     -- view configmaps
     $ kubectl get configmaps
 
-    -- view details of aconfigmaps
+    -- view details of a configmaps
     $ kubectl details configmaps app-config
+
+    -- view secrets and view secrets with value
+    $ kubectl get secrets
+    $ kubectl get secrets -o yaml
+
+    -- view details of a secrets
+    $ kubectl details secrets app-secret
+
+    -- encode a string in base64 in linux host
+    $ echo -n "mysql" | base64  
+
+    -- decode a base64 encoded string in linux host
+    $ echo -n "bXlzcWw=" | base64 --decode
+   
    ``` 
 
    #### References and Further Study
