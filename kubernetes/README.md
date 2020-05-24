@@ -1256,11 +1256,11 @@ interfaces
    
    **Imperative Way**  
    ```
-   -- kubectl create secret <secret_name> --from-literal=<key>=<value>
-   $ kubectl create secret app-secret --from-literal=APP_COLOR=blue
-   $ kubectl create secret app-secret --from-literal=APP_COLOR=blue --form-literal=APP_TYPE=prod
-   $ kubectl create secret game-secret --from-file=configure-pod-container/secret/
-   $ kubectl create secret game-secret-env-file --from-env-file=configure-pod-container/secret/game-env-file.properties
+   -- kubectl create secret generic <secret_name> --from-literal=<key>=<value>
+   $ kubectl create secret generic app-secret --from-literal=APP_COLOR=blue
+   $ kubectl create secret generic app-secret --from-literal=APP_COLOR=blue --form-literal=APP_TYPE=prod
+   $ kubectl create secret generic game-secret --from-file=configure-pod-container/secret/
+   $ kubectl create secret generic game-secret-env-file --from-env-file=configure-pod-container/secret/game-env-file.properties
 
    ```
    **Declarative Way**  
@@ -1269,11 +1269,12 @@ interfaces
    apiVersion: v1
    kind: Secret
    metadata:
-      name: app-secret
-      namespace: default
+     creationTimestamp: null
+     name: db-secret
    data:
-     APP_COLOR: blue
-     APP_TYPE: prod
+     DB_Host: c3FsMDE=
+     DB_Password: cGFzc3dvcmQxMjM=
+     DB_User: cm9vdA==
    ```
    Inject ConfigMaps into POD  
    Inject ConfigMaps data into pod using following ways  
