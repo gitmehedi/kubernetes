@@ -1409,11 +1409,11 @@ Kubernetes provides additional support to check the health of applications runni
    
   
 ## Chapter 7: Storage (7%)
-   * ### Manage Persistent Volume
-   * ### Volume Access Modes
-   * ### Manage Persistent Volume Claims
-   * ### Manage Storage Objects
-   * ### Configure Application with Storage
+   ### Manage Persistent Volume
+   ### Volume Access Modes
+   ### Manage Persistent Volume Claims
+   ### Manage Storage Objects
+   ### Configure Application with Storage
   
 ## Chapter 8: Security (12%)
    ### Security Primitives
