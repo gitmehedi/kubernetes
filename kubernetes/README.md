@@ -1394,6 +1394,9 @@ If any of the initContainers fail to complete, Kubernetes restarts the Pod repea
    * https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
    
    ### Manage Self-Healing Application
+   Kubernetes supports self-healing applications through ReplicaSets and Replication Controllers. The replication controller helps in ensuring that a POD is re-created automatically when the application within the POD crashes. It helps in ensuring enough replicas of the application are running at all times.
+
+Kubernetes provides additional support to check the health of applications running within PODs and take necessary actions through Liveness and Readiness Probes. However these are not required for the CKA exam and as such they are not covered here. These are topics for the Certified Kubernetes Application Developers (CKAD) exam and are covered in the CKAD course.
    #### Command References
    ```bash
     -- pause and resume a deployment 
@@ -1413,13 +1416,13 @@ If any of the initContainers fail to complete, Kubernetes restarts the Pod repea
    * ### Configure Application with Storage
   
 ## Chapter 8: Security (12%)
-   * ### Security Primitives
-   * ### Configure Authentication and Authorization
-   * ### Configure Network Policies
-   * ### Manage TLS Certificate for Cluster
-   * ### Image Security
-   * ### Security Contexts
-   * ### Persistent Key Value Stores
+   ### Security Primitives
+   ### Configure Authentication and Authorization
+   ### Configure Network Policies
+   ### Manage TLS Certificate for Cluster
+   ### Image Security
+   ### Security Contexts
+   ### Persistent Key Value Stores
    
 ## Chapter 9: Log and Monitor (5%)
    ### Monitor All Cluster Component
