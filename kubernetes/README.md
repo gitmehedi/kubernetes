@@ -1415,14 +1415,15 @@ Kubernetes provides additional support to check the health of applications runni
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/concepts/storage/volumes/
    ### Volume Access Modes
    #### Command References
    ```bash
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+   
    ### Manage Persistent Volume Claims
    #### Command References
    ```bash
@@ -1436,7 +1437,7 @@ Kubernetes provides additional support to check the health of applications runni
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/concepts/storage/storage-classes/
    ### Configure Application with Storage
    #### Command References
    ```bash
