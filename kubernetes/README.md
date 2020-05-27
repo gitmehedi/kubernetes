@@ -601,8 +601,11 @@ clusterrole         Create a ClusterRole.
     2. ETCD Cluster
    ```
    ##### Step 1. Resource Configuration:  
-      you can take all configuration from a cluster using  
-      ```$ kubectl get all --all-namespaces -o yaml > all_deploy_service.yaml```  
+   you can take all configuration from a cluster using  
+   ```
+   -- get all resourece from cluster
+   $ kubectl get all --all-namespaces -o yaml > all_deploy_service.yaml
+   ```  
    
    ##### Step 2. ETCD Cluster:  
    Take backup on specific location
