@@ -349,7 +349,7 @@ clusterrole         Create a ClusterRole.
     
 ## Chapter 3: Cluster (11%)
    ### Cluster Upgrade Process
-   kubeadm allows to upgrade cluster components in the proper order from one version at a time. 
+   kubeadm allows to upgrade cluster components in proper order from one version at a time. 
    ```textmate
     -- Allows 1 version at a time
     => 1.12.0 to 1.13.0
@@ -359,19 +359,19 @@ clusterrole         Create a ClusterRole.
     => 1.12.0 1.16.0
    ```
    Follow steps to upgrade lower version to upper version  
-   Step 1: Get the version of API Server
+   #### Step 1: Get the version of API Server
    ```bash
    $ kubectl version --short
    Client Version: v1.18.0
    Server Version: v1.18.0
    ```
-   Step 2: Get the version of kubelet
+   #### Step 2: Get the version of kubelet
    ```
    $ kubectl describe nodes
    Kubelet Version:            v1.18.0
    Kube-Proxy Version:         v1.18.0
    ```
-   Step 3: Get the version of api-server, kube-apiserver, kube-scheduler, kube-controller-manager
+   #### Step 3: Get the version of api-server, kube-apiserver, kube-scheduler, kube-controller-manager
    ```
    $ kubectl get pod -n kube-system
     NAME                                                READY   STATUS    RESTARTS   AGE
@@ -401,25 +401,25 @@ clusterrole         Create a ClusterRole.
     
    ```
    
-   Step 4: Unhold kubeadm, kubelet if already in hold status
+   #### Step 4: Unhold kubeadm, kubelet if already in hold status
    ```
    $ sudo apt-mark unhold kubeadm kubelet
    Canceled hold on kubeadm
    Canceled hold on kubelet
    ```
-   Step 5: Install kubeadm of version 1.18.2
+   #### Step 5: Install kubeadm of version 1.18.2
    ```
    $ sudo apt-get install -y kubeadm=1.18.2-00
    ```
 
-   Step 6: Hold kubeadm version and get kubeadm version
+   #### Step 6: Hold kubeadm version and get kubeadm version
    ```
    $ sudo apt-mark hold kubeadm
    $ kubeadm version
    kubeadm version: &version.Info{Major:"1", Minor:"18", GitVersion:"v1.18.2", GitCommit:"9e991415386e4cf155a24b1da15becaa390438d8", GitTreeState:"clean", BuildDate:"2020-03-25T14:56:30Z", GoVersion:"go1.13.8", Compiler:"gc", Platform:"linux/amd64"}
    ```
 
-   Step 7: Plan the upgrade before executing
+   #### Step 7: Plan the upgrade before executing
    ```
    $ sudo kubeadm upgrade plan
     
@@ -438,7 +438,7 @@ clusterrole         Create a ClusterRole.
 
    ```
 
-   Step 8: Upgrade the controller component
+   #### Step 8: Upgrade the controller component
    ```
    $ sudo kubeadm upgrade apply v1.18.2
    $ kubect get nodes
@@ -452,7 +452,7 @@ clusterrole         Create a ClusterRole.
     Server Version: v1.18.2
    ```
 
-   Step 9: Upgrade the kubelet version
+   #### Step 9: Upgrade the kubelet version
    ```
    $ sudo apt-mark unhold kubectl
    Canceled hold on kubelctl
@@ -467,17 +467,12 @@ clusterrole         Create a ClusterRole.
 
    ```
 
-   Step 10: Upgrade the version of kubelet and hold the version of kubelet
+   #### Step 10: Upgrade the version of kubelet and hold the version of kubelet
    ```
    $ sudo apt install -y kubelet=1.18.2-00
    $ sudo apt-mark hold kubelet
    kubelet set on hold.
    ```
-   
-   #### Command References
-   ```bash
-    
-   ```  
    #### References and Further Study
    * https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/
    * https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md
