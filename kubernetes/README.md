@@ -358,20 +358,22 @@ clusterrole         Create a ClusterRole.
     -- Not Allow
     => 1.12.0 1.16.0
    ```
+   #### Upgrade Process
    Follow steps to upgrade lower version to upper version  
-   #### Step 1: Get the version of API Server
+   
+   ##### Step 1: Get the version of API Server
    ```bash
    $ kubectl version --short
    Client Version: v1.18.0
    Server Version: v1.18.0
    ```
-   #### Step 2: Get the version of kubelet
+   ##### Step 2: Get the version of kubelet
    ```
    $ kubectl describe nodes
    Kubelet Version:            v1.18.0
    Kube-Proxy Version:         v1.18.0
    ```
-   #### Step 3: Get the version of api-server, kube-apiserver, kube-scheduler, kube-controller-manager
+   ##### Step 3: Get the version of api-server, kube-apiserver, kube-scheduler, kube-controller-manager
    ```
    $ kubectl get pod -n kube-system
     NAME                                                READY   STATUS    RESTARTS   AGE
@@ -401,7 +403,7 @@ clusterrole         Create a ClusterRole.
     
    ```
 
-   #### Step 4: Upgrade kubeadm required latest version (1.18.2) and Install kubeadm 
+   ##### Step 4: Upgrade kubeadm required latest version (1.18.2) and Install kubeadm 
    ```
    -- unhold kubeadm version if already in hold status
    $ sudo apt-mark unhold kubeadm
@@ -418,7 +420,7 @@ clusterrole         Create a ClusterRole.
    kubeadm version: &version.Info{Major:"1", Minor:"18", GitVersion:"v1.18.2", GitCommit:"9e991415386e4cf155a24b1da15becaa390438d8", GitTreeState:"clean", BuildDate:"2020-03-25T14:56:30Z", GoVersion:"go1.13.8", Compiler:"gc", Platform:"linux/amd64"}
    ```
 
-   #### Step 5: Plan controller component upgrade plan before final execution
+   ##### Step 5: Plan controller component upgrade plan before final execution
    ```
    $ sudo kubeadm upgrade plan
     
@@ -437,7 +439,7 @@ clusterrole         Create a ClusterRole.
 
    ```
 
-   #### Step 6: Upgrade the controller component
+   ##### Step 6: Upgrade the controller component
    ```
    -- upgrade kubeadm to latest version
    $ sudo kubeadm upgrade apply v1.18.2
@@ -452,7 +454,7 @@ clusterrole         Create a ClusterRole.
     Server Version: v1.18.2
    ```
 
-   #### Step 7: Upgrade the kubelet version (1.18.2) and Install
+   ##### Step 7: Upgrade the kubelet version (1.18.2) and Install
    ```
    -- unhold kubelet version  
    $ sudo apt-mark unhold kubectl
@@ -488,40 +490,63 @@ clusterrole         Create a ClusterRole.
    2. Cordon: Marked node as unschedule able.  
    3. Uncordon: Marked node as scheduleable so that Pod can schedule on this node.
    
-   Process: 
-   1. Evict the Pod from node using drain and take node down.
-   2. Maintains the node
-   2. After maintenance continue scheduling using uncordon the node.
+   #### System Upgrade Process: 
+   ##### Step 1: Evict the Pod from node using drain and take node down.
+   Get details of pods which is running on which nodes.
+   ```
+   -- get pod details
+   $ kubectl get pods -o wide
+   ```
+
+   Node mark as drain so that pod evict from specified node.
+   ```
+   -- mark node as drain
+   $ kubectl drain [node_name] --ignore-daemonsets
+   ```
+ 
+   Watch node changes status
+   ```
+   -- watch node changes in real time
+   $ kubectl get nodes -w
+   ```
+ 
+
+   ##### Step 2: Maintains the node.
+   Maintains on node as required.
+   Remove a node from the cluster if node is not required
+   ```
+   $ kubectl delete node [node_name]
+   ```  
    
-   See which pods are running on which nodes:  
-   ```$ kubectl get pods -o wide```  
-   
-   Evict the pods on a node:  
-   ```$ kubectl drain [node_name] --ignore-daemonsets```  
-   
-   Watch as the node changes status:  
-   ```$ kubectl get nodes -w```  
-   
+   ##### Step 3: After maintenance continue scheduling using uncordon the node.
    Schedule pods to the node after maintenance is complete:
-   ```$ kubectl uncordon [node_name]```  
-   
-   Remove a node from the cluster:  
-   ```$ kubectl delete node [node_name]```  
+   ```
+   -- uncordon node01
+   $ kubectl uncordon node01
+   ```  
+   ** Adding new node **
+   Prepare a new node
    
    Generate a new token:  
-   ```$ sudo kubeadm token generate```  
+   ```
+   -- generate token
+   $ sudo kubeadm token generate
+   ```  
     
    List the tokens:  
-   ```$ sudo kubeadm token list```  
+   ```
+   $ sudo kubeadm token list
+   ```  
     
    Print the kubeadm join command to join a node to the cluster:  
-   ```$ sudo kubeadm token create [token_name] --ttl 2h --print-join-command ```  
+   ```
+   $ sudo kubeadm token create [token_name] --ttl 2h --print-join-command 
+   ```  
     
        
    #### Command References
    ```bash
     $ kubectl drain [node_name]
-    $ kubectl cordon [node_name]
     $ kubectl cordon [node_name]
     $ kubectl delete [node_name]
     $ kubectl edit [node_name]
