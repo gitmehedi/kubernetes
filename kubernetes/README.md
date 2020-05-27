@@ -452,7 +452,7 @@ clusterrole         Create a ClusterRole.
     Server Version: v1.18.2
    ```
 
-   #### Step 9: Upgrade the kubelet version
+   #### Step 9: Upgrade the kubelet version and hold the version of kubelet
    ```
    $ sudo apt-mark unhold kubectl
    Canceled hold on kubelctl
@@ -464,15 +464,12 @@ clusterrole         Create a ClusterRole.
    $ kubectl version --short
    Client Version: v1.18.2
    Server Version: v1.18.2
-
-   ```
-
-   #### Step 10: Upgrade the version of kubelet and hold the version of kubelet
-   ```
-   $ sudo apt install -y kubelet=1.18.2-00
+   
+   -- hole version of kubelet
    $ sudo apt-mark hold kubelet
    kubelet set on hold.
    ```
+
    #### References and Further Study
    * https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/
    * https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md
