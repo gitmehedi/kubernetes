@@ -477,7 +477,6 @@ clusterrole         Create a ClusterRole.
    * https://kubernetes.io/docs/concepts/overview/kubernetes-api/
    * https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api_changes.md
    
-   
    ### Operating System Upgrades
    
    #### Terms:  
