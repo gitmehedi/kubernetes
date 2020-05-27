@@ -481,7 +481,7 @@ clusterrole         Create a ClusterRole.
    
    ### Operating System Upgrades
    
-   #### Terms:  
+   #### Terminology:  
    In operating system upgrade some terms are very important
    
    1. Drain: When a node drain, Pod are terminated form the node and Pod are recreated on another node where requirement match.
@@ -524,7 +524,7 @@ clusterrole         Create a ClusterRole.
    -- uncordon node01
    $ kubectl uncordon node01
    ```  
-   ** Adding new node **
+   **Add New Node**  
    Prepare a new node
    
    Generate a new token:  
