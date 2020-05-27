@@ -581,9 +581,9 @@ clusterrole         Create a ClusterRole.
 
    Since ETCD database is TLS-Enabled, the following options are mandatory:
    ```
+   --endpoints=[127.0.0.1:2379]    This is the default as ETCD is running on master node and exposed on localhost 2379.
    --cacert                        verify certificates of TLS-enabled secure servers using this CA bundle
    --cert                          identify secure client using this TLS certificate file
-   --endpoints=[127.0.0.1:2379]    This is the default as ETCD is running on master node and exposed on localhost 2379.
    --key                           identify secure client using this TLS key file
    ```
 
@@ -595,23 +595,29 @@ clusterrole         Create a ClusterRole.
 
    For a detailed explanation on how to make use of the ```etcdctl``` command line tool and work with the -h flags, check out the solution video for the Backup and Restore Lab.
    #### Backup ETCD
-   There are 2 back candidates
+   
+   Backup candidates using following ways
    ```
     1. Resource Configuration
     2. ETCD Cluster
    ```
-   ##### Step 1. Resource Configuration:  
-   you can take all configuration from a cluster using  
+
+   ##### Step 1. Resource Configuration
+   Take all configuration from a cluster using  
    ```
    -- get all resourece from cluster
    $ kubectl get all --all-namespaces -o yaml > all_deploy_service.yaml
    ```  
    
-   ##### Step 2. ETCD Cluster:  
+   ##### Step 2. ETCD Cluster
    Take backup on specific location
    ```
-    $ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /tmp/snapshot-pre-boot.db
-    Snapshot saved at /tmp/snapshot-pre-boot.db
+    -- snapshot will save at /tmp/snapshot-pre-boot.db
+    $ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 \
+      --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+      --cert=/etc/kubernetes/pki/etcd/server.crt \
+      --key=/etc/kubernetes/pki/etcd/server.key \
+      snapshot save /tmp/snapshot-pre-boot.db
    ```
    
    See the status of snapshot
@@ -621,11 +627,14 @@ clusterrole         Create a ClusterRole.
    ```
    
    #### Restore
-   Restore ETCD Snapshot to a new folder
+   Restore ETCD Snapshot to a new directory
    ```
-   ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+   ETCDCTL_API=3 etcdctl 
+     --endpoints=https://[127.0.0.1]:2379 \
+     --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+     --cert=/etc/kubernetes/pki/etcd/server.crt \
+     --key=/etc/kubernetes/pki/etcd/server.key \
      --name=master \
-     --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key \
      --data-dir /var/lib/etcd-from-backup \
      --initial-cluster=master=https://127.0.0.1:2380 \
      --initial-cluster-token etcd-cluster-1 \
@@ -633,9 +642,9 @@ clusterrole         Create a ClusterRole.
      snapshot restore /tmp/snapshot-pre-boot.db
    ```
 
-   Modify /etc/kubernetes/manifests/etcd.yaml
+   Add new data directory inside etcd file ```/etc/kubernetes/manifests/etcd.yaml```
    ```
-    -- open etcd.yaml and add following lines under command
+    -- add following lines under command
     $ vim /etc/kubernetes/manifests/etcd.yaml
 
     --data-dir=/var/lib/etcd-from-backup
@@ -668,7 +677,6 @@ clusterrole         Create a ClusterRole.
 
    #### References and Further Study
    * https://github.com/mmumshad/kubernetes-the-hard-way/blob/master/practice-questions-answers/cluster-maintenance/backup-etcd/etcd-backup-and-restore.md
-   
    
 ## Chapter 4: Networking (11%)
    ### Network Pre-requisite
@@ -763,19 +771,17 @@ interfaces
    * Each node must have a MAC Address  
    
    #### Ports
-   * kube-apiserver = 6443
-   * kube-scheduler = 10251
-   * kube-controller-manager = 10252
-   * etcd = 2379 (For multiple 2380)
-   * kubelet = 10250
-   * worker-node = 30000-32767
    
-   #### Command References
-   ```bash
-    
-   ``` 
-
-
+   | Name                    | Ports       |
+   |------------------------ | ----------- |
+   | kube-apiserver          | 6443        |
+   | kube-scheduler          | 10251       |
+   | kube-controller-manager | 10252       |
+   | etcd                    | 2379,2380   |
+   | kubelet                 | 10250       |
+   | worker-node             | 30000-32767 |
+   
+   
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/cluster-administration/networking/
    
