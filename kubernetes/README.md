@@ -80,7 +80,12 @@ Table of Contents
    * [Network Failure](#network-failure)
    
 * [Appendix](#appendix)
-   * [Network Failure](#network-failure)
+   * [Kubernetes Primary Commands](#kubernetes-primary-commands)
+   *[Kubectl Options](#kubectl-options)
+   *[ETCD Server Commands](#etcd-server-commands)
+   *[Firewall Related Commands](#firewall-related-commands)
+   *[kubectl run/create](#kubectl-runcreate)
+   *[Namespace](#namespace)
 
 ## Document History
 
