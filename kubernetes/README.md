@@ -304,6 +304,8 @@ clusterrole         Create a ClusterRole.
   
   
 ## Chapter 2: Install, Config and Validate (12%)
+   #### References
+   * https://github.com/gitmehedi/cloudtuts/blob/develop/kubernetes/kubernetes_installation.md
    * ### Design a Kubernetes cluster.
    * ### Install Kubernetes masters and nodes
    * ### Configure secure cluster communications.
@@ -318,7 +320,6 @@ build
 deploy
 test
 cleanup
-
 ```
    * ### Analyse end-to-end tests results.
    * ### Run Node end-to-end tests.
