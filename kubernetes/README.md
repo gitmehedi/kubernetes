@@ -86,6 +86,7 @@ Table of Contents
    * [Firewall Related Commands](#firewall-related-commands)
    * [kubectl run/create](#kubectl-runcreate)
    * [Namespace](#namespace)
+   * [Kubernetes Configuration Directory Architecture](#kubernetes-configuration-directory-architecture)
 
 ## Document History
 
@@ -118,6 +119,7 @@ Document History:
   Depending on Setup you can see configuration of each component in directory in following way. You will find all Control Plane component it there 
   1. Kubeadm Setup:  ```/etc/kubernetes/manifests/```  
   2. Hardway Setup:  ```/etc/systemd/system```
+  
   ```
   -- Kubeadm 
   $ cat /etc/kubernetes/manifests/api-server.yaml
@@ -304,68 +306,120 @@ clusterrole         Create a ClusterRole.
   
   
 ## Chapter 2: Install, Config and Validate (12%)
-   #### References
-   * https://github.com/gitmehedi/cloudtuts/blob/develop/kubernetes/kubernetes_installation.md
-   * ### Design a Kubernetes cluster.
-   * ### Install Kubernetes masters and nodes
-   * ### Configure secure cluster communications.
-   * ### Configure a Highly-Available Kubernetes cluster.
-   * ### Know where to get the Kubernetes release binaries.
-   * ### Provision underlying infrastructure to deploy a Kubernetes cluster.
-   * ### Choose a network solution.
-   * ### Choose your Kubernetes infrastructure configuration.
-   * ### Run end-to-end tests on your cluster.
+   ### Binaries/Provision/Types
+   #### Command References
    ```bash
-build
-deploy
-test
-cleanup
-```
-   * ### Analyse end-to-end tests results.
-   * ### Run Node end-to-end tests.
-   * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
+   -- view addresses of master and services
+   $ kubectl cluster-info
+
+   -- show kubeconfig settings
+   $ kubectl config view
+
+   -- show all nodes details
+   $ kubectl describe nodes
+
+   -- show all pod details
+   $ kubectl describe pods
+
+   -- show all services
+   $ kubectl get services --all-namespaces
+
+   -- show all resources
+   $ kubectl api-resources -o wide
+   ```  
+
+   #### References and Further Study
+   * https://kubernetes.io/docs/home/
+  
+   ### Installing Master and Nodes
+   Kubernetes cluster can install in two ways
+   * Kubernetes Hard Way
+   * Kubeadm Way
+
+   #### References and Further Study
+   * https://github.com/mmumshad/kubernetes-the-hard-way
+   * https://github.com/gitmehedi/cloudtuts/blob/develop/kubernetes/kubernetes_installation.md
+   
+   ### Highly Available Cluster
+   #### References and Further Study
+   * https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/
+   
+   ### Secure Cluster
+   #### Command References
+   ```bash
+   -- view the kubeconfig
+   $ cat .kube/config | more
+
+   -- view service account token
+   $ kubectl get secrets
+   ```  
+   
+   #### References and Further Study
+   * https://kubernetes.io/docs/reference/access-authn-authz/controlling-access/
+   
+   ### End-to-End Tests
+   For end-to-end test verify those checklist
+   * Deployments can run
+   * Pods can run
+   * Pod can directly access
+   * Logs can be collected
+   * Command run from Pod
+   * Services can provide access
+   * Nodes are healthy
+   * Pods are healthy
+   
+   #### Command References
    ```
-    /etc/kubernetes/
-    ├── admin.conf
-    ├── controller-manager.conf
-    ├── kubelet.conf
-    ├── manifests
-    │   ├── etcd.yaml
-    │   ├── kube-apiserver.yaml
-    │   ├── kube-controller-manager.yaml
-    │   └── kube-scheduler.yaml
-    ├── pki
-    │   ├── apiserver.crt
-    │   ├── apiserver-etcd-client.crt
-    │   ├── apiserver-etcd-client.key
-    │   ├── apiserver.key
-    │   ├── apiserver-kubelet-client.crt
-    │   ├── apiserver-kubelet-client.key
-    │   ├── ca.crt
-    │   ├── ca.key
-    │   ├── etcd
-    │   │   ├── ca.crt
-    │   │   ├── ca.key
-    │   │   ├── healthcheck-client.crt
-    │   │   ├── healthcheck-client.key
-    │   │   ├── peer.crt
-    │   │   ├── peer.key
-    │   │   ├── server.crt
-    │   │   └── server.key
-    │   ├── front-proxy-ca.crt
-    │   ├── front-proxy-ca.key
-    │   ├── front-proxy-client.crt
-    │   ├── front-proxy-client.key
-    │   ├── sa.key
-    │   └── sa.pub
-    └── scheduler.conf
+   -- run a simple nginx deployements
+   $ kubectl run nginx --image=nginx
+
+   -- view current deployements
+   $ kubectl get deploy
+
+   -- lists the pods in the cluster
+   $ kubectl get pods
+
+   -- forward port 80 to 8081 on pod
+   $ kubectl port-forward nginx 8081:80
+
+   -- get a response from nginx pod
+   $ curl --head http://127.0.0.1:8081
+
+   -- get pods logs
+   $ kubectl logs nginx
+
+   -- run a command on the pod nginx
+   $ kubectl exec -t nginx -- nginx -v 
+
+   -- create a service using our deployment
+   $ kubectl expose deploy nginx --port 80 --type NodePort
+
+   -- list the services in the cluster
+   $ kubectl get services
+
+   -- get a response from a service
+   $ curl -I localhost:<node_port>
+
+   -- list node status
+   $ kubectl get nodes
+
+   -- get details info about node
+   $ kubectl describe nodes
+
+   -- get details info about pods
+   $ kubectl describe pods
+
+
    ```
-    
+   #### References and Further Study
+   * https://github.com/gitmehedi/cloudtuts/blob/develop/kubernetes/kubernetes_installation.md
+   
     
 ## Chapter 3: Cluster (11%)
    ### Cluster Upgrade Process
-   kubeadm allows to upgrade cluster components in proper order from one version at a time. 
-   ```textmate
+   kubeadm allows to upgrade cluster components in proper order from one version to another once at a time. 
+   
+   ```
     -- Allows 1 version at a time
     => 1.12.0 to 1.13.0
     => 1.16.0 to 1.17.0
@@ -2202,3 +2256,40 @@ kubectl config set-context $(kubectl config current-context) --namespace dev
 $ kubectl config current-context
 kubernetes-admin@kubernetes
 ```
+### Kubernetes Configuration Directory Architecture
+```
+    /etc/kubernetes/
+    ├── admin.conf
+    ├── controller-manager.conf
+    ├── kubelet.conf
+    ├── manifests
+    │   ├── etcd.yaml
+    │   ├── kube-apiserver.yaml
+    │   ├── kube-controller-manager.yaml
+    │   └── kube-scheduler.yaml
+    ├── pki
+    │   ├── apiserver.crt
+    │   ├── apiserver-etcd-client.crt
+    │   ├── apiserver-etcd-client.key
+    │   ├── apiserver.key
+    │   ├── apiserver-kubelet-client.crt
+    │   ├── apiserver-kubelet-client.key
+    │   ├── ca.crt
+    │   ├── ca.key
+    │   ├── etcd
+    │   │   ├── ca.crt
+    │   │   ├── ca.key
+    │   │   ├── healthcheck-client.crt
+    │   │   ├── healthcheck-client.key
+    │   │   ├── peer.crt
+    │   │   ├── peer.key
+    │   │   ├── server.crt
+    │   │   └── server.key
+    │   ├── front-proxy-ca.crt
+    │   ├── front-proxy-ca.key
+    │   ├── front-proxy-client.crt
+    │   ├── front-proxy-client.key
+    │   ├── sa.key
+    │   └── sa.pub
+    └── scheduler.conf
+   ```
