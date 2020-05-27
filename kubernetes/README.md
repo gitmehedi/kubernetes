@@ -81,11 +81,11 @@ Table of Contents
    
 * [Appendix](#appendix)
    * [Kubernetes Primary Commands](#kubernetes-primary-commands)
-   *[Kubectl Options](#kubectl-options)
-   *[ETCD Server Commands](#etcd-server-commands)
-   *[Firewall Related Commands](#firewall-related-commands)
-   *[kubectl run/create](#kubectl-runcreate)
-   *[Namespace](#namespace)
+   * [Kubectl Options](#kubectl-options)
+   * [ETCD Server Commands](#etcd-server-commands)
+   * [Firewall Related Commands](#firewall-related-commands)
+   * [kubectl run/create](#kubectl-runcreate)
+   * [Namespace](#namespace)
 
 ## Document History
 
