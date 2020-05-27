@@ -78,7 +78,9 @@ Table of Contents
    * [Control Plane Failure](#control-place-failure)
    * [Worker Node Failure](#worker-node-failure)
    * [Network Failure](#network-failure)
-  
+   
+* [Appendix](#appendix)
+   * [Network Failure](#network-failure)
 
 ## Document History
 
@@ -306,6 +308,13 @@ clusterrole         Create a ClusterRole.
    * ### Choose a network solution.
    * ### Choose your Kubernetes infrastructure configuration.
    * ### Run end-to-end tests on your cluster.
+   ```bash
+build
+deploy
+test
+cleanup
+
+```
    * ### Analyse end-to-end tests results.
    * ### Run Node end-to-end tests.
    * ### Install and use kubeadm to install, confi gure, and manage Kubernetes clusters
@@ -1893,8 +1902,6 @@ Kubernetes provides additional support to check the health of applications runni
    ### Network Failure
    
    
-   
-   
    #### Command References
    ```bash
     $ kubectl get pods -selector app=application
@@ -1904,299 +1911,11 @@ Kubernetes provides additional support to check the health of applications runni
    * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 
 
-
-```bash
-kubectl logs -h
-
---check system componet logs
-kubectl get pods -A
-kubectl get pods --all-namespaces
-
-kubectl logs --namespace kube-system kube-flannel-ds-amd64-54wxq
-kubectl logs -n kube-system kube-flannel-ds-amd64-54wxq
-
---check logs for pods
-kubectl get pods
-kubectl logs nginx-6db489d4b7-5m7dx
-kubectl logs nginx-6db489d4b7-5m7dx --all-containers=true
-
-kubectl describe pod nginx-6db489d4b7-5m7dx
-
-```
-
-
-
-### Namespace
-
-```bash
-kubectl create namespace dev
-kubectl config current-context
-kubectl config set-context $(kubectl config current-context) --namespace dev
-
-arif@kube-master:~$ kubectl config current-context
-kubernetes-admin@kubernetes
-
-```
-
-
-
-#### kubectl run/create
-
-```bash
-kubectl run --generator=run-pod/v1 nginx --image=nginx
-kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml
-
-
-kubectl create deployment --image=nginx nginx
-kubectl create deployment --image=nginx nginx --dry-run -o yaml
-
---not supported depoyment since v1.16
-kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run --replicas=4 -o yaml
-kubectl create deployment --image=nginx nginx --replicas=4 --dry-run -o yaml
-
-
-kubectl create service clusterip redis --tcp=6379:6379 --dry-run -o yaml
-kubectl expose pod nginx --port=80 --name nginx-service --dry-run -o yaml
-
-
-
-```
-
-
-
-deployment check
-
-```bash
-kubectl rollout status deployments/nginx
-kubectl rollout history deployments/nginx
-
-
-```
-
-
-
-Replica set
-
-```bash
-kubectl get replicasets
-```
-
-
-
-
-
-```bash
-
-kubectl get deployments -A
-
-kubectl run vaaa1 --image=arif332/vaaa
-kubectl delete deployment nginx
-
-```
-
-
-
-
-
-#### kubectl exec
-
-```bash
- kubectl exec etcd-kube-master -n kube-system etcdctl
- kubectl exec etcd-kube-master -n kube-system etcdctl help get
- 
-```
-
-
-
-Check Certificate
-
-```bash
-sudo kubeadm alpha certs check-expiration
-kubectl -n kube-system get cm kubeadm-config -oyaml
-
-
-kubeadm upgrade apply --certificate-renewal=false
-kubeadm upgrade node --certificate-renewal=false
-
-kubeadm alpha certs renew
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Networking
-
-###### Namespace
-
-```bash
-ip netns exec red ip link
-ip -n red link
-
-```
-
-
-
-###### docker networking
-
-```bash
-
-ip link add docker type bridge
-
-#docker expose do dnat in host iptables
-iptables -nvl -t nat
-
-```
-
-
-
-###### CNI
-
-```bash
-
-plugin
-bridge
-vlan
-ipvlan
-
-CNM (container network model)
-
-
-ps -aux|grep kubelet
-
-```
-
-
-
-###### Service
-
-```bash
-ps aux|grep kube-api
-sudo iptables -L
-
-cluster service
-nodeport
-forwarding rule - ip and port
-
-userspace
-iptables
-ipvs
-
-
-
-```
-
-
-
-###### DNS
-
-```bash
-kube-dns
-core-dns
-
-pod dns
-
-service dns
-
-service name
-
-
-curl http://web-service.apps.svc.cluster.local
-
-web-serv.default.svc.cluster.local
-web-service.apps.svc.cluster.local
-10-12-12-12.apps.pod.cluster.local
-
-kubectl get service -n kube-system
-arif@kube-master:~$ kubectl get service -n kube-system
-NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
-kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   10d
-
-how core dns setup done
-where is forwarding zone
-where is reverse zone
-
-
-```
-
-
-
-
-
-###### Ingress
-
-```bash
-Ingress Controller
-Ingress resource
-
-host
-path
-
-Deployment
-service
-ConfigMap
-Auth
-
-kubectl get ingress
-
-
-- create a ingress service
-- understand ingress perfectly
-
-```
-
-
-
-
-
-## E2E
-
-```bash
-build
-deploy
-test
-cleanup
-
-```
-
-
-
-
-
-
-
-
-
-
-
 ## Appendix:
 
 
-
-#### kubectl
-
-```bash
-arif@kube-master:~$ kubectl -h
+### Kubernetes Primary Commands
+```
 kubectl controls the Kubernetes cluster manager.
 
  Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
@@ -2215,7 +1934,7 @@ Basic Commands (Intermediate):
 
 Deploy Commands:
   rollout        Manage the rollout of a resource
-  scale          Set a new size for a Deployment, ReplicaSet or Replication Controller
+  scale          Set a new size for a Deployment, ReplicaSet, Replication Controller, or Job
   autoscale      Auto-scale a Deployment, ReplicaSet, or ReplicationController
 
 Cluster Management Commands:
@@ -2257,29 +1976,16 @@ Other Commands:
   config         Modify kubeconfig files
   plugin         Provides utilities for interacting with plugins.
   version        Print the client and server version information
-
-Usage:
-  kubectl [flags] [options]
-
-Use "kubectl <command> --help" for more information about a given command.
-Use "kubectl options" for a list of global command-line options (applies to all commands).
-arif@kube-master:~$ 
-
 ```
 
-
-
-#### kubectl options
-
-```bash
-arif@kube-master:~$ kubectl options
+### Kubectl Options
+```
 The following options can be passed to any command:
 
-      --add-dir-header=false: If true, adds the file directory to the header
       --alsologtostderr=false: log to standard error as well as files
       --as='': Username to impersonate for the operation
       --as-group=[]: Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
-      --cache-dir='/home/arif/.kube/http-cache': Default HTTP cache directory
+      --cache-dir='/Users/beast/.kube/http-cache': Default HTTP cache directory
       --certificate-authority='': Path to a cert file for the certificate authority
       --client-certificate='': Path to a client certificate file for TLS
       --client-key='': Path to a client key file for TLS
@@ -2291,8 +1997,6 @@ make your HTTPS connections insecure
       --log-backtrace-at=:0: when logging hits line file:N, emit a stack trace
       --log-dir='': If non-empty, write log files in this directory
       --log-file='': If non-empty, use this log file
-      --log-file-max-size=1800: Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0,
-the maximum file size is unlimited.
       --log-flush-frequency=5s: Maximum number of seconds between log flushes
       --logtostderr=true: log to standard error instead of files
       --match-server-version=false: Require server version to match client version
@@ -2304,93 +2008,18 @@ the maximum file size is unlimited.
 should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
   -s, --server='': The address and port of the Kubernetes API server
       --skip-headers=false: If true, avoid header prefixes in the log messages
-      --skip-log-headers=false: If true, avoid headers when opening log files
       --stderrthreshold=2: logs at or above this threshold go to stderr
       --token='': Bearer token for authentication to the API server
       --user='': The name of the kubeconfig user to use
       --username='': Username for basic authentication to the API server
   -v, --v=0: number for the log level verbosity
       --vmodule=: comma-separated list of pattern=N settings for file-filtered logging
-arif@kube-master:~$ 
 ```
 
-
-
-#### kubectl create
+### ETCD Server Commands
 
 ```bash
-arif@kube-master:~$ kubectl create -h
-Create a resource from a file or from stdin.
-
- JSON and YAML formats are accepted.
-
-Examples:
-  # Create a pod using the data in pod.json.
-  kubectl create -f ./pod.json
-  
-  # Create a pod based on the JSON passed into stdin.
-  cat pod.json | kubectl create -f -
-  
-  # Edit the data in docker-registry.yaml in JSON then create the resource using the edited data.
-  kubectl create -f docker-registry.yaml --edit -o json
-
-Available Commands:
-  clusterrole         Create a ClusterRole.
-  clusterrolebinding  Create a ClusterRoleBinding for a particular ClusterRole
-  configmap           Create a configmap from a local file, directory or literal value
-  cronjob             Create a cronjob with the specified name.
-  deployment          Create a deployment with the specified name.
-  job                 Create a job with the specified name.
-  namespace           Create a namespace with the specified name
-  poddisruptionbudget Create a pod disruption budget with the specified name.
-  priorityclass       Create a priorityclass with the specified name.
-  quota               Create a quota with the specified name.
-  role                Create a role with single rule.
-  rolebinding         Create a RoleBinding for a particular Role or ClusterRole
-  secret              Create a secret using specified subcommand
-  service             Create a service using specified subcommand.
-  serviceaccount      Create a service account with the specified name
-
-Options:
-      --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in
-the template. Only applies to golang and jsonpath output formats.
-      --dry-run=false: If true, only print the object that would be sent, without sending it.
-      --edit=false: Edit the API resource before creating
-  -f, --filename=[]: Filename, directory, or URL to files to use to create the resource
-  -k, --kustomize='': Process the kustomization directory. This flag can't be used together with -f or -R.
-  -o, --output='': Output format. One of:
-json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.
-      --raw='': Raw URI to POST to the server.  Uses the transport specified by the kubeconfig file.
-      --record=false: Record current kubectl command in the resource annotation. If set to false, do not record the
-command. If set to true, record the command. If not set, default to updating the existing annotation value only if one
-already exists.
-  -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you want to manage
-related manifests organized within the same directory.
-      --save-config=false: If true, the configuration of current object will be saved in its annotation. Otherwise, the
-annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.
-  -l, --selector='': Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
-      --template='': Template string or path to template file to use when -o=go-template, -o=go-template-file. The
-template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
-      --validate=true: If true, use a schema to validate the input before sending it
-      --windows-line-endings=false: Only relevant if --edit=true. Defaults to the line ending native to your platform.
-
-Usage:
-  kubectl create -f FILENAME [options]
-
-Use "kubectl <command> --help" for more information about a given command.
-Use "kubectl options" for a list of global command-line options (applies to all commands).
-arif@kube-master:~$ 
-
-```
-
-
-
-
-
-##### kubectl exec etcd-...
-
-```bash
-arif@kube-master:~$ kubectl exec etcd-kube-master -n kube-system etcdctl
+$ kubectl exec etcd-kube-master -n kube-system etcdctl
 NAME:
 	etcdctl - A simple command line client for etcd3.
 
@@ -2475,18 +2104,9 @@ OPTIONS:
       --password=""				password for authentication (if this option is used, --user option shouldn't include password)
       --user=""					username[:password] for authentication (prompt if password is not supplied)
   -w, --write-out="simple"			set the output format (fields, json, protobuf, simple, table)
-
-arif@kube-master:~$ kubectl exec etcd-kube-master -n kube-system etcdctl
-
 ```
 
-
-
-
-
-
-
-firewall
+### Firewall Related Commands
 
 ```bash
 arif@ariflindesk1:~$ sudo iptables -t nat -L
@@ -2546,6 +2166,33 @@ firewall-cmd --zone=external --query-masquerade
 firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=3753
 firewall-cmd --permanent --zone=external --add-forward-port=port=22:proto=tcp:toport=3753:toaddr=10.0.0.1
 firewall-cmd --reload
-
 ```
 
+
+### kubectl run/create
+
+```bash
+kubectl run --generator=run-pod/v1 nginx --image=nginx
+kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml
+
+kubectl create deployment --image=nginx nginx
+kubectl create deployment --image=nginx nginx --dry-run -o yaml
+
+--not supported depoyment since v1.16
+kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run --replicas=4 -o yaml
+kubectl create deployment --image=nginx nginx --replicas=4 --dry-run -o yaml
+
+kubectl create service clusterip redis --tcp=6379:6379 --dry-run -o yaml
+kubectl expose pod nginx --port=80 --name nginx-service --dry-run -o yaml
+```
+
+### Namespace
+
+```bash
+kubectl create namespace dev
+kubectl config current-context
+kubectl config set-context $(kubectl config current-context) --namespace dev
+
+$ kubectl config current-context
+kubernetes-admin@kubernetes
+```
