@@ -77,7 +77,7 @@ Table of Contents
    * [Kubectl Options](#kubectl-options)
    * [ETCD Server Commands](#etcd-server-commands)
    * [Firewall Related Commands](#firewall-related-commands)
-   * [kubectl run/create](#kubectl-runcreate)
+   * [Kubectl Imperative Commands ](#kubectl-imperative-commands)
    * [Namespace](#namespace)
    * [Kubernetes Configuration Directory Architecture](#kubernetes-configuration-directory-architecture)
 
@@ -2162,7 +2162,7 @@ OPTIONS:
 ### Firewall Related Commands
 
 ```bash
-arif@ariflindesk1:~$ sudo iptables -t nat -L
+$ sudo iptables -t nat -L
 Chain PREROUTING (policy ACCEPT)
 target     prot opt source               destination         
 DOCKER     all  --  anywhere             anywhere             ADDRTYPE match dst-type LOCAL
@@ -2196,24 +2196,22 @@ RETURN     all  --  anywhere             anywhere
 
 ```
 
-
-
 ```bash
-arif@ariflindesk1:~$ sysctl -p
-arif@ariflindesk1:~$ firewall-cmd --get-default-zone
+$ sysctl -p
+$ firewall-cmd --get-default-zone
 public
-arif@ariflindesk1:~$ firewall-cmd --get-active-zones
+
+$ firewall-cmd --get-active-zones
 public
   interfaces: eno2 wlo1
-arif@ariflindesk1:~$ firewall-cmd --get-zones
-block dmz drop external home internal public trusted work
-arif@ariflindesk1:~$ 
 
+$ firewall-cmd --get-zones
+block dmz drop external home internal public trusted work
 
 --enable masquerade
-firewall-cmd --zone=public --add-masquerade
-firewall-cmd --add-masquerade --zone=public --permanent
-firewall-cmd --zone=external --query-masquerade
+$ firewall-cmd --zone=public --add-masquerade
+$ firewall-cmd --add-masquerade --zone=public --permanent
+$ firewall-cmd --zone=external --query-masquerade
 
 
 firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=3753
@@ -2222,29 +2220,30 @@ firewall-cmd --reload
 ```
 
 
-### kubectl run/create
+### Kubectl Imperative Commands 
+Run and Create
 
 ```bash
-kubectl run --generator=run-pod/v1 nginx --image=nginx
-kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml
+$ kubectl run --generator=run-pod/v1 nginx --image=nginx
+$ kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml
 
-kubectl create deployment --image=nginx nginx
-kubectl create deployment --image=nginx nginx --dry-run -o yaml
+$ kubectl create deployment --image=nginx nginx
+$ kubectl create deployment --image=nginx nginx --dry-run -o yaml
 
 --not supported depoyment since v1.16
-kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run --replicas=4 -o yaml
-kubectl create deployment --image=nginx nginx --replicas=4 --dry-run -o yaml
+$ kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run --replicas=4 -o yaml
+$ kubectl create deployment --image=nginx nginx --replicas=4 --dry-run -o yaml
 
-kubectl create service clusterip redis --tcp=6379:6379 --dry-run -o yaml
-kubectl expose pod nginx --port=80 --name nginx-service --dry-run -o yaml
+$ kubectl create service clusterip redis --tcp=6379:6379 --dry-run -o yaml
+$ kubectl expose pod nginx --port=80 --name nginx-service --dry-run -o yaml
 ```
 
 ### Namespace
 
 ```bash
-kubectl create namespace dev
-kubectl config current-context
-kubectl config set-context $(kubectl config current-context) --namespace dev
+$ kubectl create namespace dev
+$ kubectl config current-context
+$ kubectl config set-context $(kubectl config current-context) --namespace dev
 
 $ kubectl config current-context
 kubernetes-admin@kubernetes
