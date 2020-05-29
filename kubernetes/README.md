@@ -1587,12 +1587,61 @@ Kubernetes provides additional support to check the health of applications runni
   
 ## Chapter 8: Security (12%)
    ### Security Primitives
+   #### Command References
+   ```bash
+   ``` 
+
+   #### References and Further Study
+   * 
+   
    ### Configure Authentication and Authorization
+   #### Command References
+   ```bash
+   ``` 
+
+   #### References and Further Study
+   * 
+   
    ### Configure Network Policies
+   #### Command References
+   ```bash
+   ``` 
+
+   #### References and Further Study
+   * 
+   
    ### Manage TLS Certificate for Cluster
+   #### Command References
+   ```bash
+   ``` 
+
+   #### References and Further Study
+   * 
+   
    ### Image Security
+   #### Command References
+   ```bash
+   ``` 
+
+   #### References and Further Study
+   * 
+   
    ### Security Contexts
+   #### Command References
+   ```bash
+   ``` 
+
+   #### References and Further Study
+   * 
+   
    ### Persistent Key Value Stores
+   #### Command References
+   ```bash
+   ``` 
+
+   #### References and Further Study
+   * 
+   
    
 ## Chapter 9: Log and Monitor (5%)
    ### Monitor All Cluster Component
