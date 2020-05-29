@@ -1587,12 +1587,23 @@ Kubernetes provides additional support to check the health of applications runni
   
 ## Chapter 8: Security (12%)
    ### Security Primitives
+   Object are important in security primitives
+   ![Service Account Architecture](./image/service-account.png)
+   * ServiceAccount
+   
+   * Role
+   * RoleBindings
+   * ClusterRole
+   * ClusterRoleBindings
+   * Secret
+   
    #### Command References
    ```bash
    ``` 
 
    #### References and Further Study
-   * 
+   * https://medium.com/better-programming/k8s-tips-using-a-serviceaccount-801c433d0023
+   * https://thenewstack.io/kubernetes-access-control-exploring-service-accounts/
    
    ### Configure Authentication and Authorization
    #### Command References
