@@ -1613,11 +1613,6 @@ Kubernetes provides additional support to check the health of applications runni
    Tips:  
    Every namespaces has a default servicesaccount. When a pod try to communicate with the api-server, pod uses this serviceaccounts secret token.
    
-   * Role
-   * RoleBindings
-   * ClusterRole
-   * ClusterRoleBindings
-   * Secret
    * API Groups
    There are 2 types of API Group
    1. Core
@@ -1636,6 +1631,60 @@ Kubernetes provides additional support to check the health of applications runni
         * storage.k8.io
         * authentication.k8.io
         * certificates.k8.io
+   
+   * Role
+   Resource Base Access Control (RBAC)   
+   jane-role.yaml
+   ```
+    apiVersion: rbac.authorization.k8s.io/v1beta1
+    kind: Role
+    metadata:
+     name: list-pods
+     namespace: default
+    rules:
+     — apiGroups:
+       — ''
+     resources:
+       — pods
+     verbs:
+       — list   
+   ```
+   ```
+   -- create a roles using a jane-role.yaml file
+   $ kubectl create -f jane-role.yaml
+
+   -- get roles
+   $ kubectl get roles
+   ```
+   * RoleBindings
+   RoleBindings Binds Role with specific users account
+   ```jane-role-binding.yaml```
+   ```
+   apiVersion: rbac.authorization.k8s.io/v1beta1
+   kind: RoleBinding
+   metadata:
+     name: list-pods_demo-sa
+     namespace: default
+   roleRef:
+     kind: Role
+     name: list-pods
+     apiGroup: rbac.authorization.k8s.io
+   subjects:
+     — kind: ServiceAccount
+       name: demo-sa
+       namespace: default
+   ```
+   ```
+    -- create role bindings jane-role-binding.yaml
+    $ kubectl create -f jane-role-binding.yaml
+    
+    -- get all rolebindings
+    $ kubectl get rolebindings
+   ```
+   * ClusterRole
+   * ClusterRoleBindings
+   * Secret
+   
         
    
    #### Command References
