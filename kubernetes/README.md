@@ -2536,22 +2536,50 @@ firewall-cmd --reload
 ```
 
 
-### Kubectl Imperative Commands 
+### Kubernetes Imperative Commands 
 Run and Create
 
 ```bash
+-- create pods
 $ kubectl run --generator=run-pod/v1 nginx --image=nginx
 $ kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml
 
+-- create deployments 
 $ kubectl create deployment --image=nginx nginx
 $ kubectl create deployment --image=nginx nginx --dry-run -o yaml
-
---not supported depoyment since v1.16
-$ kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run --replicas=4 -o yaml
 $ kubectl create deployment --image=nginx nginx --replicas=4 --dry-run -o yaml
 
-$ kubectl create service clusterip redis --tcp=6379:6379 --dry-run -o yaml
-$ kubectl expose pod nginx --port=80 --name nginx-service --dry-run -o yaml
+-- create services for pod and deployment
+$ kubectl expose po nginx --name=nginx --type=NodePort --port=80 --target-port=80 --protocol=TCP
+$ kubectl expose deploy nginx --name=nginx --type=NodePort --port=80 --target-port=80 --protocol=TCP
+
+-- create a configmap 
+$ kubectl create configmap my-config --from-literal=key1=config1 --from-literal=key2=config2
+$ kubectl create configmap my-config --from-file=key1=/path/to/bar/file1.txt --from-file=key2=/path/to/bar/file2.txt
+
+-- create secret 
+$ kubectl create secret generic my-secret --from-literal=key1=config1 --from-literal=key2=config2
+$ kubectl create secret generic my-secret --from-file=path/to/bar
+
+-- create namespaces
+$ kubectl create namespace my-namespace
+
+-- create role 
+$ kubectl create role foo --verb=get,list,watch --resource=rs.extensions
+
+-- create roleBindings
+$ kubectl create rolebinding admin --clusterrole=admin --user=user1 --user=user2 --group=group1
+
+-- create cluster role 
+$ kubectl create clusterrole foo --verb=get,list,watch --resource=rs.extensions
+
+-- create cluster role bindings 
+$ kubectl create clusterrolebinding <choose-a-name> --clusterrole=cluster-admin --user=<your-cloud-email-account>
+
+-- create serviceAccount
+$ kubectl create serviceaccount my-service-account
+
+-- 
 ```
 
 ### Namespace
