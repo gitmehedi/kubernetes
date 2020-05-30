@@ -1606,8 +1606,6 @@ Kubernetes provides additional support to check the health of applications runni
 
    -- get token details in secret
    $ kubectl describe secret demo-sa-token
-
-   -- 
    ```
    Tips:  
    Every namespaces has a default servicesaccount. When a pod try to communicate with the api-server, pod uses this serviceaccounts secret token.
@@ -1865,12 +1863,61 @@ Kubernetes provides additional support to check the health of applications runni
    * https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/
    
    ### Configure Network Policies
+   Network policy is a unique resources in kubernetes which defines traffic flow to pod.   
+   There are two types of traffic in a pod
+   1. Ingress Traffic: Comes inside from other resources
+   2. Egress Traffic: Goes outside to other resources 
+   
+   For network policy, use pod selector like services, deployments, replicaset.
+   NetworkPolicy definition file
+   
+   ```
+   apiVersion: networking.k8s.io/v1
+   kind: NetworkPolicy
+   metadata:
+     name: test-network-policy
+     namespace: default
+   spec:
+     podSelector:
+       matchLabels:
+         role: db
+      policyTypes:
+      - Ingress
+      - Egress
+   ingress:
+      - from:
+        - ipBlock:
+            cidr: 172.17.0.0/16
+            except:
+            - 172.17.1.0/24
+        - namespaceSelector:
+            matchLabels:
+              project: myproject
+        - podSelector:
+            matchLabels:
+              role: frontend
+        ports:
+        - protocol: TCP
+          port: 6379
+   egress:
+      - to:
+        - ipBlock:
+            cidr: 10.0.0.0/24
+        ports:
+        - protocol: TCP
+          port: 5978
+   ```
    #### Command References
    ```bash
+   -- create newtowk policy
+   $ kubectl create -f network-policy.yaml
+   
+   -- list network policy
+   $ kubectl get networkpolicy
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/concepts/services-networking/network-policies/
    
    ### Manage TLS Certificate for Cluster
    #### Command References
