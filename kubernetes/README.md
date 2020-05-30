@@ -1681,14 +1681,112 @@ Kubernetes provides additional support to check the health of applications runni
     -- get all rolebindings
     $ kubectl get rolebindings
    ```
+
+   **Check Access Permission**  
+   ```
+   --  check permission for create a deployment
+   $ kubectl auth can-i create deployments
+
+   --  check permission for delete a node
+   $ kubectl auth can-i delete nodes
+
+   --  check permission for create a deployment for another user like dev-user
+   $ kubectl auth can-i create deployments --as dev-user
+
+   --  check permission for delete a node for another user like dev-user
+   $ kubectl auth can-i delete nodes     --as dev-user
+
+   ```
    * ClusterRole
+   Cluster role is almost identical to Role except it's working on cluster scope.   
+   There are two scoped properties in Kubernetes
+   1. Namespaces Scoped: Resources which tightly bind with namespace. 
+        * POD
+        * ReplicaSet
+        * Many more
+   2. Cluster Scoped: Resources which is not bind with namespace.
+        * Nodes
+        * PersistentVolume
+        * ClusterRoles
+        * ClusterRoleBindings
+        * CertificateSigningRequests
+        * Namespaces
+   ```
+   -- get namespaced resources
+   $ kubectl api-resources --namespaced=true
+
+   -- get cluster scoped resources
+   $ kubectl api-resources --namespaced=false
+  ```
+   Resource Base Access Control (RBAC)   
+   jane-cluster-role.yaml
+   ```
+    apiVersion: rbac.authorization.k8s.io/v1beta1
+    kind: ClusterRole
+    metadata:
+     name: list-pods
+     namespace: default
+    rules:
+     — apiGroups:
+       — ''
+     resources:
+       — pods
+     verbs:
+       — list   
+   ```
+   ```
+   -- create a roles using a jane-cluster-role.yaml file
+   $ kubectl create -f jane-cluster-role.yaml
+
+   -- get roles
+   $ kubectl get clusterroles
+   ```
+
    * ClusterRoleBindings
-   * Secret
-   
-        
+   ClusterRoleBindings Binds Role with specific users account
+   ```jane-cluster-role-binding.yaml```
+   ```
+   apiVersion: rbac.authorization.k8s.io/v1beta1
+   kind: ClusterRoleBinding
+   metadata:
+     name: list-pods_demo-sa
+     namespace: default
+   roleRef:
+     kind: Role
+     name: list-pods
+     apiGroup: rbac.authorization.k8s.io
+   subjects:
+     — kind: ServiceAccount
+       name: demo-sa
+       namespace: default
+   ```
+   ```
+    -- create cluster role bindings jane-cluster-role-binding.yaml
+    $ kubectl create -f jane-role-binding.yaml
+    
+    -- get all clusterrolebindings
+    $ kubectl get clusterrolebindings
+   ```
    
    #### Command References
    ```bash
+   -- crate serviceaccount named as jenkins
+   $ kubectl create sa jenkins
+
+   -- view config using by kubectl
+   $ kubectl config view
+
+   -- set new credentials for cluster
+   $ kubectl config set-credentials chad --username=chad --password=password
+
+   -- create a new cluster role bindings for anonymous users
+   $ kubectl create clusterrolebindings cluster-system-anonymous --cluster-role=cluster-admin --user=system:anonymous
+
+   -- set the new cluster info for remote workstation
+   $ kubectl config set-credentials kubernetes --server=https://172.31.41.61:6443 --certificate-authority=ca.crt --embed-cert=true
+
+   -- use configured context
+   $ kubectl config use-context kubernetes
    ``` 
 
    #### References and Further Study
