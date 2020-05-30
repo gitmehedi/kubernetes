@@ -772,7 +772,6 @@ interfaces
    * [IP Command](https://access.redhat.com/sites/default/files/attachments/rh_ip_command_cheatsheet_1214_jcs_print.pdf)
   
    
-   
    #### Network Namespace
    
    Create network namespaces  
@@ -1792,6 +1791,7 @@ Kubernetes provides additional support to check the health of applications runni
    #### References and Further Study
    * https://medium.com/better-programming/k8s-tips-using-a-serviceaccount-801c433d0023
    * https://thenewstack.io/kubernetes-access-control-exploring-service-accounts/
+   * [Imperative Command](#kubernetes-imperative-commands)
    
    ### Configure Authentication and Authorization
    There are two types of account interact with kubernetes cluster.
@@ -1859,11 +1859,8 @@ Kubernetes provides additional support to check the health of applications runni
   ```
    
    * Identity Services (LDAP, etc)
+   Identity services is not included in here.
    
-   #### Command References
-   ```bash
-   ``` 
-
    #### References and Further Study
    * https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/
    
@@ -2578,10 +2575,10 @@ $ kubectl create clusterrolebinding <choose-a-name> --clusterrole=cluster-admin 
 
 -- create serviceAccount
 $ kubectl create serviceaccount my-service-account
-
--- 
 ```
-
+#### References
+* https://kubectl.docs.kubernetes.io/pages/imperative_porcelain/creating_resources.html
+* https://kubernetes.io/docs/tasks/manage-kubernetes-objects/imperative-command/
 ### Namespace
 
 ```bash
