@@ -77,7 +77,7 @@ Table of Contents
    * [Kubectl Options](#kubectl-options)
    * [ETCD Server Commands](#etcd-server-commands)
    * [Firewall Related Commands](#firewall-related-commands)
-   * [Kubectl Imperative Commands ](#kubectl-imperative-commands)
+   * [Kubernetes Imperative Commands ](#kubernetes-imperative-commands)
    * [Namespace](#namespace)
    * [Kubernetes Configuration Directory Architecture](#kubernetes-configuration-directory-architecture)
 
