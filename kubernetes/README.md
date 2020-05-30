@@ -1589,7 +1589,26 @@ Kubernetes provides additional support to check the health of applications runni
    ### Security Primitives
    Object are important in security primitives
    ![Service Account Architecture](./image/service-account.png)
-   * ServiceAccount
+   
+   * ServiceAccounts  
+   A ServiceAccount is a kubernetes object which used by other processes, services or application when try to access to the cluster or communicate with the api-server.
+   Example: Try to access api-server from a container within a pod.    
+   
+   When a serviceAccount creates following task happens
+   1. Creates a serviceaccount object.
+   2. Creates a token for the serviceaccount
+   3. Creates a secret object and stores that token inside secret object and also token will linked to serviceaccount.
+   ```
+   -- create serviceaccount
+   $ kubectl create sa demo-sa
+
+   -- get details of serviceaccount
+   $ kubectl describe sa demo-sa
+
+   -- 
+   ```
+   Tips:  
+   Every namespaces has a default servicesaccount. When a pod try to communicate with the api-server, pod uses this serviceaccounts secret token.
    
    * Role
    * RoleBindings
@@ -1606,6 +1625,34 @@ Kubernetes provides additional support to check the health of applications runni
    * https://thenewstack.io/kubernetes-access-control-exploring-service-accounts/
    
    ### Configure Authentication and Authorization
+   There are two types of account interact with kubernetes cluster.
+   * Users Account (Admin/Developer)
+   * ServiceAccounts (Bots)
+   
+   #### Authentication
+   When a user try to accesses the cluster. It need to first access in kube-apiserver. Kube-apiserver authenticate a user by 
+   * Static Password File 
+   Add a csv file with columns like username, password, groups. Not recommended ways.
+   ```
+   -- add user-details.csv in api-server.yaml or api-server.service
+   - --basic-auth-file=user-details.csv
+
+   --verify user
+   $ curl -v -k https://master-node-ip:6443/api/v1/pods -u "user1:password123"
+   ```
+   * Static Token File
+   Same as Static Password file except password replace by a token. Not recommended ways.
+   ```
+   -- add user-token-details.csv in api-server.yaml or api-server.service
+   - --token-auth-file=user-token-details.csv
+
+   --verify user
+   $ curl -v -k https://master-node-ip:6443/api/v1/pods --header "Authorization: Bearer <base64 token>"
+   ```
+   
+   * Certificates
+   * Identity Services (LDAP, etc)
+   
    #### Command References
    ```bash
    ``` 
