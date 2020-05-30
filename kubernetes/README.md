@@ -1605,6 +1605,9 @@ Kubernetes provides additional support to check the health of applications runni
    -- get details of serviceaccount
    $ kubectl describe sa demo-sa
 
+   -- get token details in secret
+   $ kubectl describe secret demo-sa-token
+
    -- 
    ```
    Tips:  
@@ -1615,6 +1618,25 @@ Kubernetes provides additional support to check the health of applications runni
    * ClusterRole
    * ClusterRoleBindings
    * Secret
+   * API Groups
+   There are 2 types of API Group
+   1. Core
+        1. api (api groups)
+            * v1 (resources version)
+                * pod (verbs: list,create,edit etc)
+                * node (verbs: list,create,edit etc)
+   2. Named 
+        * apis (api groups)
+            * v1 (resources version)
+                * deployments (verbs: list,create,edit etc)
+                * replicasets (verbs: list,create,edit etc)
+                * statefullset (verbs: list,create,edit etc)
+        * extensions
+        * networking.k8.io
+        * storage.k8.io
+        * authentication.k8.io
+        * certificates.k8.io
+        
    
    #### Command References
    ```bash
@@ -1651,6 +1673,44 @@ Kubernetes provides additional support to check the health of applications runni
    ```
    
    * Certificates
+   Kubernetes has a builtin certificate signing API which automatically creates certificate for users. 
+   **Steps**
+   1. Create CertificateSigningRequest Object.
+   2. Review Requests
+   3. Approve Requests
+   3. Share Certs to Users
+   
+   ```
+   -- 1. create a jane.key for a user name jane
+   $ openssl genrsa -out jane.key 2048 
+
+   -- 2. send requst to administrator using a generated csr
+   $ openssl req -new -key jane.key -subj "/CN=jane" -out jane.csr
+
+   -- create CertificateSigningRequest object using csr. encode jane.csr using base64 first.
+   apiVersion: certificates.k8s.io/v1beta1
+   kind: CertificateSigningRequest
+   metadata:
+    name: jane
+   spec:
+    groups:
+    - system:authenticated
+    usages:
+    - digital signature
+    - key encipherment
+    - server auth
+    request: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2VUQ0NBV0VDQVFBd0ZqRVVNQklHQTFVRUF4TUxhblZoYmk1bGJtTnBjMjh3Z2dFaU1BMEdDU3FHU0liMwpEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUNXamNRdDA5WWdIbTVjaER1N2JmVFBUMyttWTZ2bkRSN1ZFTm9tCmpNWkNCVkprRVl1OGt6ZWRqZldiNHdHUXNnZG9YMWxkbGZ0UERRV2xKTHhRanVScURCVjVtZkJ3bnpBamljM2QKQTFlcC9GeHV5YTRFVmRyK0kyWEJ3cGhWRlY0cXFTR0NNWjNIK0FDRFhCaWxkR1p2UTBqMFVlYThMcUJNWExkMAp2dWJWemt6YndCZmJQOFpuSHVqVVdWVjl0bmsxMnpHRXRXOFl3VkZ5SzdzUzdOK3J2RjJpR2FqOUhFTXJoNXRoCk1vVzBzMFdhZEhxWVlIUDF2TDN1b2hRZGRScWxtUFFrRTNLdkN4ZlJPTXBUeVVIL1BpMGVGRGMzekZwVWpwTFIKM3k0T3RIS2w3SG1XM3E4RDdENlVpNEp5OUNjRmUreFNHSlkyejZtajN2Q3I2amMxQWdNQkFBR2dIakFjQmdrcQpoa2lHOXcwQkNRNHhEekFOTUFzR0ExVWRFUVFFTUFLQ0FEQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFBOEdXCnprTTg3a3lYTHdLcTlkcTdFOWNMTUh1SmoyelJKQnNCNzJnd1NvNVVDS1VjYWowblhEMVdKQXhXcllHZVB1SVUKemdqTFpsc1VNWGJ1SEtJTENqaUY1Q0JZVUtPTFdTRmNqNUlreU1hTU9ZdmQ0eHBYdkNOTzRVbWlxSktUYXZiMQplWG9ZZGQ0NzQxRW5qNG5vV0tveDNsSVVQM1VjcVhBa05sZDJaNHpDK2Zqbk9uSWFuaUQ3c0xJWXFIOG9WSXZNClA3dnRjUjJZVUp2bzlzVUdBOEdyYkhJWUFRVmlycTZ1ZkdpNUttb29VQ2hHbmtmQkJ2LytpZ1VlRlowTjkrT0MKNzFTSllMQjFGM3d2eDdvS25XN2pKdU1SdTkvNmJMUzRKK1ZjNTJsRk9YUWhjc29jYVdmU3lUbVJETDAvejcwNAoxcllhMFNMTldaN3pSbU5Hcnc9PQotLS0tLUVORCBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0K
+   
+   -- get all csr
+   $ kubectl get csr
+
+   -- approve request 
+   $ kubectl certificate approve jane
+
+   -- get certificate and decode it using base64 ans share it with user.
+   $ kubectl get csr jane -o yaml
+  ```
+   
    * Identity Services (LDAP, etc)
    
    #### Command References
@@ -1658,7 +1718,7 @@ Kubernetes provides additional support to check the health of applications runni
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/
    
    ### Configure Network Policies
    #### Command References
