@@ -1868,6 +1868,12 @@ Kubernetes provides additional support to check the health of applications runni
    1. Ingress Traffic: Comes inside from other resources
    2. Egress Traffic: Goes outside to other resources 
    
+   All CNI plugins does not support network policies. Some of the supported CNI are
+   1. kube-router
+   2. Calico
+   3. Romana
+   4. weave-net
+   
    For network policy, use pod selector like services, deployments, replicaset.
    NetworkPolicy definition file
    
@@ -1907,6 +1913,7 @@ Kubernetes provides additional support to check the health of applications runni
         - protocol: TCP
           port: 5978
    ```
+   
    #### Command References
    ```bash
    -- create newtowk policy
@@ -1928,29 +1935,83 @@ Kubernetes provides additional support to check the health of applications runni
    * 
    
    ### Image Security
+   Image path defines in pod or deployment mainly a short form of images
+   Fully qualified image path looks like  
+   ```image: docker.io/nginx/nginx```
+   
+   If we breakdown this image we will find out  
+   
+   |docker.io  |    nginx     |        nginx     |
+   |-----------|--------------|----------------- |
+   | Repository| User Account | Image Repository |
+   
+   #### Private Repository
+   To set a private repository image as a container image, following steps need to follow
+   1. Create a secret for the image.
+   2. Configure in POD
+   
+   * Create a secret   
+   Create a secret for the image using imperative way
+   ```
+   -- create image
+   $ kubectl create secret docker-registry acr --docker-server=https://podofminerva.acr.io --docker-username=username --docker-password=uiwuwXd23 --docker-email=demo@gmail.com
+   ```
+
+   * Configure in POD
+   ```
+   -- add new attribute
+   imagePullSecret:
+   - name: acr
+   ``` 
+
    #### Command References
    ```bash
+   -- login to docker
+   $ docker login private-registry.io
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/concepts/containers/images/
    
    ### Security Contexts
+   A security context defines the operating system security settings (uid, gid, capabilities, SELinux role, etc..) applied to a container.
+   
+   ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: security-context-demo
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      volumes:
+      - name: sec-ctx-vol
+        emptyDir: {}
+      containers:
+      - name: sec-ctx-demo
+        image: busybox
+        command: [ "sh", "-c", "sleep 1h" ]
+        volumeMounts:
+        - name: sec-ctx-vol
+          mountPath: /data/demo
+        securityContext:
+          capabilities:
+            add: ["NET_ADMIN", "SYS_TIME"]
+   ```
    #### Command References
    ```bash
+   -- list security context
+   $ kubectl get securitycontext
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+   * https://unofficial-kubernetes.readthedocs.io/en/latest/concepts/policy/security-context/
    
    ### Persistent Key Value Stores
-   #### Command References
-   ```bash
-   ``` 
-
-   #### References and Further Study
-   * 
-   
+   For persistent key value stores see section [Installation](#chapter-2-install-config-and-validate-12) 
    
 ## Chapter 9: Log and Monitor (5%)
    ### Monitor All Cluster Component
