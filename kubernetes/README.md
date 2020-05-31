@@ -4,7 +4,7 @@
 Table of Contents
 ==================
 * [Document History](#document-history)
-* [Chapter 1: Core Concepts  (19%)](#chapter-1-core-concepts-19)
+* [Chapter 1: Core Concepts  (19%)](./pages/chapter-1-core-concepts-19)
    * [Cluster Architecture](#cluster-architecture)
    * [API Primitives](#api-primitives)
    * [Services and Network](#services-and-network)     
