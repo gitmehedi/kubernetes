@@ -864,7 +864,7 @@ interfaces
    | 192.168.13.178 | 10.244.1.2    |
    
    
-   <img src="./image/service-type.png" width="500" height="500" align="center"/>
+   <img src="./image/service-type.png" width="600" height="400" align="center"/>
    
    * ClusterIP:  
    To make a POD accessible for all POD within the cluster create a service with type clusterIP.
