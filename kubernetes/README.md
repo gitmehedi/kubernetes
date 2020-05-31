@@ -856,6 +856,7 @@ interfaces
    
    
    ### Service Networking Concepts
+   
    To make a POD accessible create a service for that POD. Service is actually create a forwarding rule in each node  
    
    | IP Address     | Forward To    |
@@ -863,24 +864,91 @@ interfaces
    | 192.168.13.178 | 10.244.1.2    |
    
    
-   ##### ClusterIP: 
+   ![Service](./image/service-type.png)
+   
+   * ClusterIP:  
    To make a POD accessible for all POD within the cluster create a service with type clusterIP.
-   ##### NodePort:
-   When a POD is needed to access by outside of the cluster then it's called nodePort.
-   ##### LoadBalancer:
+   Create a ClusterIP from a file ```cluster-ip.yaml```   
+
+   ```
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: my-service
+    spec:
+      type: ClusterIP
+      selector:
+        app: MyApp
+      ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 9376
+   ```
+
+   ```
+   -- create a service from a yaml defination file
+   $ kubectl create -f cluster-ip.yaml
+
+   -- create clusterip for a pod nginx
+   $ kubectl expose pod nginx --name nginx-service --type=ClusterIP --port=80 --target-port=80 --protocol=TCP 
+   ```
+
+   * NodePort:  
+   When a POD is needed to access by outside of the cluster then it's called nodePort.  
+   Create a NodePort from a file ```nodeport-ip.yaml```   
+
+   ```
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: my-nodeport
+    spec:
+      type: NodePort
+      selector:
+        app: MyApp
+      ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 9376
+          nodePort: 32212
+   ```
+
+   ```
+   -- create a service from a yaml defination file
+   $ kubectl create -f nodeport-ip.yaml
+
+   -- create clusterip for a pod nginx
+   $ kubectl expose pod nginx --name nginx-service --type=NodePort --port=80 --target-port=80 --protocol=TCP 
+   ```
+
+   * LoadBalancer:  
    When a POD is needed to access by outside of the cluster then it's called nodePort.
    
-   Marjor Terms:  
+   #### Marjor Terms:  
    * Kube-proxy
    * iptables
    * ipvs
    
    #### Command References
-   ```bash
-    
+   ```
+   -- view iptable rules
+   $ sudo iptables-save | grep KUBE | grep nginx
+
+   -- get iptables rules created by a service named db-service
+   $ iptables -L -t net | grep db-service
+
+   -- get details of kube-proxy in logs
+   $ cat /var/log/kube-proxy.log
    ``` 
 
+   #### Tips
+   * With each service, a endpoint is created if define a selector in each service.
+   * If selector not define in service then create a endpoint manually.
+   * When a service created kube-proxy updates the iptables rules. See below image.
+   ![IP TABLES RULE](./image/ip-tables-rules.png)
+   
    #### References and Further Study
+   * https://kubernetes.io/docs/concepts/services-networking/service/
    * https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
    
    
@@ -933,7 +1001,7 @@ interfaces
    ``` 
 
    #### References and Further Study
-   
+   * https://kubernetes.io/docs/concepts/services-networking/ingress/
    
    ### Cluster DNS Configure
    Fully qualified domain name
@@ -945,11 +1013,31 @@ interfaces
    
    #### Command References
    ```bash
-    
+   -- view CoreDNS pods
+   $ kubectl get pods -n kube-system
+
+   -- view CoreDNS deployments
+   $ kubectl get deploy -n kube-system
+
+   -- view CoreDNS services
+   $ kubectl get services -n kube-system
+
+   -- view pod's resolv.conf file
+   $ kubectl exec -it nginx -- cat /etc/resolv.conf
+
+   -- loopup the kubernetes serviceDNS
+   $ kubectl exec -it nginx -- nslookup kubernetes
+
+   -- look up the kubernetes pod DNS
+   $ kubectl exec -it busybox --nslookup 10-244--1-2.default.pod.cluster.local
+
+   -- get the logs for CoreDNS errors
+   $ kubectl logs [core_dns_pods]
    ``` 
 
    #### References and Further Study
-   
+   * https://kubernetes.io/blog/2018/07/10/coredns-ga-for-kubernetes-cluster-dns/
+   * https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/
    
    
 ## Chapter 5: Scheduling (5%)
