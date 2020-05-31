@@ -953,13 +953,11 @@ interfaces
    
    
    ### Container Network Interface (CNI)
-   #### Command References
-   ```bash
-    
-   ``` 
-
-   #### References and Further Study
+   A CNI goes on top of existing network and allowing to build a tunnel between nodes.
+   ![CNI](./image/cni.png)
    
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/
    
    ### Load Balancer Configure and Deploy
    #### Command References
@@ -973,11 +971,13 @@ interfaces
    ### Ingress Rules Configure
    Ingress is a layer 7 load balancer built-in with kubernetes which implement SSL.
    Ingress need services to communicate with outer world.  
+   
    Two major component in Ingress  
    ```
    1. Ingress Controller
    2. Ingress Resources   
    ```
+
    #### Ingress Controller
    Ingress Controller is not default in kubernetes. It need to configure manually.  
    Steps:  
@@ -987,17 +987,19 @@ interfaces
    * Create an Auth Object.
    
    #### Ingress Resources
-   Ingress Resource creates in kubenetes definition file ```ingress-wear.yaml```.
+   Ingress Resource creates in kubernetes definition file ```ingress-wear.yaml```.
    Traffic goes based on 
    ```
    1. Route
    2. Domain Name
    ```
+
    Ingress Resource Rules:
    
    #### Command References
    ```bash
-    
+    -- create ingress resource rules
+    $ 
    ``` 
 
    #### References and Further Study
