@@ -956,7 +956,7 @@ interfaces
    ### Container Network Interface (CNI)
    A CNI goes on top of existing network and allowing to build a tunnel between nodes.
    
-   <img src="./image/cni.png" height="400" align="center"/>
+   <img src="./image/cni.png" height="300" align="center"/>
    
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/
