@@ -1165,23 +1165,40 @@ interfaces
    #### References and Further Study
    
    ### Scheduler Events
+   Problem with scheduler events can be identified in the following ways
+   1. At the POD level
+   1. At the Event level
+   1. At the Log level
    
    #### Command References
-   ```bash
-    
+   ```
+    -- get the scheduler pod name
+    $ kubectl get pods -n kube-system
+
+    -- get events for default namespaces
+    $ kubectl get events
+
+    -- get events for kube-system namespaces
+    $ kubectl get events -n kube-system
+
+    -- watch the events in real time
+    $ kubectl get events -w
+
+    -- delete all pods in default namespaces
+    $ kubectl delete pod --all
+
+    -- view the log output from scheduler pod
+    $ kubectl log <scheduler_pod_name> -n kube-system
+
    ``` 
 
    #### References and Further Study
+   * https://kubernetes.io/docs/tasks/debug-application-cluster/
    
    ### Configure Kubernetes Scheduler
-   
-   #### Command References
-   ```bash
-    
-   ``` 
 
    #### References and Further Study
-
+   * https://kubernetes.io/docs/tasks/debug-application-cluster/
 
 ## Chapter 6: Application Lifecycle (8%)
    ### Application with Rolling Updates and Rollback
