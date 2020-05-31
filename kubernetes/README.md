@@ -1694,7 +1694,7 @@ Kubernetes provides additional support to check the health of applications runni
 ## Chapter 8: Security (12%)
    ### Security Primitives
    Object are important in security primitives
-   ![Service Account Architecture](./image/service-account.png)
+   ![](./image/service-account.png =100*)
    
    * ServiceAccounts  
    A ServiceAccount is a kubernetes object which used by other processes, services or application when try to access to the cluster or communicate with the api-server.
