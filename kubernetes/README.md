@@ -2940,3 +2940,9 @@ size of the object
   -t, --tty=false: Allocated a TTY for each container in the pod.
       --wait=false: If true, wait for resources to be gone before returning. This waits for finalizers.
 ```
+
+## Questions ans Preparation
+
+#### Dumps
+* https://medium.com/@sensri108/practice-examples-dumps-tips-for-cka-ckad-certified-kubernetes-administrator-exam-by-cncf-4826233ccc27
+* https://killer.sh/course/preview/052229bd-1062-44a4-8aae-f50d0770165a
