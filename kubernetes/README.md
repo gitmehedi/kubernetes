@@ -946,7 +946,7 @@ interfaces
    * If selector not define in service then create a endpoint manually.
    * When a service created kube-proxy updates the iptables rules. See below image.
    
-   <img src="./image/ip-tables-rules.png" height="400" align="center"/>
+   <img src="./image/ip-tables-rules.png" height="400" text-align="center"/>
    
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/services-networking/service/
