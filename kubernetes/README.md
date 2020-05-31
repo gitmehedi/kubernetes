@@ -945,7 +945,8 @@ interfaces
    * With each service, a endpoint is created if define a selector in each service.
    * If selector not define in service then create a endpoint manually.
    * When a service created kube-proxy updates the iptables rules. See below image.
-   ![IP TABLES RULE](./image/ip-tables-rules.png)
+   
+   <img src="./image/ip-tables-rules.png" height="400" align="center"/>
    
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/services-networking/service/
@@ -954,7 +955,8 @@ interfaces
    
    ### Container Network Interface (CNI)
    A CNI goes on top of existing network and allowing to build a tunnel between nodes.
-   ![CNI](./image/cni.png)
+   
+   <img src="./image/cni.png" height="400" align="center"/>
    
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/
