@@ -2240,7 +2240,7 @@ Kubernetes provides additional support to check the health of applications runni
    
    Consider a 2-tier application for figuring out application failure. Look through below image 
    
-   <p align="center"><img src="./image/application_failure.png" height="300"/></p>
+   <p align="center"><img src="./image/application_failure.png" width="600" height="400"/></p>
    
    #### Components:
    * NodePort
