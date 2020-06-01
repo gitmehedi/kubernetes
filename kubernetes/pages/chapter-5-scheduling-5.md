@@ -1,6 +1,7 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-[Chapter 5: Scheduling (5%)](pages/chapter-5-scheduling-5.md)
+# Chapter 5: Scheduling (5%)
    * [Kubernetes Labels and Selectors to Schedule Pods](#kubernetes-labels-and-selectors-to-schedule-pods)
    * [Role of DaemonSets](#role-of-daemonsets)
    * [Resource Limits and Labels in Pods Scheduling](#resource-limits-and-labels-in-pods-scheduling)
@@ -8,7 +9,7 @@
    * [Manually Schedule a Pods](#manually-schedule-a-pods)
    * [Scheduler Events](#scheduler-events)
    * [Configure Kubernetes Scheduler](#configure-kubernetes-scheduler)
-   
+
    
 ## Chapter 5: Scheduling (5%)
    The default scheduler goes through a series of steps to determine the right node for the pod. 
