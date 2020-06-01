@@ -1,13 +1,9 @@
-
-* [Chapter 10: Troubleshooting (10%)](pages/chapter-10-troubleshooting-10.md)
+[<- Back to Table of Contents](../README.md)
+[Chapter 10: Troubleshooting (10%)](pages/chapter-10-troubleshooting-10.md)
    * [Application Failure](#application-failure)
    * [Control Plane Failure](#control-place-failure)
    * [Worker Node Failure](#worker-node-failure)
    * [Network Failure](#network-failure)
-
-
-
-
 
 
 ## Chapter 10: Troubleshooting (10%)
@@ -273,3 +269,5 @@
 
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+ 
+[<- Back to Table of Contents](../README.md)

@@ -1,12 +1,11 @@
-* [Chapter 6: Application Lifecycle (8%)](pages/chapter-6-application-lifecycle-8.md)
+[<- Back to Table of Contents](../README.md)
+
+[Chapter 6: Application Lifecycle (8%)](pages/chapter-6-application-lifecycle-8.md)
    * [Deploying an Application with Rolling Updates and Rollback](#deploying-an-application-with-rolling-updates-and-rollback)
    * [Configure Highly Available Application](#configure-highly-available-application)
    * [Scale Applications](#scale-applications)
    * [Manage Self-Healing Application](#manage-self-healing-application)
-
-
-
-
+   
 
 ## Chapter 6: Application Lifecycle (8%)
    ### Application with Rolling Updates and Rollback
@@ -396,3 +395,5 @@ Kubernetes provides additional support to check the health of applications runni
    * 
    
   
+  
+[<- Back to Table of Contents](../README.md)

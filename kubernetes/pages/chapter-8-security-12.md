@@ -1,14 +1,12 @@
-* [Chapter 8: Security (12%)](pages/chapter-8-security-12.md)
+[<- Back to Table of Contents](../README.md)
+
+[Chapter 8: Security (12%)](pages/chapter-8-security-12.md)
    * [Security Primitives](#security-primitives)
    * [Configure Authentication and Authorization](#configure-authenticatation-and-authorization)
    * [Configure Network Policies](#configure-network-policies)
    * [Manage TLS Certificate for Cluster](#manage-tls-certificate-for-cluster)
    * [Image Security](#image-security)
    * [Persistent Key Value Stores](#persistent-key-value-stores)
-
-
-
-
 
 ## Chapter 8: Security (12%)
    ### Security Primitives
@@ -438,4 +436,5 @@
    
    ### Persistent Key Value Stores
    For persistent key value stores see section [Installation](#chapter-2-install-config-and-validate-12) 
-   
+
+[<- Back to Table of Contents](../README.md)

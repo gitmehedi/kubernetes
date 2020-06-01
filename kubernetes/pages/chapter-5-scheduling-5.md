@@ -1,4 +1,6 @@
-* [Chapter 5: Scheduling (5%)](pages/chapter-5-scheduling-5.md)
+[<- Back to Table of Contents](../README.md)
+
+[Chapter 5: Scheduling (5%)](pages/chapter-5-scheduling-5.md)
    * [Kubernetes Labels and Selectors to Schedule Pods](#kubernetes-labels-and-selectors-to-schedule-pods)
    * [Role of DaemonSets](#role-of-daemonsets)
    * [Resource Limits and Labels in Pods Scheduling](#resource-limits-and-labels-in-pods-scheduling)
@@ -165,3 +167,5 @@
 
    #### References and Further Study
    * https://kubernetes.io/docs/tasks/debug-application-cluster/
+   
+[<- Back to Table of Contents](../README.md)

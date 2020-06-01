@@ -1,3 +1,4 @@
+[<- Back to Table of Contents](../README.md)
 
 * [Chapter 7: Storage (7%)](pages/chapter-7-storage-7.md)
    * [Manage Persistent Volume](#manage-persistent-volume)
@@ -5,8 +6,6 @@
    * [Manage Persistent Volume Claims](#manage-persistent-volume-claims)
    * [Manage Storage Objects](#manage-storage-objects)
    * [Configure Application with Storage](#configure-application-with-storage)
-
-
 
 
 ## Chapter 7: Storage (7%)
@@ -112,3 +111,5 @@
    #### References and Further Study
    * 
   
+
+[<- Back to Table of Contents](../README.md)
