@@ -272,4 +272,4 @@ Table of Contents
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
  
-[<- Back to Table of Contents](../README.md)
+[Back to Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)        

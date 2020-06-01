@@ -92,6 +92,10 @@ Document History:
 
 * https://kubernetes.io/docs/reference/kubectl/overview/
 * https://v1-17.docs.kubernetes.io/docs/reference/kubectl/conventions/#generators
+* https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+* https://github.com/dennyzhang/cheatsheet-kubernetes-A4
+* https://cheatsheet.dennyzhang.com/cheatsheet-kubernetes-A4
+* https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
 
 ### Kubernetes Primary Commands
 ```
