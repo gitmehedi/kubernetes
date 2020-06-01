@@ -1,13 +1,14 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-[Chapter 6: Application Lifecycle (8%)](pages/chapter-6-application-lifecycle-8.md)
+# Chapter 6: Application Lifecycle (8%)
    * [Deploying an Application with Rolling Updates and Rollback](#deploying-an-application-with-rolling-updates-and-rollback)
    * [Configure Highly Available Application](#configure-highly-available-application)
    * [Scale Applications](#scale-applications)
    * [Manage Self-Healing Application](#manage-self-healing-application)
    
 
-## Chapter 6: Application Lifecycle (8%)
+## Application Lifecycle
    ### Application with Rolling Updates and Rollback
    There are application upgrading strategies
    * **Rolling Update**: It's a default strategy. Create new pod with latest version one by one and down previous pod with last version one by one

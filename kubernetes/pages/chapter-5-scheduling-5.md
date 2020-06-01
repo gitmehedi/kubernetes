@@ -11,7 +11,7 @@ Table of Contents
    * [Configure Kubernetes Scheduler](#configure-kubernetes-scheduler)
 
    
-## Chapter 5: Scheduling (5%)
+## Scheduling
    The default scheduler goes through a series of steps to determine the right node for the pod. 
    1. Is the node running out of resources?
    2. Does the pods request a specific node?

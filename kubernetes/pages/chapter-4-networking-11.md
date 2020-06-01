@@ -1,6 +1,7 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-[Chapter 4: Networking (11%)](pages/chapter-4-networking-11.md)
+# Chapter 4: Networking (11%)
    * [Node Networking Concepts](#node-networking-concepts) 
    * [Pod Networking Concepts](#pod-networking-concepts) 
    * [Service Networking Concepts](#service-networking-concepts) 
@@ -9,7 +10,7 @@
    * [Ingress Rules Configure](#ingress-rules-configure) 
    * [Cluster DNS Configure](#cluster-dns-configure) 
 
-## Chapter 4: Networking (11%)
+## Networking
    ### Network Pre-requisite
    
    #### Command References

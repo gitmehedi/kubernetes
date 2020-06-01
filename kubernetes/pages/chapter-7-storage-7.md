@@ -1,6 +1,7 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-* [Chapter 7: Storage (7%)](pages/chapter-7-storage-7.md)
+# Chapter 7: Storage (7%)
    * [Manage Persistent Volume](#manage-persistent-volume)
    * [Volume Access Modes](#volume-access-modes)
    * [Manage Persistent Volume Claims](#manage-persistent-volume-claims)
@@ -8,7 +9,7 @@
    * [Configure Application with Storage](#configure-application-with-storage)
 
 
-## Chapter 7: Storage (7%)
+## Storage
    ### Manage Persistent Volume
    #### Command References
    ```bash

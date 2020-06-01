@@ -1,13 +1,14 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-[Chapter 3: Cluster (11%)](#chapter-3-cluster-11)
+# Chapter 3: Cluster (11%)
    * [Cluster Upgrade Process](#cluster-upgrade-process)
    * [Operating System Upgrades](#operating-system-upgrades)
    * [Backup and Restore Methodologies](#backup-and-restore-methodologies)
    
    
 
-## Chapter 3: Cluster (11%)
+## Cluster
    ### Cluster Upgrade Process
    kubeadm allows to upgrade cluster components in proper order from one version to another once at a time. 
    

@@ -1,12 +1,14 @@
-[<- Back to Table of Contents](../README.md)
-[Chapter 10: Troubleshooting (10%)](pages/chapter-10-troubleshooting-10.md)
+Table of Contents
+==================
+
+# Chapter 10: Troubleshooting (10%)
    * [Application Failure](#application-failure)
    * [Control Plane Failure](#control-place-failure)
    * [Worker Node Failure](#worker-node-failure)
    * [Network Failure](#network-failure)
 
 
-## Chapter 10: Troubleshooting (10%)
+## Troubleshooting
    ### Application Failure
    Following error exception will raise with POD
    * AppCommErr

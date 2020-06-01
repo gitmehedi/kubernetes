@@ -1,13 +1,14 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-[Chapter 9: Log and Monitor (5%)](pages/chapter-9-log-and-monitor-5.md)
+# Chapter 9: Log and Monitor (5%)
    * [Monitor All Cluster Component](#monitor-all-cluster-component)
    * [Monitor Applications](#monitor-applications)
    * [Cluster Component Logs](#cluster-component-logs)
    * [Manage Application Logs](#manage-application-logs)
 
 
-## Chapter 9: Log and Monitor (5%)
+## Log and Monitor
    ### Monitor All Cluster Component
    The Metrix server allows to collect CPU and memory data from the nodes and pods in the cluster. Install metrix server
    ```

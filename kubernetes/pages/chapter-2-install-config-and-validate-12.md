@@ -1,6 +1,7 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-* [Chapter 2: Install, Config and Validate (12%)](pages/chapter-2-install-config-and-validate-12.md)
+# Chapter 2: Install, Config and Validate (12%)
    * [Binaries/Provision/Types](#binariesprovisiontypes)
    * [Installing Master and Nodes](#installing-master-and-nodes)
    * [Highly Available Cluster](#highly-available-cluster)
@@ -8,7 +9,7 @@
    * [End-to-End Tests](#end-to-end-tests)
    
    
-## Chapter 2: Install, Config and Validate (12%)
+## Install, Config and Validate
    ### Binaries/Provision/Types
    
    #### Command References

@@ -1,12 +1,14 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-[Chapter 1: Core Concepts  (19%)](#chapter-1-core-concepts-19)
+# Chapter 1: Core Concepts  (19%)
    * [Cluster Architecture](#cluster-architecture)
    * [API Primitives](#api-primitives)
    * [Services and Network](#services-and-network)     
    
    
-## Chapter 1: Core Concepts (19%) 
+## Core Concepts
+
    ### Cluster Architecture
    In kubernetes cluster there are two main component
    ```bash

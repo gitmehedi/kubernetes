@@ -1,6 +1,7 @@
-[<- Back to Table of Contents](../README.md)
+Table of Contents
+==================
 
-[Chapter 8: Security (12%)](pages/chapter-8-security-12.md)
+# Chapter 8: Security (12%)
    * [Security Primitives](#security-primitives)
    * [Configure Authentication and Authorization](#configure-authenticatation-and-authorization)
    * [Configure Network Policies](#configure-network-policies)
@@ -8,7 +9,7 @@
    * [Image Security](#image-security)
    * [Persistent Key Value Stores](#persistent-key-value-stores)
 
-## Chapter 8: Security (12%)
+## Security
    ### Security Primitives
    Object are important in security primitives
    <img src="./image/service-account.png" width="1000" align="center"/>
