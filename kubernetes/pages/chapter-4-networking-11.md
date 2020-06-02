@@ -347,7 +347,7 @@ Table of Contents
    #### Ingress Resources
    Ingress resource is set of rules which direct traffic to appropriate url direction.
    
-   <p align="centre"><img src="./image/ingress-resources.png" height="400"/></p>
+   <img src="./image/ingress-resources.png" height="50%" align="centre"/>
    
    Ingress resources are created using kubernetes definition file.
    Ingress Resource creates in kubernetes definition file ```ingress-wear.yaml```.
