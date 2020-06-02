@@ -254,14 +254,96 @@ Table of Contents
    ```
 
    #### Ingress Controller
+   Ingress Controller is a reverse-proxy type software like nginx, haproxy, traefik.
    Ingress Controller is not default in kubernetes. It need to configure manually.  
-   Steps:  
-   * Create a NGINX Deployment.
-   * Create an Config Object.
-   * Create an Service Account.
+   supported ingress controller software package are 
+   * GCP HTTP(S) Load Balancer (GCE)
+   * NGINX
+   
+   
+   Steps for Ingress Controller :  
+   * Create ingress controller deployment  
+   Ingress Controller is created using deployment in kubernetes like other resources.
+   ```
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+      name: nginx-ingress-controller
+      labels:
+        app: nginx
+   spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: nginx-ingress
+      template:
+        metadata:
+          labels:
+            app: nginx-ingress
+        spec:
+          containers:
+          - name: nginx-ingress-controller
+            image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0
+          args:
+          - /nginx-ingress-controller
+          - --configmap=$(POD_NAMESPACE)/nginx-configuration
+          env:
+          - name: POD_NAME
+            valueFrom:
+               fieldRef:
+                  fieldPath: metadata.name
+
+          - name: POD_NAMESPACE
+            valueFrom:
+               fieldRef:
+                  fieldPath: metadata.namespaces
+
+          ports:
+            - name: http
+              containerPort: 80
+            - name: https
+              containerPort: 443
+  ```
+   * Create a configMap object for nginx configuration value.
+   ```
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+      name: nginx-configuration
+   ```
+   * Create a service for exposing ingress controller to receive traffic.
+   ```
+   apiVersion: v1
+   kind: Service
+   metadata:
+      name: my-service
+   spec:
+      type: NodePort
+      selector:
+        app: nginx-ingress-controller
+      ports:
+        - name: http
+          protocol: TCP
+          port: 443
+          targetPort: 9376
+        - name: https
+          protocol: TCP
+          port: 443
+          targetPort: 9376
+   ```
+   
+   * Create an Service Account with proper auth permission and role binding.
+   ```
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+      name: nginx-ingress-serviceaccount
+   ```
    * Create an Auth Object.
    
    #### Ingress Resources
+   Ingress resource is set of rules which direct traffic to appropriate url direction.
+   Ingress resources are created using kubernetes definition file.
    Ingress Resource creates in kubernetes definition file ```ingress-wear.yaml```.
    Traffic goes based on 
    ```
