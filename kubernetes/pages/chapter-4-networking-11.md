@@ -16,7 +16,6 @@ Table of Contents
    #### Command References
    ```bash
     -- Manage and display the state of all network
-interfaces
     $ ip link
     $ ip link set em1 down
     $ ip link set em1 mtu 9000
@@ -41,6 +40,7 @@ interfaces
    #### References and Further Study
    * [IP Command](https://access.redhat.com/sites/default/files/attachments/rh_ip_command_cheatsheet_1214_jcs_print.pdf)
   
+   
    
    #### Network Namespace
    
@@ -96,6 +96,7 @@ interfaces
    $ iptable -t nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE
    ```
    
+   
    ### Node Networking Concepts
    For node networking  
    * Each node must have a Interface
@@ -117,13 +118,14 @@ interfaces
    * https://kubernetes.io/docs/concepts/cluster-administration/networking/
    
    ### Pod Networking Concepts
-   #### Command References
-   ```bash
-    
-   ``` 
+   Pod Networking Model
+   * Every POD should have an IP address
+   * Every POD should be able to communicate with every other POD in the same node.
+   * Every POD should be able to communicate with every other POD on other nodes without NAT.
+   
 
    #### References and Further Study
-   
+   * https://kubernetes.io/docs/concepts/cluster-administration/networking/
    
    ### Service Networking Concepts
    
@@ -135,6 +137,7 @@ interfaces
    
    
    <img src="./image/service-type.png" width="600" height="400" align="center"/>
+   
    
    * ClusterIP:  
    To make a POD accessible for all POD within the cluster create a service with type clusterIP.
@@ -299,7 +302,7 @@ interfaces
    -- view pod's resolv.conf file
    $ kubectl exec -it nginx -- cat /etc/resolv.conf
 
-   -- loopup the kubernetes serviceDNS
+   -- look up the kubernetes serviceDNS
    $ kubectl exec -it nginx -- nslookup kubernetes
 
    -- look up the kubernetes pod DNS
