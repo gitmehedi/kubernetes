@@ -243,9 +243,12 @@ Table of Contents
    #### References and Further Study
    
    
-   ### Ingress Rules Configure
+   ### Ingress 
    Ingress is a layer 7 load balancer built-in with kubernetes which implement SSL.
    Ingress need services to communicate with outer world.  
+   
+   <img src="./image/ingress.png" height="400" align="center"/>
+   
    
    Two major component in Ingress  
    ```
