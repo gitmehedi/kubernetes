@@ -247,8 +247,7 @@ Table of Contents
    Ingress is a layer 7 load balancer built-in with kubernetes which implement SSL.
    Ingress need services to communicate with outer world.  
    
-   <img src="./image/ingress.png" height="400" align="center"/>
-   
+   <p align="centre"><img src="./image/ingress.png" height="400"/></p>
    
    Two major component in Ingress  
    ```
@@ -259,14 +258,15 @@ Table of Contents
    #### Ingress Controller
    Ingress Controller is a reverse-proxy type software like nginx, haproxy, traefik.
    Ingress Controller is not default in kubernetes. It need to configure manually.  
-   supported ingress controller software package are 
+   
+   Supported ingress controller software package are 
    * GCP HTTP(S) Load Balancer (GCE)
    * NGINX
    
+   Steps for Ingress Controller Configuration:  
+   * Create ingress controller deployment   
+   Create a kubernetes deployment using nginx-ingress-controller image.
    
-   Steps for Ingress Controller :  
-   * Create ingress controller deployment  
-   Ingress Controller is created using deployment in kubernetes like other resources.
    ```
    apiVersion: apps/v1
    kind: Deployment
@@ -327,12 +327,12 @@ Table of Contents
       ports:
         - name: http
           protocol: TCP
-          port: 443
-          targetPort: 9376
+          port: 80
+          targetPort: 80
         - name: https
           protocol: TCP
           port: 443
-          targetPort: 9376
+          targetPort: 443
    ```
    
    * Create an Service Account with proper auth permission and role binding.
@@ -346,6 +346,9 @@ Table of Contents
    
    #### Ingress Resources
    Ingress resource is set of rules which direct traffic to appropriate url direction.
+   
+   <p align="centre"><img src="./image/ingress-resources.png" height="400"/></p>
+   
    Ingress resources are created using kubernetes definition file.
    Ingress Resource creates in kubernetes definition file ```ingress-wear.yaml```.
    Traffic goes based on 
