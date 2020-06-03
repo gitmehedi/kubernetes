@@ -157,7 +157,7 @@ Table of Contents
   * https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#container-v1-core
    
   ### Services and Network
-    > Understand Services and other network primitives
+  Service and networking are important topics in kubernetes.
     
   #### Services
   
@@ -165,9 +165,11 @@ Table of Contents
   
   #### Kubernetes Command
   There are two ways to create resources in a Kubernetes cluster: the imperative and the declarative ones.  
+  
   1. **Declarative**: The declarative approach is used to create resources from manifest files (usually in YAML) using the kubectl apply command. 
   This is the approach used in a production environment.  
   ```kubectl apply -f <object>.<yaml,json>```
+  
   2. **Imperative**: The imperative way is used to manage resources using several distinct commands and do not requires any manifest files.  
   
   ```
@@ -183,11 +185,12 @@ Table of Contents
   $ kubectl create service clusterip redis --tcp=6379:6379 --dry-run -o yaml
   ```
   
-  ##### Generator
-  You can generate the following resources with a kubectl command,   
-  ```kubectl create --dry-run -o yaml```
+  Imperative command can be found in details
+  
   ```
-clusterrole         Create a ClusterRole.
+  $ kubectl create --dry-run -o yaml
+  
+  clusterrole         Create a ClusterRole.
   clusterrolebinding  Create a ClusterRoleBinding for a particular ClusterRole.
   configmap           Create a configmap from a local file, directory or literal value.
   cronjob             Create a cronjob with the specified name.
@@ -205,11 +208,12 @@ clusterrole         Create a ClusterRole.
 ```
   
   #### Command References
-  ```bash
-    # create a deployment from yaml file nginx.yaml
-    $ kubectl create -f nginx.yaml
-    # Generate yaml from a pod
-    $ kubectl get deployment nginx-deployemnt -o yaml > nginx.yaml  
+  ```
+  -- create a deployment from yaml file nginx.yaml
+  $ kubectl create -f nginx.yaml
+    
+  -- generate yaml from a pod
+  $ kubectl get deployment nginx-deployemnt -o yaml > nginx.yaml  
   ```  
 
   #### References and Further Study
