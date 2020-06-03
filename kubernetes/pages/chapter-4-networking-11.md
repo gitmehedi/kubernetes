@@ -263,7 +263,7 @@ Table of Contents
    * GCP HTTP(S) Load Balancer (GCE)
    * NGINX
    
-   Steps for Ingress Controller Configuration:  
+   ##### Steps to Configure Ingress Controller:  
    * Create ingress controller deployment   
    Create a kubernetes deployment using nginx-ingress-controller image.
    
@@ -351,18 +351,47 @@ Table of Contents
    
    Ingress resources are created using kubernetes definition file.
    Ingress Resource creates in kubernetes definition file ```ingress-wear.yaml```.
-   Traffic goes based on 
+   
+   Traffic route based on following criteria 
    ```
    1. Route
    2. Domain Name
    ```
 
-   Ingress Resource Rules:
+   ##### Step to Configure Ingress Resource:
+   * Create ingress resources
+   Create a resource kind ingress.
+   ```
+   apiVersion: networking.k8s.io/v1beta1
+   kind: Ingress
+   metadata:
+      name: test-ingress
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+   spec:
+      rules:
+      - host: online.com
+        http:
+          paths:
+          - path: /watch
+            pathType: Prefix
+            backend:
+              serviceName: test
+              servicePort: 80
+          - path: /wear
+            pathType: Prefix
+            backend:
+              serviceName: test
+              servicePort: 80
+   ```
    
    #### Command References
    ```bash
-    -- create ingress resource rules
-    $ 
+    -- list all ingress resources
+    $ kubectl get ingress
+
+    -- details of ingress resources
+    $ kubectl describe ingress ingress-resources
    ``` 
 
    #### References and Further Study
