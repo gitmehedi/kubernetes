@@ -10,20 +10,26 @@ Table of Contents
    
    
 ## Install, Config and Validate
+
    ### Binaries/Provision/Types
    
    #### Command References
    ```bash
    -- view addresses of master and services
    $ kubectl cluster-info
+
    -- show kubeconfig settings
    $ kubectl config view
+
    -- show all nodes details
    $ kubectl describe nodes
+
    -- show all pod details
    $ kubectl describe pods
+
    -- show all services
    $ kubectl get services --all-namespaces
+
    -- show all resources
    $ kubectl api-resources -o wide
    ```  
@@ -33,8 +39,8 @@ Table of Contents
 
    ### Installing Master and Nodes
    Kubernetes cluster can install in two ways
-   * Kubernetes Hard Way
-   * Kubeadm Way
+   * [Kubernetes Hard Way](https://github.com/mmumshad/kubernetes-the-hard-way)
+   * [Kubeadm Way](https://github.com/gitmehedi/cloudtuts/blob/develop/kubernetes/kubernetes_installation.md)
 
    #### References and Further Study
    * https://github.com/mmumshad/kubernetes-the-hard-way
@@ -46,9 +52,10 @@ Table of Contents
 
    ### Secure Cluster
    #### Command References
-   ```bash
+   ```
    -- view the kubeconfig
    $ cat .kube/config | more
+   
    -- view service account token
    $ kubectl get secrets
    ```  
@@ -71,28 +78,39 @@ Table of Contents
    ```
    -- run a simple nginx deployements
    $ kubectl run nginx --image=nginx
+   
    -- view current deployements
    $ kubectl get deploy
    -- lists the pods in the cluster
    $ kubectl get pods
+
    -- forward port 80 to 8081 on pod
    $ kubectl port-forward nginx 8081:80
+
    -- get a response from nginx pod
    $ curl --head http://127.0.0.1:8081
+
    -- get pods logs
    $ kubectl logs nginx
+
    -- run a command on the pod nginx
    $ kubectl exec -t nginx -- nginx -v 
+
    -- create a service using our deployment
    $ kubectl expose deploy nginx --port 80 --type NodePort
+
    -- list the services in the cluster
    $ kubectl get services
+
    -- get a response from a service
    $ curl -I localhost:<node_port>
+
    -- list node status
    $ kubectl get nodes
+
    -- get details info about node
    $ kubectl describe nodes
+
    -- get details info about pods
    $ kubectl describe pods
    ```
