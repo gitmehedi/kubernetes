@@ -10,16 +10,18 @@ Table of Contents
 
 ## Cluster
    ### Cluster Upgrade Process
-   Cluster upgrade process upgrade the cluster component from one version to another. In kubernetes, various cluster component with different version working together. When it need to upgrade from one version to another cluster follows set of rules.
+   In kubernetes, various cluster component with different version working together. When it need to upgrade from one version to another cluster follows set of rules.
    In kubernetes, version are defined as ```1.13.3``` which are describe in table
    
    | Major | Minor | Patch |
    | ----- | ----- | ----- |
    |   1   |  13   |   3   |
    
+   Cluster component can be upgrade using a set of rules which followed by each component when upgrading those component.
+   
    Rules:
-   1. Component can no update more than 1 version at a time.
-   2. Component upgrade process follows a set of equations. If kubernetes component version is ```x = 1.13.3``` then rules will be
+   1. Component's minor version cab be updated 1 version at a time.
+   2. Component upgrade process follows a set of equations. If the kubernetes current  component version is ```1.13.3``` then rules will be
    
    If we consider ```X``` is the api-version and it's value is ```1.13.3```, then
    
