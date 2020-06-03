@@ -439,5 +439,5 @@ Table of Contents
    For persistent key value stores see section [Installation](#chapter-2-install-config-and-validate-12) 
 
 [Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
-**Prev Chapter:** [Chapter 7: Storage (7%)](chapter-7-storage-7.md)
+**Prev Chapter:** [Chapter 7: Storage (7%)](chapter-7-storage-7.md)  
 **Next Chapter:** [Chapter 9: Log and Monitor (5%)](chapter-9-log-and-monitor-5.md)  

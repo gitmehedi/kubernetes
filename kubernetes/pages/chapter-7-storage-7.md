@@ -114,5 +114,5 @@ Table of Contents
   
 
 [Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
-**Prev Chapter:** [Chapter 6: Application Lifecycle (8%)](chapter-6-application-lifecycle-8.md)
-**Next Chapter:** [Chapter 8: Security (12%)](chapter-8-security-12.md)
+**Prev Chapter:** [Chapter 6: Application Lifecycle (8%)](chapter-6-application-lifecycle-8.md)  
+**Next Chapter:** [Chapter 8: Security (12%)](chapter-8-security-12.md)  

@@ -341,5 +341,5 @@ Table of Contents
    * https://github.com/mmumshad/kubernetes-the-hard-way/blob/master/practice-questions-answers/cluster-maintenance/backup-etcd/etcd-backup-and-restore.md
    
 [Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
-**Prev Chapter:** [Chapter 2: Install, Config and Validate (12%)](chapter-2-install-config-and-validate-12.md)
-**Next Chapter:** [Chapter 4: Networking (11%)](chapter-4-networking-11.md)
+**Prev Chapter:** [Chapter 2: Install, Config and Validate (12%)](chapter-2-install-config-and-validate-12.md)  
+**Next Chapter:** [Chapter 4: Networking (11%)](chapter-4-networking-11.md)  
