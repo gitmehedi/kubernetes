@@ -433,6 +433,6 @@ Table of Contents
    * https://kubernetes.io/blog/2018/07/10/coredns-ga-for-kubernetes-cluster-dns/
    * https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/
    
-TOC: [ToC](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)
-Prev Chapter: [Chapter 3: Cluster (11%)](chapter-3-cluster-11.md)
-Next Chapter: [Chapter 5: Scheduling (5%)](chapter-5-scheduling-5.md)
+[Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
+**Prev Chapter:** [Chapter 3: Cluster (11%)](chapter-3-cluster-11.md)
+**Next Chapter:** [Chapter 5: Scheduling (5%)](chapter-5-scheduling-5.md)

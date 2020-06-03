@@ -217,5 +217,5 @@ clusterrole         Create a ClusterRole.
   * https://kubernetes.io/docs/concepts/services-networking/service/
   * https://kubernetes.io/docs/reference/kubectl/conventions/
  
-TOC: [ToC](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)
-Next Chapter: [Chapter 2: Install, Config and Validate (12%)](chapter-2-install-config-and-validate-12.md)
+[Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
+**Next Chapter:** [Chapter 2: Install, Config and Validate (12%)](chapter-2-install-config-and-validate-12.md)
