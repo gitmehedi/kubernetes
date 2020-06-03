@@ -27,7 +27,7 @@ Table of Contents
    
    | Component Name  | Rule                                             | Equation              | Example                  |
    | --------------  | -----------------------------------------------  | --------------------- | ------------------------ |
-   | kube-apiserver  | Exactly equal to X                               | X = v1.13             | X = 1.13 or 1.12         |
+   | kube-apiserver  | Exactly equal to X                               | X = X             | X = 1.13 or 1.12         |
    | kube-scheduler  | Equal to X or 1 less than X                      | X = X or X-1          | X = 1.13 or 1.12         |
    | kube-controller | Equal to X or 1 less than X                      | X = X or X-1          | X = 1.13 or 1.12         |
    | kubelet         | Equal to X or 1 or 2 less than X                 | X = X or X-1 or X-2   | X = 1.13 or 1.12 or 1.11 |
@@ -40,19 +40,22 @@ Table of Contents
    
    ##### Step 1: Get the version of API Server
    ```bash
-   -- ger kubect client and serversion 
+   -- get kubectl client and server version 
    $ kubectl version --short
    Client Version: v1.18.0
    Server Version: v1.18.0
    ```
+
    ##### Step 2: Get the version of kubelet
    ```
    $ kubectl describe nodes
    Kubelet Version:            v1.18.0
    Kube-Proxy Version:         v1.18.0
    ```
-   ##### Step 3: Get the version of api-server, kube-apiserver, kube-scheduler, kube-controller-manager
+
+   ##### Step 3: Get the version of etcd-cluster, kube-apiserver, kube-scheduler, kube-controller-manager
    ```
+   -- get pod in kube-system namespace 
    $ kubectl get pod -n kube-system
     NAME                                                READY   STATUS    RESTARTS   AGE
     coredns-66bff467f8-8wr6w                            1/1     Running   6          25d
@@ -63,43 +66,46 @@ Table of Contents
     kube-proxy-2khkk                                    1/1     Running   6          25d
     kube-scheduler-master                               1/1     Running   7          25d
 
-    -- Get etcd version
+    -- get version of etcd
     $ kubectl describe pod etcd-master  -n kube-system | grep Image:
     Image:         k8s.gcr.io/etcd:3.4.3-0
     
-    -- Get kube-apiserver version
+    -- get version of kube-apiserver
     $ kubectl describe pod kube-apiserver-master -n kube-system | grep Image:
     Image:         k8s.gcr.io/kube-apiserver:v1.18.0
     
-    -- Get kube-controller-manager version
+    -- get version of kube-controller-manager
     $ kubectl describe pod kube-controller-manager-master -n kube-system | grep Image:
     Image:         k8s.gcr.io/kube-controller-manager:v1.18.0
     
-    -- Get kube-scheduler version
+    -- get version of kube-scheduler
     $ kubectl describe pod kube-scheduler-master -n kube-system | grep Image:
     Image:         k8s.gcr.io/kube-scheduler:v1.18.0
-    
    ```
 
-   ##### Step 4: Upgrade kubeadm required latest version (1.18.2) and Install kubeadm 
+   ##### Step 4: Install new version of kubeadm
+   Current Version : 1.18.0  
+   Upgrade to : 1.18.2  
+   
    ```
    -- unhold kubeadm version if already in hold status
    $ sudo apt-mark unhold kubeadm
    Canceled hold on kubeadm
    
-   -- install kubeadm version 1.18.2
+   -- install kubeadm lastest version 1.18.2
    $ sudo apt-get install -y kubeadm=1.18.2-00
 
    -- hold kubeadm version after install kubeadm
    $ sudo apt-mark hold kubeadm
 
-   -- get latest kubeadm version
+   -- get and verify latest kubeadm version
    $ kubeadm version
    kubeadm version: &version.Info{Major:"1", Minor:"18", GitVersion:"v1.18.2", GitCommit:"9e991415386e4cf155a24b1da15becaa390438d8", GitTreeState:"clean", BuildDate:"2020-03-25T14:56:30Z", GoVersion:"go1.13.8", Compiler:"gc", Platform:"linux/amd64"}
    ```
 
-   ##### Step 5: Plan controller component upgrade plan before final execution
+   ##### Step 5: Prepare cluster upgrade plan
    ```
+   -- cluster upgrade plan
    $ sudo kubeadm upgrade plan
     
     Upgrade to the latest version in the v1.18 series:
@@ -114,41 +120,42 @@ Table of Contents
     You can now apply the upgrade by executing the following command:
 
         kubeadm upgrade apply v1.18.2
-
    ```
 
-   ##### Step 6: Upgrade the controller component
+   ##### Step 6: Upgrade the cluster component
    ```
    -- upgrade kubeadm to latest version
    $ sudo kubeadm upgrade apply v1.18.2
-   $ kubect get nodes
+
+   -- get node version
+   $ kubectl get nodes
     NAME     STATUS   ROLES    AGE   VERSION
     master   Ready    master   25d   v1.18.0
     worker   Ready    <none>   25d   v1.18.0
 
-    -- get api server version
+    -- get kubectl client and server version 
    $ kubectl version --short
     Client Version: v1.18.0
     Server Version: v1.18.2
    ```
 
-   ##### Step 7: Upgrade the kubelet version (1.18.2) and Install
+   ##### Step 7: Install and Upgrade the kubelet version
    ```
    -- unhold kubelet version  
    $ sudo apt-mark unhold kubectl
    Canceled hold on kubelctl
 
-   -- upgrade kubectl
+   -- install and upgrade kubectl
    $ sudo apt-get install -y kubectl=1.18.2-00
-   
-   -- Get the version
-   $ kubectl version --short
-   Client Version: v1.18.2
-   Server Version: v1.18.2
-   
-   -- hole version of kubelet
+
+   -- hold kubelet version
    $ sudo apt-mark hold kubelet
    kubelet set on hold.
+   
+   -- get kubectl client and server version 
+   $ kubectl version --short
+    Client Version: v1.18.2
+    Server Version: v1.18.2
    ```
 
    #### References and Further Study
@@ -162,11 +169,11 @@ Table of Contents
    #### Terminology:  
    In operating system upgrade some terms are very important
    
-   1. Drain: When a node drain, Pod are terminated form the node and Pod are recreated on another node where requirement match.
+   1. **Drain:** When a node drain, Pod are terminated form the node and Pod are recreated on another node where requirement match.
     Also node marked as unscheduled, meaning no Pod can be schedule on this node until you specify Scheduled or uncordon.
     Using it Pod can safe on other node.  
-   2. Cordon: Marked node as unschedule able.  
-   3. Uncordon: Marked node as scheduleable so that Pod can schedule on this node.
+   2. **Cordon:** Marked node as unschedulable.  
+   3. **Uncordon:** Marked node as schedulable so that Pod can schedule on this node.
    
    #### System Upgrade Process: 
    ##### Step 1: Evict the Pod from node using drain and take node down.
@@ -221,7 +228,6 @@ Table of Contents
    $ sudo kubeadm token create [token_name] --ttl 2h --print-join-command 
    ```  
     
-       
    #### Command References
    ```bash
     $ kubectl drain [node_name]
@@ -236,7 +242,7 @@ Table of Contents
    ### Backup and Restore Methodologies
    #### ETCDCTL
 
-   etcdctl is a command line client for etcd.  
+   ```etcdctl``` is a command line client for etcd.  
    ETCD key-value database is deployed as a static pod on the master. Current version used is v3.
 
    To make use of ```etcdctl``` for tasks such as back up and restore, make sure that you set the ```ETCDCTL_API``` to 3.
