@@ -99,6 +99,8 @@ Table of Contents
    #### References and Further Study
    * https://github.com/gitmehedi/cloudtuts/blob/develop/kubernetes/kubernetes_installation.md
 
-**TOC:** [ToC](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
+[Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
 **Prev Chapter:** [Chapter 1: Core Concepts (19%)](chapter-1-core-concepts-19.md)  
 **Next Chapter:** [Chapter 3: Cluster (11%)](chapter-3-cluster-11.md)
+
+|TOC | Prev Chapter | Next Chapter
