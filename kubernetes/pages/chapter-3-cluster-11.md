@@ -10,21 +10,35 @@ Table of Contents
 
 ## Cluster
    ### Cluster Upgrade Process
-   kubeadm allows to upgrade cluster components in proper order from one version to another once at a time. 
+   Cluster upgrade process upgrade the cluster component from one version to another. In kubernetes, various cluster component with different version working together. When it need to upgrade from one version to another cluster follows set of rules.
+   In kubernetes, version are defined as ```1.13.3``` which are describe in table
    
-   ```
-    -- Allows 1 version at a time
-    => 1.12.0 to 1.13.0
-    => 1.16.0 to 1.17.0
-    
-    -- Not Allow
-    => 1.12.0 1.16.0
-   ```
+   | Major | Minor | Patch |
+   | ----- | ----- | ----- |
+   |   1   |  13   |   3   |
+   
+   Rules:
+   1. Component can no update more than 1 version at a time.
+   2. Component upgrade process follows a set of equations. If kubernetes component version is ```x = 1.13.3``` then rules will be
+   
+   If we consider ```X``` is the api-version and it's value is ```1.13.3```, then
+   
+   | Component Name  | Rule                                             | Equation              | Example                  |
+   | --------------  | -----------------------------------------------  | --------------------- | ------------------------ |
+   | kube-apiserver  | Exactly equal to X                               | X = v1.13             | X = 1.13 or 1.12         |
+   | kube-scheduler  | Equal to X or 1 less than X                      | X = X or X-1          | X = 1.13 or 1.12         |
+   | kube-controller | Equal to X or 1 less than X                      | X = X or X-1          | X = 1.13 or 1.12         |
+   | kubelet         | Equal to X or 1 or 2 less than X                 | X = X or X-1 or X-2   | X = 1.13 or 1.12 or 1.11 |
+   | kube-proxy      | Equal to X or 1 or 2 less than X                 | X = X or X-1 or X-2   | X = 1.13 or 1.12 or 1.11 |
+   | kubectl         | Equal to X or 1 greater than X or 1 less than X  | X = X or X +1  or X-1 | X = 1.14 or 1.13 or 1.12 |
+   
+   
    #### Upgrade Process
-   Follow steps to upgrade lower version to upper version  
+   Cluster upgrade steps to follow
    
    ##### Step 1: Get the version of API Server
    ```bash
+   -- ger kubect client and serversion 
    $ kubectl version --short
    Client Version: v1.18.0
    Server Version: v1.18.0
