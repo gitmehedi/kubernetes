@@ -271,5 +271,6 @@ Table of Contents
 
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
- 
-[Back to Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)        
+
+TOC: [ToC](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)
+Prev Chapter: [Chapter 9: Log and Monitor (5%)](chapter-9-log-and-monitor-5.md)

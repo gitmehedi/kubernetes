@@ -169,4 +169,6 @@ Table of Contents
    #### References and Further Study
    * https://kubernetes.io/docs/tasks/debug-application-cluster/
    
-[<- Back to Table of Contents](../README.md)
+TOC: [ToC](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)
+Prev Chapter: [Chapter 4: Networking (11%)](chapter-4-networking-11.md)
+Next Chapter: [Chapter 6: Application Lifecycle (8%)](chapter-6-application-lifecycle-8.md)

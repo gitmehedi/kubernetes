@@ -396,5 +396,6 @@ Kubernetes provides additional support to check the health of applications runni
    * 
    
   
-  
-[<- Back to Table of Contents](../README.md)
+TOC: [ToC](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)
+Prev Chapter: [Chapter 5: Scheduling (5%)](chapter-5-scheduling-5.md)
+Next Chapter: [Chapter 7: Storage (7%)](chapter-7-storage-7.md)

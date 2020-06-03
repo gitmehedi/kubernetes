@@ -113,4 +113,6 @@ Table of Contents
    #### References and Further Study
    *
  
-[<- Back to Table of Contents](../README.md)
+TOC: [ToC](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)
+Prev Chapter: [Chapter 8: Security (12%)](chapter-8-security-12.md)
+Next Chapter: [Chapter 10: Troubleshooting (10%)](chapter-10-troubleshooting-10.md)
