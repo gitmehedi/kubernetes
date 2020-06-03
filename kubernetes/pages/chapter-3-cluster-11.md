@@ -53,7 +53,7 @@ Table of Contents
    Kube-Proxy Version:         v1.18.0
    ```
 
-   ##### Step 3: Get the version of etcd-cluster, kube-apiserver, kube-scheduler, kube-controller-manager
+   ##### Step 3: Get the version of etcd, kube-apiserver, kube-scheduler, kube-controller-manager
    ```
    -- get pod in kube-system namespace 
    $ kubectl get pod -n kube-system
@@ -169,9 +169,9 @@ Table of Contents
    #### Terminology:  
    In operating system upgrade some terms are very important
    
-   1. **Drain:** When a node drain, Pod are terminated form the node and Pod are recreated on another node where requirement match.
-    Also node marked as unscheduled, meaning no Pod can be schedule on this node until you specify Scheduled or uncordon.
-    Using it Pod can safe on other node.  
+   1. **Drain:** When a node drain, Pod are terminated from the node and it can recreate on another node where requirement match.
+    Also node marked as unscheduled, meaning no Pod can be schedule on this node until you specify schedulable or uncordon.
+    Drain is the safe way to schedule Pod in another node. 
    2. **Cordon:** Marked node as unschedulable.  
    3. **Uncordon:** Marked node as schedulable so that Pod can schedule on this node.
    
@@ -183,7 +183,7 @@ Table of Contents
    $ kubectl get pods -o wide
    ```
 
-   Node mark as drain so that pod evict from specified node.
+   Mark node as drain so that pod evict from specified node.
    ```
    -- mark node as drain
    $ kubectl drain [node_name] --ignore-daemonsets
@@ -200,23 +200,23 @@ Table of Contents
    Maintains on node as required.
    Remove a node from the cluster if node is not required
    ```
+   -- delete node from cluster
    $ kubectl delete node [node_name]
    ```  
    
-   ##### Step 3: After maintenance continue scheduling using uncordon the node.
+   ##### Step 3: After maintenance mark node as scheduleable to continue pod scheduling.
+   After maintenance, node can be schedulable in two ways
+   * Mark as schedulable  
    Schedule pods to the node after maintenance is complete:
    ```
    -- uncordon node01
-   $ kubectl uncordon node01
+   $ kubectl uncordon [node_name]
    ```  
-   **Add New Node**  
-   Prepare a new node
-   
-   Generate a new token:  
-   ```
-   -- generate token
-   $ sudo kubeadm token generate
-   ```  
+
+   * Add New Node  
+   1. Install all kubernetes component in worker node and ready to join in cluster.
+   2. Get kubernetes cluster join token ```$ sudo kubeadm token generate```.
+   3. Run the join token command in worker node.
     
    List the tokens:  
    ```
@@ -229,29 +229,42 @@ Table of Contents
    ```  
     
    #### Command References
-   ```bash
-    $ kubectl drain [node_name]
-    $ kubectl cordon [node_name]
-    $ kubectl delete [node_name]
-    $ kubectl edit [node_name]
+   ```
+   -- drain a node
+   $ kubectl drain node01 --ignore-daemonset
+
+   -- mark node as schedulable
+   $ kubectl uncordon node01
+
+   -- mark node as unschedulable
+   $ kubectl cordon node01
+
+   -- generate cluster join token
+   $ sudo kubeadm token generate
+
+   -- list cluster join token
+   $ sudo kubeadm token list
+
+   -- print cluste join token to join cluster
+   $ sudo kubeadm token create [token_name] --ttl 2h --print-join-command 
    ```  
    #### References and Further Study
    * https://kubernetes.io/docs/tasks/administer-cluster/cluster-management/#maintenance-on-a-node  
    
-   
    ### Backup and Restore Methodologies
-   #### ETCDCTL
+   #### ETCD Database
 
-   ```etcdctl``` is a command line client for etcd.  
-   ETCD key-value database is deployed as a static pod on the master. Current version used is v3.
-
-   To make use of ```etcdctl``` for tasks such as back up and restore, make sure that you set the ```ETCDCTL_API``` to 3.
-
-   It can be done by exporting the variable ```ETCDCTL_API``` prior to using the ```etcdctl``` client. 
+   ETCD is a key-value pair database system which store cluster component status. ```etcdctl``` is a command line client for ETCD database.  
+   To get backup and restore previous backup ETCD use the command ```etcd```. Before using ```etcd```, always append ```ETCDCTL_API``` with version no or export 
+   Current version of ```ETCDCTL_API``` is 3.
    
+   Alternative way to skip append is export
    ```
-    -- can be done
-    export ETCDCTL_API=3
+    -- export ETCDCTL_API
+    $ export ETCDCTL_API=3
+
+    -- create an alias
+    $ alias etcd="ETCDCTL_API=3 etcdctl"
    ```
 
    On the Master Node:
@@ -259,7 +272,7 @@ Table of Contents
    To see all the options for a specific sub-command, make use of the -h or --help flag.  
    For example, if you want to take a snapshot of ```etcd```, use:  
    ```
-   etcdctl snapshot save -h
+   $ ETCDCTL_API=3 etcdctl snapshot save -h
    ```   
    and keep a note of the mandatory global options.
 
@@ -274,7 +287,7 @@ Table of Contents
    Similarly use the help option for snapshot restore to see all available options for restoring the backup.
 
    ```
-   etcdctl snapshot restore -h
+   $ ETCDCTL_API=3 etcdctl snapshot restore -h
    ```
 
    For a detailed explanation on how to make use of the ```etcdctl``` command line tool and work with the -h flags, check out the solution video for the Backup and Restore Lab.
