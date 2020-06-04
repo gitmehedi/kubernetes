@@ -107,16 +107,21 @@ Table of Contents
    #### Taints, Toleration, Node Selector and Node Affinity
    ##### Taints
    Taints are applied on a node to repel a set of pods. 
-   Add a taints on a node using ```kubectl taint```
+   Add a taints on a node using ```kubectl taint node node_name key:value:taint-effect```
+   There are 3 taint-effect
+   1. **NoSchedule:** Pods will not be scheduled on the node.
+   2. **PreferSchedule:** The system will try to avoid a pod to schedule but no guarantee. 
+   3. **NoExecute:** New pod will not schedule and existing pod will evict if they do not tolerate the taint.
+   
    ```
    -- add taints on a node
-   $ kubectl taint nodes node01 key=value:NoSchedule
+   $ kubectl taint nodes node01 app=blue:NoSchedule
    ```
    This means that no pod will be able to schedule onto ```node01``` unless it has a matching toleration.
    
    ```
    -- remove taints from a node
-   $ kubeclt taint nodes node01 key:NoSchedule-
+   $ kubeclt taint nodes node01 app:NoSchedule-
    ```
    
    ##### Toleration
@@ -126,13 +131,13 @@ Table of Contents
    
    ```
    tolerations:
-   - key: "key"
+   - key: "app"
      operator: "Equal"
-     value: "value"
+     value: "blue"
      effect: "NoSchedule"
 
    tolerations:
-   - key: "key"
+   - key: "app"
      operator: "Exists"
      effect: "NoSchedule"
    ```
@@ -159,11 +164,17 @@ Table of Contents
    
    ##### Node Selector
    You can constrain a Pod to only be able to run on particular Node(s) , or to prefer to run on particular nodes.
+   Labels a node using 
+   NodeSelector can perform in two steps:  
    
+   **Step 1:**  Attach label to the node
    ```
-   $ kubectl label nodes kubernetes-foo-node-1.c.a-robinson.internal disktype=ssd
+   -- label a node 
+   $ kubectl label nodes <node-name> <label-name>=<label-value>
+   $ kubectl label nodes node01 size=Large
    ```
-   or 
+   
+   **Step 2:** Add a nodeSelector field to pod configuration
    ```
     apiVersion: v1
     kind: Pod
@@ -177,13 +188,46 @@ Table of Contents
         image: nginx
         imagePullPolicy: IfNotPresent
       nodeSelector:
-        disktype: ssd
+        side: Large
    ```
-
+   **Limitation:** Complex node selection rule is not possible using nodeSelector.
+   
    ##### Node Affinity
    Node affinity, is a property of Pods that attracts them to a set of nodes (either as a preference or a hard requirement).
    
    
+   |      |       |
+   |------|-------|
+   |      |       |
+   
+   ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: with-node-affinity
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/e2e-az-name
+                operator: In
+                values:
+                - e2e-az1
+                - e2e-az2
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: another-node-label-key
+                operator: In
+                values:
+                - another-node-label-value
+      containers:
+      - name: with-node-affinity
+        image: k8s.gcr.io/pause:2.0
+   ```
    
    #### Command References
    ```bash
