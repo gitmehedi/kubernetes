@@ -193,13 +193,25 @@ Table of Contents
    **Limitation:** Complex node selection rule is not possible using nodeSelector.
    
    ##### Node Affinity
-   Node affinity, is a property of Pods that attracts them to a set of nodes (either as a preference or a hard requirement).
+   Node affinity, is a property of Pods that attracts them to a set of nodes (either as a preference or a hard requirement).  
+   
+   Node Affinity Types  
+   
+   **Available**  
+   * requiredDuringSchedulingIgnoredDuringExecution
+   * preferredDuringSchedulingIgnoredDuringExecution  
+   
+   **Planned**  
+   * requiredDuringSchedulingRequiredDuringExecution
    
    
-   |      |       |
-   |------|-------|
-   |      |       |
+   |           | DuringScheduling | DuringExecution |
+   |---------- | ---------------- | --------------- | 
+   |  Type 1   | Required         | Ignored         |
+   |  Type 2   | Preferred        | Ignored         |
+   |  Type 3   | Required         | Required        | 
    
+   Node Affinity created in a file.
    ```
     apiVersion: v1
     kind: Pod
@@ -228,16 +240,79 @@ Table of Contents
       - name: with-node-affinity
         image: k8s.gcr.io/pause:2.0
    ```
+   ##### Resource Requirements and Limits
+   In kubernetes cluster, each node has 3 resource available.  
+   1. CPU
+   2. Memory
+   3. Disk
    
-   #### Command References
-   ```bash
-    $ kubectl get pods -selector app=application
-   ``` 
+   Every Pod consumes resources available from that node. If a node does not have a available resources for a pod in the 
+   cluster, then pod will be in pending state.  
+  
+   Default Resource Required by a Pod:  
+   1. CPU: 0.5 Core
+   2. Memory: 256 Mi
+   3. Disk
+   
+   If application or pod needed more resources than default requirement then specify expected resource requirement under containerSpec.
+   ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-resource-requirement
+    spec:
+      containers:
+      - name: pod-resource-requirement
+        image: k8s.gcr.io/pause:2.0
+        ports:
+          - containerPort: 8080
+        resources:
+          requests:
+            cpu: 1
+            memory: "1Gi"
+          limits:
+            cpu: 2
+            memory: "2Gi"
+   ```
+   Limits and Requests are set on the each container on the Pod. If a pod tries to consumes more memory than CPU then cluster terminate the pod from cluster.
+   
+   It is possible to set default limit range of resources using kubernetes object
+   ```
+   -- set default memory value in container
+   apiVersion: v1
+   kind: LimitRange
+   metadata:
+      name: mem-limit-range
+   spec:
+      limits:
+      - default:
+          memory: 512Mi
+        defaultRequest:
+          memory: 256Mi
+        type: Container
 
+   -- set default cpu value in container
+   apiVersion: v1
+   kind: LimitRange
+   metadata:
+      name: mem-limit-range
+   spec:
+      limits:
+      - default:
+          cpu: 1
+        defaultRequest:
+          memory: 0.5
+        type: Container
+   
+```
+   
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
    * https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
    * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+   * https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/
+   * https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/
+   * https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/
    
    ### Role of DaemonSets
    
