@@ -304,7 +304,7 @@ Table of Contents
           memory: 0.5
         type: Container
    
-```
+   ```
    
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
@@ -315,33 +315,58 @@ Table of Contents
    * https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/
    
    ### Role of DaemonSets
+   DaemonSet ensures one copy of pod always present in every node in the cluster. DaemonSet is almost identical to replicaSet 
+   but it only deploy one copy of pod in each node. Whenever a new node added 
+   in the cluster a new pod deploy in the new node automatically and when a node remove from cluster then pod is removed 
+   automatically.  
    
-   #### Command References
+   Example of DaemonSet:  
+   * Monitoring Solution
+   * Logs Viewer
+   * kube-proxy
+   * weave-net
+   
+   create a deamonSet from a manifest file
    ```bash
-    
+    apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      name: fluentd-elasticsearch
+    spec:
+      selector:
+        matchLabels:
+          name: fluentd-elasticsearch
+      template:
+        metadata:
+          labels:
+            name: fluentd-elasticsearch
+        spec:
+          containers:
+          - name: fluentd-elasticsearch
+            image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
    ``` 
+   #### Command References
+   ```
+   -- create daemonSet from filename ds.yaml
+   $ kubectl create -f ds.yaml
+
+   -- get daemonSet 
+   $ kubectl get ds
+   ```
 
    #### References and Further Study
-   
-   ### Resource Limits and Labels in Pods Scheduling
-   
-   #### Command References
-   ```bash
-    
-   ``` 
-
-   #### References and Further Study
-   * https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/
-   * https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/
-   * https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/
+   * https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
    
    
    ### Multiple Schedulers to Run and Configure Pods
    
    #### Command References
-   
+   ```
+
+   ```
 
    #### References and Further Study
+   *
    
    ### Manually Schedule a Pods
    When kube-scheduler does not installed or configure on cluster, then Pods can be manually schedule in Node using add a  property ```nodeName``` direct child of spec in Pod definition yaml file. 
