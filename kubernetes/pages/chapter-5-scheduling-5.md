@@ -359,6 +359,7 @@ Table of Contents
    
    
    ### Multiple Schedulers to Run and Configure Pods
+   #### Static Pods
    
    #### Command References
    ```
@@ -370,7 +371,8 @@ Table of Contents
    
    ### Manually Schedule a Pods
    When kube-scheduler does not installed or configure on cluster, then Pods can be manually schedule in Node using add a  property ```nodeName``` direct child of spec in Pod definition yaml file. 
-   ```bash
+   
+  ```bash
     apiVersion: v1
     kind: Pod
     metadata:
@@ -389,6 +391,7 @@ Table of Contents
    ``` 
 
    #### References and Further Study
+   *
    
    ### Scheduler Events
    Problem with scheduler events can be identified in the following ways
