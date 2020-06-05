@@ -360,14 +360,16 @@ Table of Contents
    
    ### Multiple Schedulers to Run and Configure Pods
    #### Static Pods
+   Static Pod is regular pod but created by kubelet server with placing pod definition file in kubelet manifest location.
+   Kubelet manifest location can be get using it service name ```kubelet.service```
    
-   #### Command References
-   ```
-
-   ```
+   * Static pod can't be edited like normal pod.
+   * Static pod has always it's node name after pod name.
+   * Default static path can be changed by changing kubelet config path.
+   
 
    #### References and Further Study
-   *
+   * https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/
    
    ### Manually Schedule a Pods
    When kube-scheduler does not installed or configure on cluster, then Pods can be manually schedule in Node using add a  property ```nodeName``` direct child of spec in Pod definition yaml file. 
