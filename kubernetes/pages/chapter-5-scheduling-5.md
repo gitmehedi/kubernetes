@@ -367,34 +367,21 @@ Table of Contents
    * Static pod has always it's node name after pod name.
    * Default static path can be changed by changing kubelet config path.
    
-
+   
+   #### Multiple Scheduler Configure
+   Multiple kube-scheduler can work together with proper configuration. To configure multiple scheduler with different algorithm, following step are necessary 
+   * Deploy scheduler binary in proper location.
+   * Create new scheduler service like default ```kube-scheduler.service``` and names as any ```my-custom-scheduler.service```
+   * Configure options in kube-scheduler named ```--scheduler-name=my-custom-scheduler``` and ```--lock-object-name=my-custom-scheduler```   
+   * Add new key name in pod definition file in containerSpec ```schedulerName: my-custom-scheduler```.
+   * See event and logs for pod is running and pod is scheduled by proper scheduler.
+   
+   
    #### References and Further Study
    * https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/
+   * https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
    
-   ### Manually Schedule a Pods
-   When kube-scheduler does not installed or configure on cluster, then Pods can be manually schedule in Node using add a  property ```nodeName``` direct child of spec in Pod definition yaml file. 
-   
-  ```bash
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx
-      nodeName: kube-01
-   ``` 
-   
-   #### Command References
-   ```bash
-    --  check for kube-scheduler install or not
-    $ kubectl get pods -n kube-system
-   ``` 
-
-   #### References and Further Study
-   *
-   
+  
    ### Scheduler Events
    Problem with scheduler events can be identified in the following ways
    1. At the POD level
@@ -425,11 +412,7 @@ Table of Contents
 
    #### References and Further Study
    * https://kubernetes.io/docs/tasks/debug-application-cluster/
-   
-   ### Configure Kubernetes Scheduler
 
-   #### References and Further Study
-   * https://kubernetes.io/docs/tasks/debug-application-cluster/
    
 [Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
 **Prev Chapter:** [Chapter 4: Networking (11%)](chapter-4-networking-11.md)  
