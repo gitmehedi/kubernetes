@@ -264,15 +264,15 @@ Table of Contents
      DB_Password: cGFzc3dvcmQxMjM=
      DB_User: cm9vdA==
    ```
-   Inject ConfigMaps into POD  
-   Inject ConfigMaps data into pod using following ways  
-   a. ENV  
+   * Inject secret into POD  
+   Inject secret data into pod using following ways  
+   a. All key-value pair with ENV  
    ```
    envFrom:
      - secretRef:
          name: app-secret
    ```
-   b. SINGLE VIEW  
+   b. Single key-value pair ENV
    ```
    env:
      - name: APP_COLOR
@@ -281,7 +281,7 @@ Table of Contents
             name: app-secret
             key: APP_COLOR
    ```
-   c. VOLUME    
+   c. All key-value pair with VOLUME mount
    when a secret mount in a volume it create a file for each secret value pair.
    ```
    volumes:
@@ -292,11 +292,11 @@ Table of Contents
 
    #### Command References
    ```bash
-    -- view configmaps
-    $ kubectl get configmaps
+    -- view secrets
+    $ kubectl get secret
 
-    -- view details of a configmaps
-    $ kubectl details configmaps app-config
+    -- view details of a secret
+    $ kubectl details secret app-secret
 
     -- view secrets and view secrets with value
     $ kubectl get secrets
