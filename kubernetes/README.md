@@ -565,3 +565,23 @@ size of the object
 #### Dumps
 * https://medium.com/@sensri108/practice-examples-dumps-tips-for-cka-ckad-certified-kubernetes-administrator-exam-by-cncf-4826233ccc27
 * https://killer.sh/course/preview/052229bd-1062-44a4-8aae-f50d0770165a
+
+## Tips
+
+### Create alias
+```
+$ alias k="kubectl"
+$ alias kn="kubectl get nodes -o wide"
+$ alias kp="kubectl get pods -o wide"
+$ alias kd="kubectl get deployment -o wide"
+$ alias ks="kubectl get svc -o wide"
+```
+
+```
+$ alias ke="kubectl explain --recursive"
+$ alias kdp="kubectl describe pod"
+$ alias kdd="kubectl describe deployment"
+$ alias kds="kubectl describe service"
+$ alias kdn="kubectl describe node"
+```
+* https://medium.com/faun/certified-kubernetes-administrator-cka-tips-and-tricks-part-1-2e98e9b31de4
