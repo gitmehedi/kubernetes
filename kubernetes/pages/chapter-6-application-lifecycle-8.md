@@ -334,14 +334,20 @@ Table of Contents
    * AMBASSADOR
    
    #### InitContainers
-In a multi-container pod, each container is expected to run a process that stays alive as long as the POD's lifecycle. For example in the multi-container pod that we talked about earlier that has a web application and logging agent, both the containers are expected to stay alive at all times. The process running in the log agent container is expected to stay alive as long as the web application is running. If any of them fails, the POD restarts.
+   In a multi-container pod, each container is expected to run a process that stays alive as long as the POD's lifecycle. 
+   For example in the multi-container pod that we talked about earlier that has a web application and logging agent, both 
+   the containers are expected to stay alive at all times. The process running in the log agent container is expected to stay 
+   alive as long as the web application is running. If any of them fails, the POD restarts.  
 
-But at times you may want to run a process that runs to completion in a container. For example a process that pulls a code or binary from a repository that will be used by the main web application. That is a task that will be run only  one time when the pod is first created. Or a process that waits  for an external service or database to be up before the actual application starts. That's where initContainers comes in.
+   But at times you may want to run a process that runs to completion in a container. For example a process that pulls a 
+   code or binary from a repository that will be used by the main web application. That is a task that will be run only  
+   one time when the pod is first created. Or a process that waits  for an external service or database to be up before 
+   the actual application starts. That's where initContainers comes in.  
 
-An initContainer is configured in a pod like all other containers, except that it is specified inside a initContainers section,  like this:
+   An initContainer is configured in a pod like all other containers, except that it is specified inside a initContainers 
+   section,  like this:
 
-
-    ```
+   ```
     apiVersion: v1
     kind: Pod
     metadata:
@@ -357,14 +363,17 @@ An initContainer is configured in a pod like all other containers, except that i
       - name: init-myservice
         image: busybox
         command: ['sh', '-c', 'git clone <some-repository-that-will-be-used-by-application> ; done;']
-    ```
+   ```
 
-When a POD is first created the initContainer is run, and the process in the initContainer must run to a completion before the real container hosting the application starts. 
+   When a POD is first created the initContainer is run, and the process in the initContainer must run to a completion 
+   before the real container hosting the application starts. 
 
-You can configure multiple such initContainers as well, like how we did for multi-pod containers. In that case each init container is run one at a time in sequential order.
+   You can configure multiple such initContainers as well, like how we did for multi-pod containers. In that case each 
+   init container is run one at a time in sequential order.  
 
-If any of the initContainers fail to complete, Kubernetes restarts the Pod repeatedly until the Init Container succeeds.
-    ```
+   If any of the initContainers fail to complete, Kubernetes restarts the Pod repeatedly until the Init Container succeeds.
+   
+   ```
     apiVersion: v1
     kind: Pod
     metadata:
@@ -383,7 +392,8 @@ If any of the initContainers fail to complete, Kubernetes restarts the Pod repea
       - name: init-mydb
         image: busybox:1.28
         command: ['sh', '-c', 'until nslookup mydb; do echo waiting for mydb; sleep 2; done;']
-    ```
+   ```
+   
    #### Further Study    
    See the section [Application with Rolling Updates and Rollback](#application-with-rolling-updates-and-rollback)
    
@@ -391,18 +401,93 @@ If any of the initContainers fail to complete, Kubernetes restarts the Pod repea
    * https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
    
    ### Manage Self-Healing Application
-   Kubernetes supports self-healing applications through ReplicaSets and Replication Controllers. The replication controller helps in ensuring that a POD is re-created automatically when the application within the POD crashes. It helps in ensuring enough replicas of the application are running at all times.
+   Kubernetes supports self-healing applications through ReplicaSets and Replication Controllers. The replication controller 
+   helps in ensuring that a POD is re-created automatically when the application within the POD crashes. It helps in 
+   ensuring enough replicas of the application are running at all times.  
 
-Kubernetes provides additional support to check the health of applications running within PODs and take necessary actions through Liveness and Readiness Probes. However these are not required for the CKA exam and as such they are not covered here. These are topics for the Certified Kubernetes Application Developers (CKAD) exam and are covered in the CKAD course.
+   Kubernetes provides additional support to check the health of applications running within PODs and take necessary 
+   actions through Liveness and Readiness Probes. However these are not required for the CKA exam and as such they are 
+   not covered here. These are topics for the Certified Kubernetes Application Developers (CKAD) exam and are covered in 
+   the CKAD course.
+   
+   #### ReadinessProbes and LivenessProbes
+   For a pod it will maintain some condition in it's lifecycle. Those are
+   * POD Status
+   * POD Conditions
+   
+   **POD Status**
+   In pod status there are 3 state 
+   * Pending State: When a pod is created it is in pending state until this pod schedule to a node.
+   * ContainerCreating: When a pod is scheduled to a node and container are started in pod.
+     There are 3 phase of containerCreating State.  
+        * Image Pulling
+        * Image Ready
+        * Container Start
+   *  Running State: When all container start and pod is ready, it will be in running state.
+   
+   **POD Conditions**
+   There are 4 conditions when pod will be in it's lifecycle. In pod condition, value will be true or false.
+   * POD Scheduled: When a pod scheduled in a node.
+   * POD Initialized: When a pod initialized.
+   * POD ContainerReady: When all container of the pod is ready
+   * POD Ready: If all container is ready then pod will ready to receive traffic.
+   
+   ##### ReadinessProbes
+   When a pod condition is in ready state and start receiving traffic.
+   There are 3 ways pod readiness can be defined in pod in containerSpec.
+   ```
+   -- using http
+   readinessProbe:
+      httpGet:
+         path: /apt/ready
+         port: 8080
+   
+   -- using tcp socket
+   readinessProbe:
+      tcpSocket:
+         port: 8080
+   
+   -- using specific command
+   readinessProbe:
+      exec:
+         command:
+         - cat 
+         - /api/is_ready
+   ```
+   ##### LivenessProbes
+   To test an application healthy and application inside container is running properly.
+   There are 3 ways pod readiness can be defined in pod in containerSpec.
+   ```
+   -- using http
+   livenessProbe:
+      httpGet:
+         path: /apt/ready
+         port: 8080
+   
+   -- using tcp socket
+   livenessProbe:
+      tcpSocket:
+         port: 8080
+   
+   -- using specific command
+   livenessProbe:
+      exec:
+         command:
+         - cat 
+         - /api/is_ready
+   ```
+
    #### Command References
-   ```bash
-    -- pause and resume a deployment 
-    $ kubectl rollout pause deploy myapp-deployment 
-    $ kubectl rollout resume deploy myapp-deployment 
+   ```
+    -- view container ready
+    $ kubectl get pod
+
+    -- view pod condition
+    $ kubectl describe pod nginx
    ``` 
 
    #### References and Further Study
-   * 
+   * https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
    
   
 [Table of Contents](https://github.com/gitmehedi/cloudtuts/tree/develop/kubernetes)  
