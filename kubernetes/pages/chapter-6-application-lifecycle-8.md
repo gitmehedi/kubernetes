@@ -239,10 +239,10 @@ Table of Contents
    * Create Secrets
    * Inject Secrets into POD
    ```
-   * Create Secrets  
+   **Create Secrets**  
    Secrets can be created using two ways  
    
-   **Imperative Way**  
+   Imperative Way 
    ```
    -- kubectl create secret generic <secret_name> --from-literal=<key>=<value>
    $ kubectl create secret generic app-secret --from-literal=APP_COLOR=blue
@@ -251,7 +251,7 @@ Table of Contents
    $ kubectl create secret generic game-secret-env-file --from-env-file=configure-pod-container/secret/game-env-file.properties
 
    ```
-   **Declarative Way**  
+   Declarative Way  
    Create a secret object from a file app-secret.yaml
    ```
    apiVersion: v1
@@ -264,7 +264,9 @@ Table of Contents
      DB_Password: cGFzc3dvcmQxMjM=
      DB_User: cm9vdA==
    ```
-   * Inject secret into POD  
+   
+   **Inject secret into POD**
+     
    Inject secret data into pod using following ways  
    a. All key-value pair with ENV  
    ```
@@ -272,6 +274,7 @@ Table of Contents
      - secretRef:
          name: app-secret
    ```
+
    b. Single key-value pair ENV
    ```
    env:
@@ -281,6 +284,7 @@ Table of Contents
             name: app-secret
             key: APP_COLOR
    ```
+
    c. All key-value pair with VOLUME mount
    when a secret mount in a volume it create a file for each secret value pair.
    ```
