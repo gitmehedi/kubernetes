@@ -178,16 +178,18 @@ Table of Contents
      valueFrom: 
         secretKeyRef:
    ```
+
    ##### ConfigMaps
    Two stages of ConfigMaps. 
    ```
    * Create ConfigMaps
    * Inject ConfigMaps into POD
    ```
-   * Create ConfigMaps  
+
+   **Create ConfigMaps**  
    ConfigMaps can be created using two ways  
    
-   **Imperative Way**  
+   Imperative Way  
    ```
    -- kubectl create configmap <configmap_name> --from-literal=<key>=<value>
    $ kubectl create configmap app-config --from-literal=APP_COLOR=blue
@@ -196,7 +198,7 @@ Table of Contents
    $ kubectl create configmap game-config-env-file --from-env-file=configure-pod-container/configmap/game-env-file.properties
 
    ```
-   **Declarative Way**  
+   Declarative Way  
    Create a configMap object from a file app-config.yaml
    ```
    apiVersion: v1
@@ -208,29 +210,32 @@ Table of Contents
      APP_COLOR: blue
      APP_TYPE: prod
    ```
-   Inject ConfigMaps into POD  
+
+   **Inject ConfigMaps into POD**  
    Inject ConfigMaps data into pod using following ways  
-   a. ENV  
+   a. All key-value pair with ENV  
    ```
    envFrom:
-     - configMapRef:
-         name: app-config
+   - configMapRef:
+        name: app-config
    ```
-   b. SINGLE VIEW  
+
+   b. Single key-value pair ENV
    ```
    env:
-     - name: APP_COLOR
-       valueFrom: 
-         configMapKeyRef:
+   - name: APP_COLOR
+     valueFrom: 
+        configMapKeyRef:
             name: app-config
             key: APP_COLOR
    ```
-   c. VOLUME    
+   c. All key-value pair with VOLUME mount  
+   When a secret mount in a volume it create a file for each secret value pair.   
    ```
    volumes:
-     - name: app-config-volume
-       configMap: 
-         name: app-config
+   - name: app-config-volume
+     configMap: 
+        name: app-config
    ```
    
    ##### Secrets
@@ -285,8 +290,8 @@ Table of Contents
            key: APP_COLOR
    ```
 
-   c. All key-value pair with VOLUME mount
-   when a secret mount in a volume it create a file for each secret value pair.
+   c. All key-value pair with VOLUME mount  
+   When a secret mount in a volume it create a file for each secret value pair.
    ```
    volumes:
    - name: app-secret-volume
