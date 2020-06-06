@@ -6,6 +6,7 @@ metadata:
     app: dev-rc-nginx
     type: frontend
 spec:
+  replicas: 3
   templates:
     metadata:
       name: ng-pod
@@ -16,5 +17,5 @@ spec:
       containers:
         - name: nginx-proxy
           image: nginx
-  replicas: 3
+
 
