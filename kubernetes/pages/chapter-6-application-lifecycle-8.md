@@ -271,27 +271,27 @@ Table of Contents
    a. All key-value pair with ENV  
    ```
    envFrom:
-     - secretRef:
-         name: app-secret
+   - secretRef:
+       name: app-secret
    ```
 
    b. Single key-value pair ENV
    ```
    env:
-     - name: APP_COLOR
-       valueFrom: 
-         secretKeyRef:
-            name: app-secret
-            key: APP_COLOR
+   - name: APP_COLOR
+     valueFrom: 
+        secretKeyRef:
+           name: app-secret
+           key: APP_COLOR
    ```
 
    c. All key-value pair with VOLUME mount
    when a secret mount in a volume it create a file for each secret value pair.
    ```
    volumes:
-     - name: app-secret-volume
-       secret: 
-         secretName: app-secret
+   - name: app-secret-volume
+     secret: 
+        secretName: app-secret
    ```
 
    #### Command References
