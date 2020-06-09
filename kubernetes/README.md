@@ -568,7 +568,7 @@ size of the object
 
 ## Tips
 
-### Create alias
+### Create Alias
 ```
 $ alias k="kubectl"
 $ alias kn="kubectl get nodes -o wide"
