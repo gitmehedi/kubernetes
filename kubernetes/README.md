@@ -568,6 +568,9 @@ size of the object
 
 ## Tips
 
+### JSON Path
+* [JSON PATH](pages/jsonpath.md)
+
 ### Create Alias
 ```
 $ alias k="kubectl"
