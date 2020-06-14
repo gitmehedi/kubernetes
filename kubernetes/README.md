@@ -585,6 +585,11 @@ $ alias kdp="kubectl describe pod"
 $ alias kdd="kubectl describe deployment"
 $ alias kds="kubectl describe service"
 $ alias kdn="kubectl describe node"
-$ alias k="kubectl" kg="kubectl get -o wide" kd="kubectl describe" kdl="kubectl delete" kc="kubectl create" kx="kubectl explain --recursive"
+$ alias k="kubectl" 
+kg="kubectl get -o wide" 
+kd="kubectl describe" 
+kdl="kubectl delete" 
+kc="kubectl create" 
+kx="kubectl explain --recursive"
 ```
 * https://medium.com/faun/certified-kubernetes-administrator-cka-tips-and-tricks-part-1-2e98e9b31de4
