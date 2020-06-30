@@ -7,7 +7,6 @@ Table of Contents
    * [Backup and Restore Methodologies](#backup-and-restore-methodologies)
    
    
-
 ## Cluster
    ### Cluster Upgrade Process
    In kubernetes, various cluster component with different version working together. When it need to upgrade from one version to another cluster follows set of rules.
