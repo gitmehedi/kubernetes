@@ -349,7 +349,6 @@ firewall-cmd --permanent --zone=external --add-forward-port=port=22:proto=tcp:to
 firewall-cmd --reload
 ```
 
-
 ### Kubernetes Imperative Commands 
 Run and Create
 
@@ -578,7 +577,6 @@ $ alias kn="kubectl get nodes -o wide"
 $ alias kp="kubectl get pods -o wide"
 $ alias kd="kubectl get deployment -o wide"
 $ alias ks="kubectl get svc -o wide"
-
 
 $ alias ke="kubectl explain --recursive"
 $ alias kdp="kubectl describe pod"
