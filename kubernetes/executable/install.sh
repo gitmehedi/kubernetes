@@ -10,6 +10,7 @@ echo -e "========== Turn Off SWAP Memory =========="
 sudo swapoff -a
 sudo sed -i 's/\/swapfile/#\/swapfile/g' /etc/fstab
 
+
 echo -e "========== Install Docker =========="
 sudo apt-get install docker.io -y
 sudo systemctl enable docker
@@ -22,7 +23,7 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
@@ -48,7 +49,7 @@ then
   kubectl get nodes
 
   echo -e "========== Add Flannel Networks =========="
-  sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+#  sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
   kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
   kubeadm token create --ttl 0 --print-join-command >> token.txt
@@ -70,5 +71,5 @@ nat on en0 from 192.168.56.0/24 to any -> (en0)
 sudo pfctl -nf /etc/pf.conf
 sudo pfctl -f /etc/pf.conf
 
-sudo pfctl -sn
+sudo pfctl -s
 

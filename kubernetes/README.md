@@ -565,6 +565,7 @@ size of the object
 #### Dumps
 * https://medium.com/@sensri108/practice-examples-dumps-tips-for-cka-ckad-certified-kubernetes-administrator-exam-by-cncf-4826233ccc27
 * https://killer.sh/course/preview/052229bd-1062-44a4-8aae-f50d0770165a
+* https://github.com/dgkanatsios/CKAD-exercises/blob/master/a.core_concepts.md
 
 ## Tips
 
