@@ -1,6 +1,5 @@
 # CKA Questions
 
-
 1. Create a initContainer with image busybox which will run fix time before nginx pod ready.
 2. List all pod which using the service nginx-service.
 ```
