@@ -558,7 +558,6 @@ size of the object
   -t, --tty=false: Allocated a TTY for each container in the pod.
       --wait=false: If true, wait for resources to be gone before returning. This waits for finalizers.
 ```
-
 ## Questions ans Preparation
 
 #### Dumps
