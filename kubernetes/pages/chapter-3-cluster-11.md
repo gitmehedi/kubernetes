@@ -65,6 +65,15 @@ Table of Contents
     kube-proxy-2khkk                                    1/1     Running   6          25d
     kube-scheduler-master                               1/1     Running   7          25d
 
+    -- get version of all kube component
+    $ po -n kube-system | grep -i image: | grep -i kube-
+    Image:         k8s.gcr.io/kube-apiserver:v1.18.4
+    Image:         k8s.gcr.io/kube-controller-manager:v1.18.4
+    Image:         k8s.gcr.io/kube-proxy:v1.18.4
+    Image:         k8s.gcr.io/kube-proxy:v1.18.4
+    Image:         k8s.gcr.io/kube-proxy:v1.18.4
+    Image:         k8s.gcr.io/kube-scheduler:v1.18.4
+
     -- get version of etcd
     $ kubectl describe pod etcd-master  -n kube-system | grep Image:
     Image:         k8s.gcr.io/etcd:3.4.3-0
