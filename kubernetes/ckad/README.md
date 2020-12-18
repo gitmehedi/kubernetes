@@ -4,24 +4,24 @@
 Table of Contents
 ==================
 * [Document History](#document-history)
-* [Chapter 1: Core Concepts  (13%)](pages/chapter-1-core-concepts-19.md)
+* [Chapter 1: Core Concepts  (13%)](#chapter-1-core-concepts--13)
    * [Cluster Architecture](pages/chapter-1-core-concepts-19.md#cluster-architecture)
    * [API Primitives](pages/chapter-1-core-concepts-19.md#api-primitives)
    * [Services and Network](pages/chapter-1-core-concepts-19.md#services-and-network)     
 
-* [Chapter 2: Configuration (18%)](pages/chapter-2-install-config-and-validate-12.md)
+* [Chapter 2: Configuration (18%)](#chapter-2-configuration-18)
    * [Binaries/Provision/Types](#binariesprovisiontypes)
    * [Installing Master and Nodes](#installing-master-and-nodes)
    * [Highly Available Cluster](#highly-available-cluster)
    * [Secure Cluster](#secure-cluster)
    * [End-to-End Tests](#end-to-end-tests)
    
-* [Chapter 3: Multi-Container Pods (10%)](pages/chapter-3-cluster-11.md)
+* [Chapter 3: Multi-Container Pods (10%)](#chapter-3-multi-container-pods-10)
    * [Cluster Upgrade Process](pages/chapter-3-cluster-11.md#cluster-upgrade-process)
    * [Operating System Upgrades](pages/chapter-3-cluster-11.md#operating-system-upgrades)
    * [Backup and Restore Methodologies](pages/chapter-3-cluster-11.md#backup-and-restore-methodologies)
 
-* [Chapter 4: Observability (18%)](pages/chapter-4-networking-11.md)
+* [Chapter 4: Observability (18%)](#chapter-4-observability-18)
    * [Node Networking Concepts](pages/chapter-4-networking-11.md#node-networking-concepts) 
    * [Pod Networking Concepts](pages/chapter-4-networking-11.md#pod-networking-concepts) 
    * [Service Networking Concepts](pages/chapter-4-networking-11.md#service-networking-concepts) 
@@ -30,7 +30,7 @@ Table of Contents
    * [Ingress Rules Configure](pages/chapter-4-networking-11.md#ingress-rules-configure) 
    * [Cluster DNS Configure](pages/chapter-4-networking-11.md#cluster-dns-configure) 
    
-* [Chapter 5: Pod Design (20%)](pages/chapter-5-scheduling-5.md)
+* [Chapter 5: Pod Design (20%)](#chapter-5-pod-design-20)
    * [Kubernetes Labels and Selectors to Schedule Pods](pages/chapter-5-scheduling-5.md#kubernetes-labels-and-selectors-to-schedule-pods)
    * [Role of DaemonSets](pages/chapter-5-scheduling-5.md#role-of-daemonsets)
    * [Resource Limits and Labels in Pods Scheduling](pages/chapter-5-scheduling-5.md#resource-limits-and-labels-in-pods-scheduling)
@@ -39,13 +39,13 @@ Table of Contents
    * [Scheduler Events](pages/chapter-5-scheduling-5.md#scheduler-events)
    * [Configure Kubernetes Scheduler](pages/chapter-5-scheduling-5.md#configure-kubernetes-scheduler)
   
-* [Chapter 6: Services & Networking (13%)](pages/chapter-6-application-lifecycle-8.md)
+* [Chapter 6: Services & Networking (13%)](#chapter-6-services--networking-13)
    * [Deploying an Application with Rolling Updates and Rollback](pages/chapter-6-application-lifecycle-8.md#deploying-an-application-with-rolling-updates-and-rollback)
    * [Configure Highly Available Application](pages/chapter-6-application-lifecycle-8.md#configure-highly-available-application)
    * [Scale Applications](pages/chapter-6-application-lifecycle-8.md#scale-applications)
    * [Manage Self-Healing Application](pages/chapter-6-application-lifecycle-8.md#manage-self-healing-application)
   
-* [Chapter 7: State Persistence (8%)](pages/chapter-7-storage-7.md)
+* [Chapter 7: State Persistence (8%)](#chapter-7-state-persistence-8)
    * [Manage Persistent Volume](pages/chapter-7-storage-7.md#manage-persistent-volume)
    * [Volume Access Modes](pages/chapter-7-storage-7.md#volume-access-modes)
    * [Manage Persistent Volume Claims](pages/chapter-7-storage-7.md#manage-persistent-volume-claims)
