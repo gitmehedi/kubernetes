@@ -5,52 +5,52 @@ Table of Contents
 ==================
 * [Document History](#document-history)
 * [Chapter 1: Core Concepts  (13%)](#chapter-1-core-concepts--13)
-   * [Cluster Architecture](pages/chapter-1-core-concepts-19.md#cluster-architecture)
-   * [API Primitives](pages/chapter-1-core-concepts-19.md#api-primitives)
-   * [Services and Network](pages/chapter-1-core-concepts-19.md#services-and-network)     
+   * [PODS](#pods) 
+   * [ReplicaSets](#replicasets)
+   * [Deployments](#deployments)
+   * [Namespaces](#namespaces)
+   * [Imperative Commands](#imperative-commands)   
 
 * [Chapter 2: Configuration (18%)](#chapter-2-configuration-18)
-   * [Binaries/Provision/Types](#binariesprovisiontypes)
-   * [Installing Master and Nodes](#installing-master-and-nodes)
-   * [Highly Available Cluster](#highly-available-cluster)
-   * [Secure Cluster](#secure-cluster)
-   * [End-to-End Tests](#end-to-end-tests)
+   * [Environment Variables](#environment-variables) 
+   * [ConfigMaps](#configmaps)
+   * [Secrets](#secrets)
+   * [Docker Security](#docker-security)
+   * [Security Contexts](#security-contexts)
+   * [Service Account](#service-account)
+   * [Resource Requirements](#resource-requirements)
+   * [Taints and Tolerations](#taints-and-tolerations)
+   * [Node Selectors](#node-selectors)
+   * [Node Affinity](#node-affinity)
    
 * [Chapter 3: Multi-Container Pods (10%)](#chapter-3-multi-container-pods-10)
-   * [Cluster Upgrade Process](pages/chapter-3-cluster-11.md#cluster-upgrade-process)
-   * [Operating System Upgrades](pages/chapter-3-cluster-11.md#operating-system-upgrades)
-   * [Backup and Restore Methodologies](pages/chapter-3-cluster-11.md#backup-and-restore-methodologies)
+   * [Multi-Container Pods](#multi-container-pods)
 
 * [Chapter 4: Observability (18%)](#chapter-4-observability-18)
-   * [Node Networking Concepts](pages/chapter-4-networking-11.md#node-networking-concepts) 
-   * [Pod Networking Concepts](pages/chapter-4-networking-11.md#pod-networking-concepts) 
-   * [Service Networking Concepts](pages/chapter-4-networking-11.md#service-networking-concepts) 
-   * [Container Network Interface](pages/chapter-4-networking-11.md#container-network-interface-cni) 
-   * [Load Balancer Configure and Deploy](pages/chapter-4-networking-11.md#load-balancer-configure-and-deploy) 
-   * [Ingress Rules Configure](pages/chapter-4-networking-11.md#ingress-rules-configure) 
-   * [Cluster DNS Configure](pages/chapter-4-networking-11.md#cluster-dns-configure) 
+   * [Readiness Probes](#readiness-probes)
+   * [Liveness Probes](#liveness-probes)
+   * [Container Logging](#container-logging)
+   * [Monitor and Debug Application](#monitor-and-debug-application)
    
 * [Chapter 5: Pod Design (20%)](#chapter-5-pod-design-20)
-   * [Kubernetes Labels and Selectors to Schedule Pods](pages/chapter-5-scheduling-5.md#kubernetes-labels-and-selectors-to-schedule-pods)
-   * [Role of DaemonSets](pages/chapter-5-scheduling-5.md#role-of-daemonsets)
-   * [Resource Limits and Labels in Pods Scheduling](pages/chapter-5-scheduling-5.md#resource-limits-and-labels-in-pods-scheduling)
-   * [Multiple Schedulers to Run and Configure Pods](pages/chapter-5-scheduling-5.md#multiple-schedulers-to-run-and-configure-pods)
-   * [Manually Schedule a Pods](pages/chapter-5-scheduling-5.md#manually-schedule-a-pods)
-   * [Scheduler Events](pages/chapter-5-scheduling-5.md#scheduler-events)
-   * [Configure Kubernetes Scheduler](pages/chapter-5-scheduling-5.md#configure-kubernetes-scheduler)
+   * [Labels, Selectors and Annotations](#labels-selectors-and-annotations)
+   * [Rolling Updates and Rollback in Deployments](#rolling-updates-and-rollback-in-deployments)
+   * [Update Deployments](#update-deployments)
+   * [Jobs](#jobs)
+   * [CronJobs](#cronjobs)
   
 * [Chapter 6: Services & Networking (13%)](#chapter-6-services--networking-13)
-   * [Deploying an Application with Rolling Updates and Rollback](pages/chapter-6-application-lifecycle-8.md#deploying-an-application-with-rolling-updates-and-rollback)
-   * [Configure Highly Available Application](pages/chapter-6-application-lifecycle-8.md#configure-highly-available-application)
-   * [Scale Applications](pages/chapter-6-application-lifecycle-8.md#scale-applications)
-   * [Manage Self-Healing Application](pages/chapter-6-application-lifecycle-8.md#manage-self-healing-application)
+   * [Services](#services)
+   * [Ingress Networking](#ingress-networking)
+   * [Network Policies](#network-policies)
   
 * [Chapter 7: State Persistence (8%)](#chapter-7-state-persistence-8)
-   * [Manage Persistent Volume](pages/chapter-7-storage-7.md#manage-persistent-volume)
-   * [Volume Access Modes](pages/chapter-7-storage-7.md#volume-access-modes)
-   * [Manage Persistent Volume Claims](pages/chapter-7-storage-7.md#manage-persistent-volume-claims)
-   * [Manage Storage Objects](pages/chapter-7-storage-7.md#manage-storage-objects)
-   * [Configure Application with Storage](pages/chapter-7-storage-7.md#configure-application-with-storage)
+   * [Volumes](#volumes)
+   * [Persistent Volumes](#persistent-volumes)
+   * [Persistent Volume Claims](#persistent-volume-claims)
+   * [Storage Classes](#storage-classes)
+   * [Stateful Sets](#stateful-sets)
+   * [Headless Services](#headless-services)
      
 * [Appendix](#appendix)
    * [Kubernetes Primary Commands](#kubernetes-primary-commands)
@@ -70,46 +70,53 @@ Document History:
 
 
 # Chapter 1: Core Concepts  (13%)
-   * [Cluster Architecture](#cluster-architecture)
-   * [API Primitives](#api-primitives)
-   * [Services and Network](#services-and-network)     
-
+   ## PODS 
+   ## ReplicaSets
+   ## Deployments
+   ## Namespaces
+   ## Imperative Commands
 
 # Chapter 2: Configuration (18%)
-   * [Cluster Architecture](#cluster-architecture)
-   * [API Primitives](#api-primitives)
-   * [Services and Network](#services-and-network)     
-
-
+   ## Environment Variables    
+   ## ConfigMaps
+   ## Secrets
+   ## Docker Security
+   ## Security Contexts
+   ## Service Account
+   ## Resource Requirements
+   ## Taints and Tolerations
+   ## Node Selectors
+   ## Node Affinity
+   
 # Chapter 3: Multi-Container Pods (10%)
-   * [Cluster Architecture](#cluster-architecture)
-   * [API Primitives](#api-primitives)
-   * [Services and Network](#services-and-network)     
+   ## Multi-Container Pods
 
 
 # Chapter 4: Observability (18%)
-   * [Cluster Architecture](#cluster-architecture)
-   * [API Primitives](#api-primitives)
-   * [Services and Network](#services-and-network)     
-
+   ## Readiness Probes
+   ## Liveness Probes
+   ## Container Logging
+   ## Monitor and Debug Application
 
 # Chapter 5: Pod Design (20%)
-   * [Cluster Architecture](#cluster-architecture)
-   * [API Primitives](#api-primitives)
-   * [Services and Network](#services-and-network)     
-
-
+   ## Labels, Selectors and Annotations
+   ## Rolling Updates and Rollback in Deployments
+   ## Update Deployments
+   ## Jobs
+   ##  CronJobs
+   
 # Chapter 6: Services & Networking (13%)
-   * [Cluster Architecture](#cluster-architecture)
-   * [API Primitives](#api-primitives)
-   * [Services and Network](#services-and-network)     
-
-
+   ## Services
+   ## Ingress Networking
+   ## Network Policies
+   
 # Chapter 7: State Persistence (8%)
-   * [Cluster Architecture](#cluster-architecture)
-   * [API Primitives](#api-primitives)
-   * [Services and Network](#services-and-network)     
-
+   ## Volumes
+   ## Persistent Volumes
+   ## Persistent Volume Claims
+   ## Storage Classes
+   ## Stateful Sets
+   ## Headless Services
 
 ## Appendix:
 
