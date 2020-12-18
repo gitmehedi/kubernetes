@@ -1,5 +1,7 @@
 # Certified Kubernetes Application Developer (CKAD) 
+A set of exercises that helped me prepare for the Certified Kubernetes Application Developer exam, offered by the Cloud Native Computing Foundation, organized by curriculum domain. They may as well serve as learning and practicing with Kubernetes.
 
+During the exam, you are allowed to keep only one other browser tab open to refer official documentation. Make a mental note of the breadcrumb at the start of the excercise section, to quickly locate the relevant document in kubernetes.io. It is recommended that you read official documents before attempting exercises below it.
 
 Table of Contents
 ==================
@@ -608,6 +610,7 @@ $ alias kp="kubectl get pods -o wide"
 $ alias kd="kubectl get deployment -o wide"
 $ alias ks="kubectl get svc -o wide"
 
+
 $ alias ke="kubectl explain --recursive"
 $ alias kdp="kubectl describe pod"
 $ alias kdd="kubectl describe deployment"
@@ -615,6 +618,7 @@ $ alias kds="kubectl describe service"
 $ alias kdn="kubectl describe node"
 $ alias kcr="kubectl run --dry-run=client -o yaml --generator=run-pod/v1"
 $ alias kcc="kubectl create --dry-run=client -o yaml"
-$ alias k="kubectl" kg="kubectl get -o wide" kd="kubectl describe" kdl="kubectl delete" kc="kubectl create" kx="kubectl explain --recursive"
+
+$ alias k="kubectl" kg="kubectl get -o wide" kd="kubectl describe" kdl="kubectl delete" krd="kubectl run --dry-run=client -o yaml" kcd="kubectl create --dry-run=client -o yaml" kc="kubectl create" kx="kubectl explain --recursive" kr="kubectl run" krd="kubectl run --dry-run -o yaml"
 ```
 * https://medium.com/faun/certified-kubernetes-administrator-cka-tips-and-tricks-part-1-2e98e9b31de4
