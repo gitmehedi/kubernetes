@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-resources
+  labels:
+    app: ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /video
+            backend:
+              serviceName: video-service
+              servicePort: 80
+          - path: /audio
+            backend:
+              serviceName: audio-service
+              servicePort: 80
+    - https:
+        paths:
+          - path: /video
+            backend:
+              serviceName: video-service
+              servicePort: 443
+          - path: /audio
+            backend:
+              serviceName: audio-service
+              servicePort: 443
+
+
+---
+
+apiVersion:
+
+
+

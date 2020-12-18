@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: ogl-deploy-ng
+   labels:
+      apps: ogl-deploy-ng
+      type: frontend
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+        apps: ogl-pod-ng
+   template:
+      metadata:
+        name: ogl-pod-ng
+        labels:
+           apps: ogl-pod-ng
+           type: frontend
+      spec:
+        volumes:
+           - name: ogl-pvm-ng
+             persistentVolumeClaim:
+                claimName: ogl-pvc-ng
+        containers:
+          - name: ogl-con-ng
+            image: nginx
+            ports:
+              - containerPort: 80
+            volumeMounts:
+              - mountPath: "/usr/share/nginx/html"
+                name: ogl-pvm-ng

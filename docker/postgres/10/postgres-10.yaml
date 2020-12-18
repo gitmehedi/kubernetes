@@ -1,0 +1,99 @@
+---
+apiVersion: v1
+data:
+  POSTGRES_DB: postgresdb
+  POSTGRES_PASSWORD: admin123
+  POSTGRES_USER: postgresadmin
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: pg-config
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgres-pv-volume
+  labels:
+    type: local
+    app: postgres
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"
+
+---
+apiVersion: v1
+metadata:
+  name: postgres-pv-claim
+  labels:
+    app: postgres
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pgsql
+  name: pgsql
+spec:
+  ports:
+  - port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    app: pgsql
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pgsql
+  name: pgsql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgsql
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: pgsql
+    spec:
+      containers:
+      - image: postgres:10.4
+        name: pgsql
+        resources: {}
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: pg-config
+        volumeMounts:
+        - name: pg-volumes
+          mountPath: /var/lib/postgresql/data
+      imagePullSecrets:
+      - name: mehedi
+      volumes:
+      - name: pg-volumes
+        persistentVolumeClaim:
+          claimName: postgres-pv-claim
+status: {}
+---
