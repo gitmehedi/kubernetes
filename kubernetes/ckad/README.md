@@ -98,7 +98,7 @@ Document History:
    ```
    A pods can be create in kubernetes using YAML file or directory from command line using kubernetes imperative command.
    
-   Using YAML File
+   **Create Pod using YAML File**
    ```bash
    -- create a file with image redis and store all information in a YAML file named 'redis.yaml'
     apiVersion: v1
@@ -120,7 +120,8 @@ Document History:
     -- run the file using kuberneted imperative commands
     $ kubernetes create -f redis.yaml
    ```
-   Create a pods using kubernetes command
+
+   **Create Pods using Kubernetes Imperative Command**
    ```bash 
    -- Start a nginx pod.
    $ kubectl run nginx --image=nginx
@@ -151,24 +152,40 @@ Document History:
    $ kubectl run nginx --image=nginx --command -- <cmd> <arg1> ... <argN>
    ```
 
+   **Edit Pods**  
+   * If you are given a pod definition file, edit that file and use it to create a new pod.  
+   * If you are not given a pod definition file, you may extract the definition to a file using the below command:  
+     ```$ kubectl get pod <pod-name> -o yaml > pod-definition.yaml```  
+   * Then edit the file to make the necessary changes, delete and re-create the pod. Use below command to edit pod properties.  
+   ```$ kubectl edit pod <pod-name>```
+   
    #### Command References
    ```bash
-   -- API Call
-   $ kubectl get --raw /apis/metrics.k8s.io/
-
-   -- Cluster Information
-   $ kubectl config
-   $ kubectl cluster-info
-   $ kubectl get componentstatuses
+   -- compleate command
+   $ kubectl run hazelcast --image hazelcast/hazelcast --port=5071 --labels="app=hazelcast,env=prod" --env="DNS_DOMAIN=cluster" --env="POD_NAMESPACE=default" --restart=Never --command -- start.sh start stop
    ```
   
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/workloads/pods/
    
    ## ReplicaSets
+   
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/workloads/pods/
+   
    ## Deployments
+   
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/workloads/pods/
+   
    ## Namespaces
+   
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/workloads/pods/
    ## Imperative Commands
+   
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/workloads/pods/
 
 # Chapter 2: Configuration (18%)
    ## Environment Variables    
