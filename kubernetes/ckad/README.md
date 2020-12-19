@@ -73,6 +73,97 @@ Document History:
 
 # Chapter 1: Core Concepts  (13%)
    ## PODS 
+   A pod is the smallest execution unit in Kubernetes. A pod encapsulates one or more applications. Pods are ephemeral 
+   by nature, if a pod (or the node it executes on) fails, Kubernetes can automatically create a new replica of that 
+   pod to continue operations. Pods include one or more containers (such as Docker containers).
+   Pods can be represent in YAML
+   ```bash
+   -- Create a pod with docker image nginx 
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: nging
+      name: nging
+    spec:
+      containers:
+      - image: nginx
+        name: nging
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+    status: {}
+   ```
+   A pods can be create in kubernetes using YAML file or directory from command line using kubernetes imperative command.
+   
+   Using YAML File
+   ```bash
+   -- create a file with image redis and store all information in a YAML file named 'redis.yaml'
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: nging
+      name: nging
+    spec:
+      containers:
+      - image: nginx
+        name: nging
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+    status: {}
+
+    -- run the file using kuberneted imperative commands
+    $ kubernetes create -f redis.yaml
+   ```
+   Create a pods using kubernetes command
+   ```bash 
+   -- Start a nginx pod.
+   $ kubectl run nginx --image=nginx
+  
+   -- Start a hazelcast pod and let the container expose port 5701.
+   $ kubectl run hazelcast --image=hazelcast/hazelcast --port=5701
+  
+   -- Start a hazelcast pod and set environment variables "DNS_DOMAIN=cluster" and "POD_NAMESPACE=default" in the
+   container.
+   $ kubectl run hazelcast --image=hazelcast/hazelcast --env="DNS_DOMAIN=cluster" --env="POD_NAMESPACE=default"
+  
+   -- Start a hazelcast pod and set labels "app=hazelcast" and "env=prod" in the container.
+   $ kubectl run hazelcast --image=hazelcast/hazelcast --labels="app=hazelcast,env=prod"
+  
+   -- Dry run. Print the corresponding API objects without creating them.
+   $ kubectl run nginx --image=nginx --dry-run=client
+  
+   -- Start a nginx pod, but overload the spec with a partial set of values parsed from JSON.
+   $ kubectl run nginx --image=nginx --overrides='{ "apiVersion": "v1", "spec": { ... } }'
+  
+   -- Start a busybox pod and keep it in the foreground, don't restart it if it exits.
+   $ kubectl run -i -t busybox --image=busybox --restart=Never
+  
+   -- Start the nginx pod using the default command, but use custom arguments (arg1 .. argN) for that command.
+   $ kubectl run nginx --image=nginx -- <arg1> <arg2> ... <argN>
+  
+   -- Start the nginx pod using a different command and custom arguments.
+   $ kubectl run nginx --image=nginx --command -- <cmd> <arg1> ... <argN>
+   ```
+
+   #### Command References
+   ```bash
+   -- API Call
+   $ kubectl get --raw /apis/metrics.k8s.io/
+
+   -- Cluster Information
+   $ kubectl config
+   $ kubectl cluster-info
+   $ kubectl get componentstatuses
+   ```
+  
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/workloads/pods/
    
    ## ReplicaSets
    ## Deployments
