@@ -73,6 +73,7 @@ Document History:
 
 # Chapter 1: Core Concepts  (13%)
    ## PODS 
+   
    ## ReplicaSets
    ## Deployments
    ## Namespaces
