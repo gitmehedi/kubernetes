@@ -11,6 +11,7 @@ Table of Contents
    * [ReplicaSets](#replicasets)
    * [Deployments](#deployments)
    * [Namespaces](#namespaces)
+   * [Resource Quota](#resource-quota)
    * [Imperative Commands](#imperative-commands)   
 
 * [Chapter 2: Configuration (18%)](#chapter-2-configuration-18)
@@ -161,7 +162,7 @@ Document History:
    
    #### Command References
    ```bash
-   -- compleate command
+   -- complete command
    $ kubectl run hazelcast --image hazelcast/hazelcast --port=5071 --labels="app=hazelcast,env=prod" --env="DNS_DOMAIN=cluster" --env="POD_NAMESPACE=default" --restart=Never --command -- start.sh start stop
    ```
   
@@ -182,6 +183,59 @@ Document History:
    
    #### References and Further Study
    * https://kubernetes.io/docs/concepts/workloads/pods/
+   
+   ## Resource Quota
+   ```bash
+   apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: pods-high
+  spec:
+    hard:
+      cpu: "1000"
+      memory: 200Gi
+      pods: "10"
+    scopeSelector:
+      matchExpressions:
+      - operator : In
+        scopeName: PriorityClass
+        values: ["high"]
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: pods-medium
+  spec:
+    hard:
+      cpu: "10"
+      memory: 20Gi
+      pods: "10"
+    scopeSelector:
+      matchExpressions:
+      - operator : In
+        scopeName: PriorityClass
+        values: ["medium"]
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: pods-low
+  spec:
+    hard:
+      cpu: "5"
+      memory: 10Gi
+      pods: "10"
+    scopeSelector:
+      matchExpressions:
+      - operator : In
+        scopeName: PriorityClass
+        values: ["low"]   
+```
+   
+   #### References and Further Study
+   * https://kubernetes.io/docs/concepts/policy/resource-quotas/
+   
    ## Imperative Commands
    
    #### References and Further Study
