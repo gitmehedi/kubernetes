@@ -20,7 +20,7 @@ echo "This is a primary stage"'''
 
         stage('Test Log') {
           steps {
-            writeFile(file: 'LogFileTest.txt', text: 'This is a test logs ${Name}')
+            writeFile(file: 'LogFileTest.txt', text: "This is a test logs ${Name}")
           }
         }
 
