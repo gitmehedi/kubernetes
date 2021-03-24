@@ -1,24 +1,26 @@
 pipeline {
   agent any
   stages {
-    stage('Build Stage') {
+    stage('Source Build') {
       parallel {
         stage('Build Stage') {
           steps {
-            echo 'Build image from Python File'
+            echo 'First stage of building source code'
+            sh '''#!/bin/bash
+echo "This is a primary stage"'''
           }
         }
 
-        stage('Test ') {
+        stage('Build Test Stage') {
           steps {
-            echo 'Test the build stage'
+            echo 'First stage of building test'
           }
         }
 
       }
     }
 
-    stage('Deployment') {
+    stage('Deployment Build') {
       parallel {
         stage('Deployment') {
           steps {
@@ -32,6 +34,12 @@ pipeline {
           }
         }
 
+      }
+    }
+
+    stage('Post Deployemt') {
+      steps {
+        echo 'This is final stage'
       }
     }
 
