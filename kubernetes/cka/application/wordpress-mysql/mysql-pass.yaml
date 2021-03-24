@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  password: Y29kZTIwMCE=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: mysql-pass
