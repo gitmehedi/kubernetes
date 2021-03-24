@@ -18,6 +18,12 @@ echo "This is a primary stage"'''
           }
         }
 
+        stage('Test Log') {
+          steps {
+            writeFile(file: 'testlogsfile', text: 'This is a test logs')
+          }
+        }
+
       }
     }
 
