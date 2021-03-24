@@ -20,7 +20,7 @@ echo "This is a primary stage"'''
 
         stage('Test Log') {
           environment {
-            LocalVariable = "Hello Local Variable"
+            LocalVariable = 'Hello Local Variable'
           }
           steps {
             writeFile(file: 'LogFileTest.txt', text: "Global Variables: ${ChromeDriverPath}, Local Variable: ${LocalVariable}")
@@ -51,7 +51,7 @@ echo "This is a primary stage"'''
       parallel {
         stage('Post Deployment') {
           steps {
-            echo 'This is final stage'
+            echo 'This is final stage?'
             input(message: 'Do you continue Deployment??', id: 'OK')
           }
         }
