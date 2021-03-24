@@ -20,7 +20,7 @@ echo "This is a primary stage"'''
 
         stage('Test Log') {
           steps {
-            writeFile(file: 'testlogsfile', text: 'This is a test logs')
+            writeFile(file: 'LogFileTest.txt', text: 'This is a test logs')
           }
         }
 
@@ -55,7 +55,7 @@ echo "This is a primary stage"'''
 
         stage('Artifacts') {
           steps {
-            archiveArtifacts 'LogFileTest'
+            archiveArtifacts 'LogFileTest.txt'
           }
         }
 
