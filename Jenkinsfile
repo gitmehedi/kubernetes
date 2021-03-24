@@ -45,9 +45,20 @@ echo "This is a primary stage"'''
     }
 
     stage('Post Deployment') {
-      steps {
-        echo 'This is final stage'
-        input(message: 'Do you continue Deployment??', id: 'OK')
+      parallel {
+        stage('Post Deployment') {
+          steps {
+            echo 'This is final stage'
+            input(message: 'Do you continue Deployment??', id: 'OK')
+          }
+        }
+
+        stage('Artifacts') {
+          steps {
+            archiveArtifacts 'LogFileTest'
+          }
+        }
+
       }
     }
 
