@@ -37,7 +37,7 @@ echo "This is a primary stage"'''
       }
     }
 
-    stage('Post Deployemt') {
+    stage('Post Deployment') {
       steps {
         echo 'This is final stage'
       }
