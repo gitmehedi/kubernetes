@@ -19,8 +19,11 @@ echo "This is a primary stage"'''
         }
 
         stage('Test Log') {
+          environment {
+            LocalVariable = "Hello Local Variable"
+          }
           steps {
-            writeFile(file: 'LogFileTest.txt', text: "This is a test logs ${Name}")
+            writeFile(file: 'LogFileTest.txt', text: "Global Variables: ${ChromeDriverPath}, Local Variable: ${LocalVariable}")
           }
         }
 
