@@ -32,7 +32,13 @@ echo "This is a primary stage"'''
 
     stage('Deployment Build') {
       parallel {
+
+
         stage('Deployment') {
+          when {
+            branch 'develop'
+          }
+
           steps {
             echo 'Deploy the Python Application'
           }
