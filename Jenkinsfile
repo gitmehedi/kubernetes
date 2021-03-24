@@ -14,7 +14,7 @@ echo "This is a primary stage"'''
         stage('Build Test Stage') {
           steps {
             echo 'First stage of building test'
-            echo 'Path of name is ${Name}'
+            echo "Path of name is ${Name}"
           }
         }
 
