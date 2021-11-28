@@ -1,0 +1,46 @@
+
+CKS Question:
+- change all depolment to use gVisior runc environemnt 
+  - there are three deploymnet 
+- create a pod using given spec and pod should not mount sa token by default. create sa with disable automountServiceAccountToken
+- given some scenario for the CIS benchmark
+  - change few parameter in kue-api server
+  - change parameter in etcd
+  - change parameter in kubelet (auth-disable, enable webhook)
+- setup audit policy 
+  - api-server configuration
+  - audit config file etc
+  - configure max file and age of file
+  - given policy requirements for auditing (node, secret, metadata)
+- Image webhook Policy 
+  - configure image policy 
+  - configure default implict deny
+  - setup image verification link in backend file
+  - api server configuration
+- Apparmor (more than 10% weight)
+  - activate Apparmor profile
+  - Configure apparmor pod
+- create psp with service account
+  - create sa
+  - create psp
+  - create cluster role
+  - create cluster rolebinding
+  - create pod
+  - delete unused sa
+- find secret
+  - find secret from secret specification
+  - find secret using etcdctl command
+- static analysis 
+  - static analysis Docker file (image version and use non-root user)
+  - static analysis yaml defination file (priviledge to false, rootfs-yes)
+- Check running pod
+  - check immutable pod
+  - delete pod which is not immmutable
+- default deny network policy
+- create incoming network policy which allow communication for pods and namesape using label
+- scan image using trivy 
+  - delete image which has high and critical vulnerability
+- sysdig and falco
+- 
+
+
