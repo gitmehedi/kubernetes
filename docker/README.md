@@ -1,13 +1,14 @@
-# Docker
+Docker
+======
 
 - [Docker](#docker)
-  - [Dockerfile](#dockerfile)
+- [Dockerfile](#dockerfile)
     - [Dockerfile Instructions](#dockerfile-instructions)
       - [FROM](#from)
       - [RUN](#run)
       - [Reference](#reference)
 
-## Dockerfile
+# Dockerfile
 Docker can build images automatically by reading the instruction from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.
 Dockerfile supports following lists of instruction
 ### Dockerfile Instructions
