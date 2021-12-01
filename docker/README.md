@@ -19,7 +19,7 @@ Docker
       - [ARG](#arg)
       - [ONBUILD](#onbuild)
       - [SHELL](#shell)
-      - [Reference](#reference)
+    - [Reference](#reference)
 
 # Dockerfile
 Docker can build images automatically by reading the instruction from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.
@@ -41,7 +41,6 @@ Dockerfile supports following lists of instruction
   - [ARG](#arg)
   - [ONBUILD](#onbuild)
   - [SHELL](#shell)
-  - [Reference](#reference)
 
 #### FROM
 The FROM instruction initializes a new build stage and sets the Base Image for subsequent instructions. As such, a valid Dockerfile must start with a FROM instruction.
