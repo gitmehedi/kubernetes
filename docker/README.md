@@ -6,27 +6,42 @@ Docker
     - [Dockerfile Instructions](#dockerfile-instructions)
       - [FROM](#from)
       - [RUN](#run)
+      - [CMD](#cmd)
+      - [LABEL](#label)
+      - [EXPOSE](#expose)
+      - [ENV](#env)
+      - [ADD](#add)
+      - [COPY](#copy)
+      - [ENTRYPOINT](#entrypoint)
+      - [VOLUME](#volume)
+      - [USER](#user)
+      - [WORKDIR](#workdir)
+      - [ARG](#arg)
+      - [ONBUILD](#onbuild)
+      - [SHELL](#shell)
       - [Reference](#reference)
 
 # Dockerfile
 Docker can build images automatically by reading the instruction from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.
 Dockerfile supports following lists of instruction
 ### Dockerfile Instructions
-- [FROM](#from)
-- RUN
-- CMD
-- LABEL
-- EXPOSE
-- ENV
-- ADD
-- COPY
-- ENTRYPOINT
-- VOLUME
-- USER
-- WORKDIR
-- ARG
-- ONBUILD
-- SHELL
+
+  - [FROM](#from)
+  - [RUN](#run)
+  - [CMD](#cmd)
+  - [LABEL](#label)
+  - [EXPOSE](#expose)
+  - [ENV](#env)
+  - [ADD](#add)
+  - [COPY](#copy)
+  - [ENTRYPOINT](#entrypoint)
+  - [VOLUME](#volume)
+  - [USER](#user)
+  - [WORKDIR](#workdir)
+  - [ARG](#arg)
+  - [ONBUILD](#onbuild)
+  - [SHELL](#shell)
+  - [Reference](#reference)
 
 #### FROM
 The FROM instruction initializes a new build stage and sets the Base Image for subsequent instructions. As such, a valid Dockerfile must start with a FROM instruction.
@@ -77,7 +92,19 @@ or
 RUN ["/bin/bash", "-c", "echo hello"]
 ```
 
-
+#### CMD
+#### LABEL
+#### EXPOSE
+#### ENV
+#### ADD
+#### COPY
+#### ENTRYPOINT
+#### VOLUME
+#### USER
+#### WORKDIR
+#### ARG
+#### ONBUILD
+#### SHELL
 
 
 #### Reference
