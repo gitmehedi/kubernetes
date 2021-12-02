@@ -92,6 +92,14 @@ RUN ["/bin/bash", "-c", "echo hello"]
 ```
 
 #### CMD
+The CMD instruction has three forms:
+- CMD ["executable","param1","param2"] (exec form, this is the preferred form)
+- CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
+- CMD command param1 param2 (shell form)
+
+__Note:__  
+There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect.  
+
 #### LABEL
 #### EXPOSE
 #### ENV
