@@ -105,6 +105,32 @@ There can only be one CMD instruction in a Dockerfile. If you list more than one
 #### ENV
 #### ADD
 #### COPY
+The ```COPY``` instruction copies new files or directories from ```<src>``` and adds them to the filesystem of the container at the path ```<dest>```.
+
+Multiple ```<src>``` resources may be specified but the paths of files and directories will be interpreted as relative to the source of the context of the build.
+
+**COPY has two forms:**  
+
+```shell
+COPY [--chown=<user>:<group>] <src>... <dest>
+COPY [--chown=<user>:<group>] ["<src>",... "<dest>"]
+```
+
+**Example**  
+```shell
+COPY --chown=55:mygroup files* /somedir/
+COPY --chown=bin files* /somedir/
+COPY --chown=1 files* /somedir/
+COPY --chown=10:11 files* /somedir/
+```
+
+COPY obeys the following rules:
+- The <src> path must be inside the context of the build; you cannot COPY ../something /something, because the first step of a docker build is to send the context directory (and subdirectories) to the docker daemon.
+- If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
+  
+
+  
+
 #### ENTRYPOINT
 #### VOLUME
 #### USER
