@@ -129,9 +129,22 @@ COPY obeys the following rules:
 - If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
   
 
-  
+
 
 #### ENTRYPOINT
+**ENTRYPOINT has two forms:**  
+
+The exec form, which is the preferred form:  
+
+```shell
+ENTRYPOINT ["executable", "param1", "param2"]
+```
+
+The shell form:
+```shell
+ENTRYPOINT command param1 param2
+```
+
 #### VOLUME
 #### USER
 #### WORKDIR
