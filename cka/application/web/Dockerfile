@@ -5,7 +5,7 @@ RUN set x; apt-get -y update && apt-get install -y wget vim sudo curl lsb-releas
 
 FROM nginx:latest
 RUN set x; apt-get install -y nginx
-
+syste
 COPY start.sh /var/start.sh
 RUN chmod 777 /var/start.sh
 
