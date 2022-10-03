@@ -9,15 +9,15 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_x11 = true
 
 
-# Define k18master, provision using automatic installation script
-  config.vm.define "k8master", autostart: false do |node|
+# Define k8m, provision using automatic installation script
+  config.vm.define "k8m", autostart: true do |node|
     node.vm.box = "ubuntu/focal64"
     node.vm.provider "virtualbox" do |vb|
-      vb.name = "k8master"
+      vb.name = "k8m"
       vb.memory = 4096
       vb.cpus = 2
     end
-    node.vm.hostname = "k8master"
+    node.vm.hostname = "k8m"
     node.vm.network "private_network", ip: "192.168.56.53"  
     node.vm.network "forwarded_port", guest: 22, host: "5322", auto_correct: true
     node.vm.provision :shell, :path => "hosts_install.sh"
@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
   end
 
 # Define k8worker1, provision using automatic installation script
-  config.vm.define "k8w1", autostart: false do |node|
+  config.vm.define "k8w1", autostart: true do |node|
     node.vm.box = "ubuntu/focal64"
     node.vm.provider "virtualbox" do |vb|
       vb.name = "k8w1"
@@ -62,7 +62,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Define nfs8server, provision using automatic installation script
-  config.vm.define "nfs8server", autostart: false do |node|
+  config.vm.define "nfs8server", autostart: true do |node|
     node.vm.box = "ubuntu/focal64"
     node.vm.provider "virtualbox" do |vb|
       vb.name = "nfs8server"
