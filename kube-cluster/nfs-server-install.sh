@@ -7,18 +7,18 @@ sudo apt-get update -y
 sudo apt-get install nfs-kernel-server -y
 
 # Set user permissions
-sudo mkdir -p /mnt/nfs_share
-sudo chown -R nobody:nogroup /mnt/nfs_share/
-sudo chmod 777 /mnt/nfs_share/
+sudo mkdir -p /mnt/nfs
+sudo chown -R nobody:nogroup /mnt/nfs/
+sudo chmod 777 /mnt/nfs/
 
 # Create a file in NFS Server
-sudo touch /mnt/nfs_share/server.txt
+sudo touch /mnt/nfs/server.txt
 
 
 
 # Configure NFS cluster
 sudo cat >> /etc/exports <<EOF
-/mnt/nfs_share  192.168.56.0/24(rw,sync,no_subtree_check)
+/mnt/nfs  192.168.56.0/24(rw,sync,no_subtree_check)
 EOF
 
 # Export Karnel and Restart NFS Server

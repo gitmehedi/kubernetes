@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ogl
+  name: ogl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ogl
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ogl
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_USER
+          value: odoo
+        - name: POSTGRES_PASSWORD
+          value: odoo
+        - name: POSTGRES_DB
+          value: postgres
+        image: odoo:15
+        name: ogl
+        ports:
+        - containerPort: 8069
+        resources: {}
+status: {}
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pg
+  name: pg
+spec:
+  containers:
+  - env:
+    - name: POSTGRES_DB
+      value: postgres
+    - name: POSTGRES_PASSWORD
+      value: myodoo
+    - name: POSTGRES_USER
+      value: odoo
+    image: postgres:13
+    name: pg
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+--- 
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ogl
+  name: olg-svc
+spec:
+  ports:
+  - port: 8069
+    protocol: TCP
+    targetPort: 8069
+  selector:
+    app: ogl
+  type: NodePort
+status:
+  loadBalancer: {}
