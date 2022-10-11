@@ -2,61 +2,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: odoo-db
-  labels:
-    app: odoo-svr
-spec:
-  ports:
-    - port: 5432
-  selector:
-    app: odoo-svr
-    tier: backend
-  type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: odoo-db
-  labels:
-    app: odoo-svr
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: odoo-svr
-      tier: backend
-  strategy:
-    type: Recreate
-  template:
-    metadata:
-      labels:
-        app: odoo-svr
-        tier: backend
-    spec:
-      containers:
-      - image: postgres:10.0
-        name: odoo-db
-        env:
-        - name: POSTGRES_USER
-          value: odoo
-        - name: POSTGRES_PASSWORD
-          value: password
-        - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
-        ports:
-        - containerPort: 5432
-          name: odoo-db
-        volumeMounts:
-        - name: odoo-db-pvc
-          mountPath: /var/lib/postgresql/data
-      volumes:
-      - name: odoo-db-pvc
-        persistentVolumeClaim:
-          claimName: odoo-db-pvc
----
-apiVersion: v1
-kind: Service
-metadata:
   name: odoo-svr
   labels:
     app: odoo-svr
@@ -107,10 +52,15 @@ spec:
           volumeMounts:
           - name: odoo-pvc
             mountPath: /var/lib/odoo
+          - name: odoo-addons
+            mountPath: /mnt/extra-addons
       volumes:
       - name: odoo-pvc
         persistentVolumeClaim:
           claimName: odoo-pvc
+      - name: odoo-addons
+        persistentVolumeClaim:
+          claimName: odoo-addons
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -129,7 +79,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv0002
+  name: addons
   labels:
     type: local
 spec:
@@ -138,7 +88,7 @@ spec:
   capacity:
     storage: 5Gi
   hostPath:
-    path: /data/pv0002/
+    path: /data/pv0003/
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -156,7 +106,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: odoo-db-pvc
+  name: odoo-addons
   labels:
     app: odoo-svr
 spec:

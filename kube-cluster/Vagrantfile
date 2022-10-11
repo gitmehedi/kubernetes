@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_x11 = true
 
   # Define nfs8server, provision using automatic installation script
-  config.vm.define "k8nfs", autostart: true do |node|
+  config.vm.define "k8nfs", autostart: false do |node|
     node.vm.box = "ubuntu/focal64"
     node.vm.provider "virtualbox" do |vb|
       vb.name = "k8nfs"
@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
     node.vm.provision :shell, :path => "hosts_install.sh"
     node.vm.provision :shell, :path => "nfs-server-install.sh"
   end
-  
+
 # Define k8m, provision using automatic installation script
   config.vm.define "k8m", autostart: true do |node|
     node.vm.box = "ubuntu/focal64"
