@@ -34,7 +34,7 @@ spec:
         tier: frontend
     spec:
       containers:
-        - image: odoo:15.0
+        - image: odoo:10.0
           name: odoo
           env:
           - name: HOST
@@ -54,6 +54,8 @@ spec:
             mountPath: /var/lib/odoo
           - name: odoo-addons
             mountPath: /mnt/extra-addons
+          - name: odoo-config
+            mountPath: /etc/odoo/
       volumes:
       - name: odoo-pvc
         persistentVolumeClaim:
@@ -61,6 +63,9 @@ spec:
       - name: odoo-addons
         persistentVolumeClaim:
           claimName: odoo-addons
+      - name: odoo-config
+        persistentVolumeClaim:
+          claimName: odoo-config
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -89,6 +94,7 @@ spec:
     storage: 5Gi
   hostPath:
     path: /data/pv0003/
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -115,3 +121,30 @@ spec:
   resources:
     requests:
       storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: odoo-config
+  labels:
+    type: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 2Gi
+  hostPath:
+    path: /data/pv0004/
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: odoo-config
+  labels:
+    app: odoo-svr
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
