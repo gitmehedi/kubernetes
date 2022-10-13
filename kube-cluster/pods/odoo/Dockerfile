@@ -41,10 +41,6 @@ RUN set -x; \
         && apt-get -y install -f --no-install-recommends \
         && rm -rf /var/lib/apt/lists/* odoo.deb odoo.sha
 
-# Copy entrypoint script and Odoo configuration file
-COPY ./entrypoint.sh /
-COPY ./odoo.conf /etc/odoo/
-RUN chown odoo:odoo /etc/odoo/odoo.conf
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN mkdir -p /mnt/extra-addons \
@@ -63,8 +59,7 @@ VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 COPY ./requirements.txt /mnt/requirements.txt
 RUN python -m pip install -r /mnt/requirements.txt
 
-# WORKDIR /mnt/extra-addons/custom
-# RUN git clone -b emk_dev --single-branch https://github.com/genweb2/gbs.git emk
+
 
 WORKDIR /mnt/extra-addons/osapps
 RUN git clone -b 10.0 --single-branch https://github.com/oca/server-tools.git \
@@ -79,14 +74,47 @@ RUN git clone -b 10.0 --single-branch https://github.com/oca/server-tools.git \
     && git clone -b tko-addons --single-branch https://github.com/gitmehedi/oca_addons.git tko-addons \
     && git clone -b oca --single-branch https://github.com/gitmehedi/oca_addons.git oca
 
+# # Take an SSH key as a build argument.
+# ARG SSH_KEY
+
+# # Install dependencies required to git clone.
+# RUN apt-get update -y && apt-get install openssh-server ssh -y
+
+# # 1. Create the SSH directory.
+# RUN mkdir -p /root/.ssh/
+# # 2. Populate the private key file.
+# RUN echo "$SSH_KEY" > /root/.ssh/id_rsa
+# # 3. Set the required permissions.
+# RUN chmod -R 600 /root/.ssh/
+# # 4. Add github to our list of known hosts for ssh.
+# # RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+# RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
+# RUN echo "StrictHostKeyChecking no" >> /root/.ssh/config
+
+
+WORKDIR /mnt/extra-addons/custom
+ARG SSH_KEY
+RUN git config --global url."https://${SSH_KEY}:@github.com/".insteadOf "https://github.com/"
+RUN git clone -b emk_dev --single-branch https://github.com/genweb2/gbs.git emk
+
+WORKDIR /mnt
+
+# Copy entrypoint script and Odoo configuration file
+COPY ./entrypoint.sh /mnt/entrypoint.sh
+RUN chmod +x /mnt/entrypoint.sh
+COPY ./odoo.conf /etc/odoo/
+RUN chown odoo:odoo /etc/odoo/odoo.conf
+RUN chown odoo:odoo /mnt/entrypoint.sh
+
 # Expose Odoo services
 EXPOSE 8069 8071
 
 # Set the default config file
 ENV ODOO_RC /etc/odoo/odoo.conf
 
+
 # Set default user when running the container
 USER odoo
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/mnt/entrypoint.sh"]
 CMD ["odoo"]
