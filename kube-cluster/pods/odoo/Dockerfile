@@ -11,18 +11,13 @@ RUN set -x; \
             git \
             vim \
             wget \
+            libmagickwand-dev \
             node-less \
             python-gevent \
             python-pip \
             python-pyinotify \
             python-renderpm \
             python-support \
-        # && curl -o wkhtmltox.deb -SL http://nightly.odoo.com/extra/wkhtmltox-0.12.1.2_linux-jessie-amd64.deb \
-        # && echo '40e8b906de658a2221b15e4e8cd82565a47d7ee8 wkhtmltox.deb' | sha1sum -c - \
-        # && dpkg --force-depends -i wkhtmltox.deb \
-        # && apt-get -y install -f --no-install-recommends \
-        # && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false npm \
-        # && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
         && pip install psycogreen==1.0
 
 # ========== Install node, lessc and wkhtmltopdf ==========
@@ -62,36 +57,20 @@ RUN python -m pip install -r /mnt/requirements.txt
 
 
 WORKDIR /mnt/extra-addons/osapps
-RUN git clone -b 10.0 --single-branch https://github.com/oca/server-tools.git \
-    && git clone -b 10.0 --single-branch https://github.com/oca/contract.git \
-    && git clone -b 10.0 --single-branch https://github.com/oca/event.git \
-    && git clone -b 10.0 --single-branch https://github.com/oca/hr.git \
-    && git clone -b 10.0 --single-branch https://github.com/oca/operating-unit.git \
-    && git clone -b 10.0 --single-branch https://github.com/oca/partner-contact.git \
-    && git clone -b 10.0 --single-branch https://github.com/oca/reporting-engine.git \
-    && git clone -b 10.0 --single-branch https://github.com/oca/sale-workflow.git \
-    && git clone -b 10.0 --single-branch https://github.com/oca/vertical-association.git \
+RUN git clone -b server-tools --single-branch https://github.com/gitmehedi/oca_addons.git server-tools \
+    && git clone -b contract --single-branch https://github.com/gitmehedi/oca_addons.git contract \
+    && git clone -b event --single-branch https://github.com/gitmehedi/oca_addons.git event \
+    && git clone -b hr --single-branch https://github.com/gitmehedi/oca_addons.git hr \
+    && git clone -b operating-unit --single-branch https://github.com/gitmehedi/oca_addons.git operating-unit \
+    && git clone -b partner-contact --single-branch https://github.com/gitmehedi/oca_addons.git partner-contact \
+    && git clone -b reporting-engine --single-branch https://github.com/gitmehedi/oca_addons.git reporting-engine \
+    && git clone -b sale-workflow --single-branch https://github.com/gitmehedi/oca_addons.git sale-workflow \
+    && git clone -b vertical-association --single-branch https://github.com/gitmehedi/oca_addons.git vertical-association \
     && git clone -b tko-addons --single-branch https://github.com/gitmehedi/oca_addons.git tko-addons \
     && git clone -b oca --single-branch https://github.com/gitmehedi/oca_addons.git oca
 
-# # Take an SSH key as a build argument.
-# ARG SSH_KEY
 
-# # Install dependencies required to git clone.
-# RUN apt-get update -y && apt-get install openssh-server ssh -y
-
-# # 1. Create the SSH directory.
-# RUN mkdir -p /root/.ssh/
-# # 2. Populate the private key file.
-# RUN echo "$SSH_KEY" > /root/.ssh/id_rsa
-# # 3. Set the required permissions.
-# RUN chmod -R 600 /root/.ssh/
-# # 4. Add github to our list of known hosts for ssh.
-# # RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-# RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
-# RUN echo "StrictHostKeyChecking no" >> /root/.ssh/config
-
-
+# Add application repository
 WORKDIR /mnt/extra-addons/custom
 ARG SSH_KEY
 RUN git config --global url."https://${SSH_KEY}:@github.com/".insteadOf "https://github.com/"
