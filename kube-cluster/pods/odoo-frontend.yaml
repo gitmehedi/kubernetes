@@ -50,27 +50,27 @@ spec:
             - containerPort: 8069
               name: odoo
           volumeMounts:
-          - name: odoo-pvc
+          - name: emk-pvc-apps-log-vol
             mountPath: /var/lib/odoo
-          - name: odoo-addons
+          - name: emk-pvc-apps-addons-vol
             mountPath: /mnt/extra-addons
-          - name: odoo-config
+          - name: emk-pv-apps-config-vol
             mountPath: /etc/odoo/
       volumes:
-      - name: odoo-pvc
+      - name: emk-pvc-apps-log-vol
         persistentVolumeClaim:
-          claimName: odoo-pvc
-      - name: odoo-addons
+          claimName: emk-pvc-apps-log
+      - name: emk-pvc-apps-addons-vol
         persistentVolumeClaim:
-          claimName: odoo-addons
-      - name: odoo-config
+          claimName: emk-pvc-apps-addons
+      - name: emk-pv-apps-config-vol
         persistentVolumeClaim:
-          claimName: odoo-config
+          claimName: emk-pv-apps-config
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv0001
+  name: emkpvappslog001
   labels:
     type: local
 spec:
@@ -79,12 +79,12 @@ spec:
   capacity:
     storage: 5Gi
   hostPath:
-    path: /data/pv0001/
+    path: /mnt/emkpvappslog001/
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: addons
+  name: emk-pv-apps-addons
   labels:
     type: local
 spec:
@@ -93,13 +93,13 @@ spec:
   capacity:
     storage: 5Gi
   hostPath:
-    path: /data/pv0003/
+    path: /mnt/emkpvappsaddons002/
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: odoo-pvc
+  name: emk-pvc-apps-log
   labels:
     app: odoo-svr
 spec:
@@ -112,7 +112,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: odoo-addons
+  name: emk-pvc-apps-addons
   labels:
     app: odoo-svr
 spec:
@@ -125,7 +125,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: odoo-config
+  name: emkpvappsconf003
   labels:
     type: local
 spec:
@@ -134,12 +134,12 @@ spec:
   capacity:
     storage: 2Gi
   hostPath:
-    path: /data/pv0004/
+    path: /mnt/emkpvappsconf003/
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: odoo-config
+  name: emk-pv-apps-config
   labels:
     app: odoo-svr
 spec:

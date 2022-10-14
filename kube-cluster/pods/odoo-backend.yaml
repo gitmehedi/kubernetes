@@ -57,7 +57,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv0002
+  name: emkpvdb001
   labels:
     type: local
 spec:
@@ -66,12 +66,12 @@ spec:
   capacity:
     storage: 5Gi
   hostPath:
-    path: /data/pv0002/
+    path: /data/emkpvdb001/
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: odoo-db-pvc
+  name: emk-db-pvc
   labels:
     app: odoo-svr
 spec:
