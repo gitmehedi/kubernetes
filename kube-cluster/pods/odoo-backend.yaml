@@ -2,40 +2,40 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: odoo-db
+  name: emk-db
   labels:
-    app: odoo-svr
+    app: emk-apps
 spec:
   ports:
     - port: 5432
   selector:
-    app: odoo-svr
+    app: emk-apps
     tier: backend
   type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: odoo-db
+  name: emk-db
   labels:
-    app: odoo-svr
+    app: emk-apps
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: odoo-svr
+      app: emk-apps
       tier: backend
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: odoo-svr
+        app: emk-apps
         tier: backend
     spec:
       containers:
       - image: postgres:10.0
-        name: odoo-db
+        name: emk-db
         env:
         - name: POSTGRES_USER
           value: odoo
@@ -45,7 +45,7 @@ spec:
           value: /var/lib/postgresql/data/pgdata
         ports:
         - containerPort: 5432
-          name: odoo-db
+          name: emk-db
         volumeMounts:
         - name: emk-db-pvc-vol
           mountPath: /var/lib/postgresql/data
