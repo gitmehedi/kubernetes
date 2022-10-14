@@ -47,12 +47,12 @@ spec:
         - containerPort: 5432
           name: odoo-db
         volumeMounts:
-        - name: odoo-db-pvc
+        - name: emk-db-pvc-vol
           mountPath: /var/lib/postgresql/data
       volumes:
-      - name: odoo-db-pvc
+      - name: emk-db-pvc-vol
         persistentVolumeClaim:
-          claimName: odoo-db-pvc
+          claimName: emk-db-pvc
 ---
 apiVersion: v1
 kind: PersistentVolume
