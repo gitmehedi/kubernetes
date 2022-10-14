@@ -36,6 +36,7 @@ spec:
       containers:
         - image: gitmehedi/emk:dev
           name: odoo
+          imagePullPolicy: Always
           env:
           - name: HOST
             value: odoo-db
