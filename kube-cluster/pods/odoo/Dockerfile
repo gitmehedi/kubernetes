@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Md Mehedi Hasan <git.mehedi@gmail.com>
 
-# Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
+# Install os dependecies, python dependencies
 RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
@@ -12,12 +12,13 @@ RUN set -x; \
             vim \
             wget \
             libmagickwand-dev \
-            node-less \
             python-gevent \
             python-pip \
             python-pyinotify \
             python-renderpm \
             python-support \
+            python-renderpm \
+            python-watchdog \
         && pip install psycogreen==1.0
 
 # ========== Install node, lessc and wkhtmltopdf ==========
@@ -39,21 +40,17 @@ RUN set -x; \
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN mkdir -p /mnt/extra-addons \
-    && mkdir -p /mnt/extra-addons/custom \
-    && mkdir -p /mnt/extra-addons/osapps \
-    && chown -R odoo:odoo /mnt/extra-addons \
-    && chown -R odoo:odoo /mnt/extra-addons/custom \
-    && chown -R odoo:odoo /mnt/extra-addons/osapps \ 
+    && mkdir -m 777 /mnt/extra-addons/custom \
+    && mkdir -m 777 /mnt/extra-addons/osapps \
     # @BUGFIX
     # During the database creation process, the system creates an empty filestore dir
     # with root:root permission, returning a permission error.
-    && mkdir -m 700 /var/lib/odoo/filestore \
+    && mkdir -m 777 /var/lib/odoo/filestore \
     && chown -R odoo:odoo /var/lib/odoo/filestore
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
 COPY ./requirements.txt /mnt/requirements.txt
 RUN python -m pip install -r /mnt/requirements.txt
-
 
 
 WORKDIR /mnt/extra-addons/osapps
@@ -79,11 +76,13 @@ RUN git clone -b emk_dev --single-branch https://github.com/genweb2/gbs.git emk
 WORKDIR /mnt
 
 # Copy entrypoint script and Odoo configuration file
-COPY ./entrypoint.sh /mnt/entrypoint.sh
-RUN chmod +x /mnt/entrypoint.sh
+COPY ./entrypoint.sh /mnt/entrypoint.sh 
 COPY ./odoo.conf /etc/odoo/
-RUN chown odoo:odoo /etc/odoo/odoo.conf
-RUN chown odoo:odoo /mnt/entrypoint.sh
+
+RUN chmod +x /mnt/entrypoint.sh \
+    && chown odoo:odoo /etc/odoo/odoo.conf \
+    && chown odoo:odoo /mnt/entrypoint.sh \
+    && chown -R odoo:odoo /mnt/extra-addons 
 
 # Expose Odoo services
 EXPOSE 8069 8071

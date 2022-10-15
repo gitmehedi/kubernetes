@@ -50,20 +50,20 @@ spec:
           ports:
             - containerPort: 8069
               name: odoo
-      #     volumeMounts:
+          volumeMounts:
       #     - name: emk-pvc-apps-log-vol
       #       mountPath: /var/lib/odoo
-      #     - name: emk-pvc-apps-addons-vol
-      #       mountPath: /mnt/extra-addons
+          - name: emk-pvc-apps-addons-vol
+            mountPath: /mnt/extra-addons
       #     - name: emk-pv-apps-config-vol
       #       mountPath: /etc/odoo/
-      # volumes:
+      volumes:
       # - name: emk-pvc-apps-log-vol
       #   persistentVolumeClaim:
       #     claimName: emk-pvc-apps-log
-      # - name: emk-pvc-apps-addons-vol
-      #   persistentVolumeClaim:
-      #     claimName: emk-pvc-apps-addons
+      - name: emk-pvc-apps-addons-vol
+        persistentVolumeClaim:
+          claimName: emk-pvc-apps-addons
       # - name: emk-pv-apps-config-vol
       #   persistentVolumeClaim:
       #     claimName: emk-pv-apps-config
