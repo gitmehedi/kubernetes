@@ -79,6 +79,8 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 5Gi
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: manual
   hostPath:
     path: /mnt/emkpvappslog001/
 ---
@@ -93,6 +95,8 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 5Gi
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: manual
   hostPath:
     path: /mnt/emkpvappsaddons002/
 
@@ -108,6 +112,8 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 2Gi
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: manual
   hostPath:
     path: /mnt/emkpvappsconf003/
 ---
@@ -120,6 +126,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: manual
   resources:
     requests:
       storage: 5Gi
@@ -133,6 +140,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: manual
   resources:
     requests:
       storage: 5Gi
@@ -147,6 +155,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: manual
   resources:
     requests:
       storage: 2Gi
