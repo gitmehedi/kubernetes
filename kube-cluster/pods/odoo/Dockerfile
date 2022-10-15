@@ -40,14 +40,17 @@ RUN set -x; \
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN mkdir -p /mnt/extra-addons \
-    && mkdir -m 777 /mnt/extra-addons/custom \
-    && mkdir -m 777 /mnt/extra-addons/osapps \
+    && mkdir -p  /mnt/extra-addons/custom \
+    && mkdir -p /mnt/extra-addons/osapps \
+    && chown -R odoo:odoo /mnt/extra-addons \
+    && chmod 2777 /mnt/extra-addons \
+
     # @BUGFIX
     # During the database creation process, the system creates an empty filestore dir
     # with root:root permission, returning a permission error.
     && mkdir -m 777 /var/lib/odoo/filestore \
     && chown -R odoo:odoo /var/lib/odoo/filestore
-VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
+
 
 COPY ./requirements.txt /mnt/requirements.txt
 RUN python -m pip install -r /mnt/requirements.txt
@@ -82,7 +85,12 @@ COPY ./odoo.conf /etc/odoo/
 RUN chmod +x /mnt/entrypoint.sh \
     && chown odoo:odoo /etc/odoo/odoo.conf \
     && chown odoo:odoo /mnt/entrypoint.sh \
-    && chown -R odoo:odoo /mnt/extra-addons 
+    && chown -R odoo:odoo /mnt/extra-addons/osapps \
+    && chown -R odoo:odoo /mnt/extra-addons/custom \
+    && chmod 777 /mnt/extra-addons/osapps \
+    && chmod 777 /mnt/extra-addons/custom 
+
+VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
 # Expose Odoo services
 EXPOSE 8069 8071
