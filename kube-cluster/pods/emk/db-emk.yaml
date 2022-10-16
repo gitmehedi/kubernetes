@@ -1,0 +1,82 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emk-db
+  labels:
+    app: emk-apps
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: emk-apps
+    tier: backend
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emk-db
+  labels:
+    app: emk-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emk-apps
+      tier: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: emk-apps
+        tier: backend
+    spec:
+      containers:
+      - image: postgres:10.0
+        name: emk-db
+        env:
+        - name: POSTGRES_USER
+          value: odoo
+        - name: POSTGRES_PASSWORD
+          value: password
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        ports:
+        - containerPort: 5432
+          name: emk-db
+        volumeMounts:
+        - name: emk-db-pvc-vol
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: emk-db-pvc-vol
+        persistentVolumeClaim:
+          claimName: emk-db-pvc
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: emkpvdb001
+  labels:
+    type: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  hostPath:
+    path: /data/emkpvdb001/
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: emk-db-pvc
+  labels:
+    app: odoo-svr
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

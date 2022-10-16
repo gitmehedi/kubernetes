@@ -1,0 +1,161 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emk-apps
+  labels:
+    app: emk-apps
+spec:
+  ports:
+    - port: 8069
+  selector:
+    app: emk-apps
+    tier: frontend
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emk-apps
+  labels:
+    app: emk-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emk-apps
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: emk-apps
+        tier: frontend
+    spec:
+      containers:
+        - image: gitmehedi/emk:dev
+          name: odoo
+          imagePullPolicy: Always
+          env:
+          - name: HOST
+            value: emk-db
+          - name: USER
+            value: odoo
+          - name: PASSWORD
+            value: password
+          # securityContext:
+          #   privileged: true
+          #   runAsUser: 0
+          ports:
+            - containerPort: 8069
+              name: odoo
+          volumeMounts:
+      #     - name: emk-pvc-apps-log-vol
+      #       mountPath: /var/lib/odoo
+          - name: emk-pvc-apps-addons-vol
+            mountPath: /mnt/extra-addons
+      #     - name: emk-pv-apps-config-vol
+      #       mountPath: /etc/odoo/
+      volumes:
+      # - name: emk-pvc-apps-log-vol
+      #   persistentVolumeClaim:
+      #     claimName: emk-pvc-apps-log
+      - name: emk-pvc-apps-addons-vol
+        persistentVolumeClaim:
+          claimName: emk-pvc-apps-addons
+      # - name: emk-pv-apps-config-vol
+      #   persistentVolumeClaim:
+      #     claimName: emk-pv-apps-config
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: emkpvappslog001
+  labels:
+    type: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: manual
+  hostPath:
+    path: /mnt/emkpvappslog001/
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: emkpvappsaddons002
+  labels:
+    type: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: manual
+  hostPath:
+    path: /mnt/emkpvappsaddons002/
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: emkpvappsconf003
+  labels:
+    type: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 2Gi
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: manual
+  hostPath:
+    path: /mnt/emkpvappsconf003/
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: emk-pvc-apps-log
+  labels:
+    app: emk-apps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: emk-pvc-apps-addons
+  labels:
+    app: emk-apps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: emk-pv-apps-config
+  labels:
+    app: emk-apps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 2Gi

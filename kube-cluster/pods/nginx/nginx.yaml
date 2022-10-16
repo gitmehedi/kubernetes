@@ -1,0 +1,82 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    tier: web
+  name: web
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    tier: web
+status:
+  loadBalancer: {}
+---
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        tier: web
+      name: web
+    spec:
+      containers:
+      - image: nginx
+        name: web
+        ports:
+        - containerPort: 80
+        resources: {}
+      volumes:
+      - name: nginx-vol
+        persistenVolummeClaim:
+          claimName: nginxweb001
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+status: {}
+
+---
+# Create a Persistent Volument for Storing Data
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nginxweb001
+  labels:
+    type: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 2Gi
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: manual
+  hostPath:
+    path: /mnt/nginxweb001/
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-web
+  labels:
+    app: emk-apps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 2Gi
